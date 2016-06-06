@@ -14,15 +14,14 @@ extension GameScene{
     func initFirstDraw(){
         let playerZone = childNodeWithName("playerZone")!
         let opponentZone = childNodeWithName("opponentZone")!
-        let dealerZone = childNodeWithName("dealerZone")!
         let tableCardsZone = childNodeWithName("tableCardZone")!
         
-        var positionX:CGFloat = 100
-        let positionYuser:CGFloat = 200
-        let positionYopp:CGFloat = 600
+        var positionX = playerZone.position.x - playerZone.frame.width/2 + emptyCard.frame.width/2
+        let positionYuser = playerZone.position.y
+        let positionYopp = opponentZone.position.y
         
-        let positionYtable:CGFloat = 400
-        var positionXtable:CGFloat = 250
+        let positionYtable = tableCardsZone.position.y
+        var positionXtable = tableCardsZone.position.x - tableCardsZone.frame.width/2  + emptyCard.frame.width/2
         
         let actionQ = ActionQ()
         
@@ -32,8 +31,6 @@ extension GameScene{
             let n1 = user.hands[i].card1
             n1.position = CGPointMake(300, 1200)
             n1.zPosition = 0
-            //n1.xScale = 0.7
-            //n1.yScale = 0.7
             addChild(n1)
             let pos1 = SKAction.moveTo(CGPointMake(positionX, positionYuser), duration: 0.3)
             let g1 = SKAction.group([pos1, rotate])
@@ -43,8 +40,6 @@ extension GameScene{
             n3.position = CGPointMake(300, 1200)
             n3.zRotation = CGFloat(M_PI)
             n3.zPosition = 15
-            //n3.xScale = 0.7
-            //n3.yScale = 0.7
             addChild(n3)
             let pos2 = SKAction.moveTo(CGPointMake(positionX, positionYopp), duration: 0.3)
             let g2 = SKAction.group([pos2, rotate])
@@ -53,10 +48,8 @@ extension GameScene{
             let n2 = user.hands[i].card2
             n2.position = CGPointMake(300, 1200)
             n2.zPosition = 15
-            //n2.xScale = 0.7
-            //n2.yScale = 0.7
             addChild(n2)
-            let pos3 = SKAction.moveTo(CGPointMake(positionX + 30, positionYuser), duration: 0.3)
+            let pos3 = SKAction.moveTo(CGPointMake(positionX + (n1.frame.width/3), positionYuser), duration: 0.3)
             let g3 = SKAction.group([pos3, rotate])
             actionQ.addNext(n2, action: g3)
             
@@ -64,14 +57,12 @@ extension GameScene{
             n4.position = CGPointMake(300, 1200)
             n4.zRotation = CGFloat(M_PI)
             n4.zPosition = 0
-            //n4.xScale = 0.7
-            //n4.yScale = 0.7
             addChild(n4)
-            let pos4 = SKAction.moveTo(CGPointMake(positionX + 30, positionYopp), duration: 0.3)
+            let pos4 = SKAction.moveTo(CGPointMake(positionX + (n2.frame.width/3), positionYopp), duration: 0.3)
             let g4 = SKAction.group([pos4, rotate])
             actionQ.addNext(n4, action: g4)
             
-            positionX += 130
+            positionX += n1.frame.width * 1.63
         }
         
         for card in cardsOnTable{
@@ -82,7 +73,7 @@ extension GameScene{
             let pos = SKAction.moveTo(CGPointMake(positionXtable, positionYtable), duration: 0.3)
             let g = SKAction.group([pos, rotate])
             actionQ.addNext(card, action: g)
-            positionXtable += 120
+            positionXtable += card.frame.width * 1.25
             if card == cardsOnTable.last{
                 cardsOnTable.first?.flip(10, complition: {
                     self.canPlay = true
@@ -94,13 +85,16 @@ extension GameScene{
     }
     
     func dissmissHand(hand:Hand){
-        let throwOut = SKAction.moveTo(CGPointMake(1000, 1000), duration: 0.5)
+        let throwOut = SKAction.moveTo(CGPoint(x:view!.frame.width  ,y:view!.frame.height*2), duration: 0.5)
         let rotate = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 0.5)
         
         hand.card1.runAction(throwOut)
         hand.card1.runAction(rotate)
         hand.card2.runAction(throwOut)
-        hand.card2.runAction(rotate)
+        hand.card2.runAction(rotate){
+            hand.card1.removeFromParent()
+            hand.card2.removeFromParent()
+        }
         
         dealer.removeHand(hand: hand)
         print("dealer hands: \(dealer.hands.count)")
@@ -109,7 +103,7 @@ extension GameScene{
     func moveToDealer(hand:Hand, player:Player){
         let c1Position = dealerPositions[dealer.hands.count]
         var c2Position = dealerPositions[dealer.hands.count]
-        c2Position.y += 30
+        c2Position.y += hand.card1.frame.height * 0.25
         
         let moveC1 = SKAction.moveTo(c1Position, duration: 0.5)
         let moveC2 = SKAction.moveTo(c2Position, duration: 0.5)
