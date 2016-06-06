@@ -19,6 +19,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GameScene.drawRectsOnScreen() -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "view!.frame.width">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.initMembers() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
@@ -30,13 +38,13 @@
          contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
+               value = "cardsOnTable">
+            </PersistentString>
+            <PersistentString
                value = "opponent">
             </PersistentString>
             <PersistentString
                value = "user">
-            </PersistentString>
-            <PersistentString
-               value = "cardsOnTable">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

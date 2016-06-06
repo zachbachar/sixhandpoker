@@ -12,6 +12,11 @@ import SpriteKit
 extension GameScene{
     
     func initFirstDraw(){
+        let playerZone = childNodeWithName("playerZone")!
+        let opponentZone = childNodeWithName("opponentZone")!
+        let dealerZone = childNodeWithName("dealerZone")!
+        let tableCardsZone = childNodeWithName("tableCardZone")!
+        
         var positionX:CGFloat = 100
         let positionYuser:CGFloat = 200
         let positionYopp:CGFloat = 600
@@ -27,8 +32,8 @@ extension GameScene{
             let n1 = user.hands[i].card1
             n1.position = CGPointMake(300, 1200)
             n1.zPosition = 0
-            n1.xScale = 0.65
-            n1.yScale = 0.65
+            //n1.xScale = 0.7
+            //n1.yScale = 0.7
             addChild(n1)
             let pos1 = SKAction.moveTo(CGPointMake(positionX, positionYuser), duration: 0.3)
             let g1 = SKAction.group([pos1, rotate])
@@ -38,8 +43,8 @@ extension GameScene{
             n3.position = CGPointMake(300, 1200)
             n3.zRotation = CGFloat(M_PI)
             n3.zPosition = 15
-            n3.xScale = 0.65
-            n3.yScale = 0.65
+            //n3.xScale = 0.7
+            //n3.yScale = 0.7
             addChild(n3)
             let pos2 = SKAction.moveTo(CGPointMake(positionX, positionYopp), duration: 0.3)
             let g2 = SKAction.group([pos2, rotate])
@@ -48,8 +53,8 @@ extension GameScene{
             let n2 = user.hands[i].card2
             n2.position = CGPointMake(300, 1200)
             n2.zPosition = 15
-            n2.xScale = 0.65
-            n2.yScale = 0.65
+            //n2.xScale = 0.7
+            //n2.yScale = 0.7
             addChild(n2)
             let pos3 = SKAction.moveTo(CGPointMake(positionX + 30, positionYuser), duration: 0.3)
             let g3 = SKAction.group([pos3, rotate])
@@ -59,8 +64,8 @@ extension GameScene{
             n4.position = CGPointMake(300, 1200)
             n4.zRotation = CGFloat(M_PI)
             n4.zPosition = 0
-            n4.xScale = 0.65
-            n4.yScale = 0.65
+            //n4.xScale = 0.7
+            //n4.yScale = 0.7
             addChild(n4)
             let pos4 = SKAction.moveTo(CGPointMake(positionX + 30, positionYopp), duration: 0.3)
             let g4 = SKAction.group([pos4, rotate])

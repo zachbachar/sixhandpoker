@@ -10,6 +10,9 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    var midX = CGFloat()
+    var midY = CGFloat()
+    
     var deck = Deck()
     var user = Player()
     var opponent = Player()
@@ -24,8 +27,50 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here*/
+        midX = CGRectGetMidX(self.frame)
+        midY = CGRectGetMidY(self.frame)
         initGame()
         initFirstDraw()
+        
+        drawPlayingZones()
+    }
+    
+    func drawPlayingZones(){
+        let emptyCard = SKSpriteNode(imageNamed: "cardstyle1back")
+        let handWidth = emptyCard.frame.width + (emptyCard.frame.width/2)
+        let zoneHeight = emptyCard.frame.height
+        let zoneWidth = handWidth * 6
+        
+
+        let xOffset = midX - zoneWidth/6
+        let playerZone = SKSpriteNode(color: UIColor.clearColor(), size: CGSize(width: zoneWidth, height: zoneHeight))
+        playerZone.name = "playerZone"
+        playerZone.position.x = xOffset
+        playerZone.position.y = zoneHeight
+        playerZone.zPosition = 0
+        addChild(playerZone)
+        
+        let opponentZone = SKSpriteNode(color: UIColor.clearColor(), size: CGSize(width: zoneWidth, height: zoneHeight))
+        opponentZone.name = "opponentZone"
+        opponentZone.position.x = xOffset
+        opponentZone.position.y = view!.frame.height - zoneHeight
+        opponentZone.zPosition = 0
+        addChild(opponentZone)
+        
+        let dealerZone = SKSpriteNode(color: UIColor.clearColor(), size: CGSize(width: zoneHeight, height: zoneWidth))
+        dealerZone.name = "dealerZone"
+        dealerZone.position.x = view!.frame.width - zoneHeight
+        dealerZone.position.y = midY
+        dealerZone.zPosition = 0
+        addChild(dealerZone)
+        
+        let tableZoneWidth = emptyCard.frame.width * 5 + emptyCard.frame.width
+        let tableCardZone = SKSpriteNode(color: UIColor.clearColor(), size: CGSize(width: tableZoneWidth , height: zoneHeight))
+        tableCardZone.name = "tableCardZone"
+        tableCardZone.position.x = xOffset
+        tableCardZone.position.y = midY
+        tableCardZone.zPosition = 0
+        addChild(tableCardZone)
     }
     
     func initGame(){
@@ -154,11 +199,11 @@ class GameScene: SKScene {
         }
     }
     
-    func addNewGameBtb(){
-        let btn = SKSpriteNode(imageNamed: "spaceship")
-        btn.position = CGPointMake(10, view!.frame.height - 20)
-        addChild(btn)
-    }
+//    func addNewGameBtb(){
+//        let btn = SKSpriteNode(imageNamed: "spaceship")
+//        btn.position = CGPointMake(10, view!.frame.height - 20)
+//        addChild(btn)
+//    }
     
 //    func findHand(card:Card) -> Hand?{
 //        for hand in user.hands{
