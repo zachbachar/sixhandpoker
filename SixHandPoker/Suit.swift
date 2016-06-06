@@ -1,0 +1,40 @@
+//
+//  Suit.swift
+//  SixHandPoker
+//
+//  Created by zach bachar on 02/06/2016.
+//  Copyright © 2016 zach bachar. All rights reserved.
+//
+
+import Foundation
+
+enum Suit:Int, CustomStringConvertible{
+    
+    case Spades = 1, Hearts, Diamonds, Clubs
+    
+    var description:String{
+        switch self{
+        case .Spades:
+            return "♠️"
+        case .Hearts:
+            return "♥️"
+        case .Diamonds:
+            return "♦️"
+        case .Clubs:
+            return "♣️"
+        }
+    }
+    
+    var shortName:String{
+        switch self {
+        case .Spades:
+            return "s"
+        case .Hearts:
+            return "h"
+        case .Diamonds:
+            return "d"
+        case.Clubs:
+            return "c"
+        }
+    }
+}
