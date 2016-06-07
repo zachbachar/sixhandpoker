@@ -19,6 +19,17 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GameScene.clearTable() -&gt; ():Actions.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user.hands">
+            </PersistentString>
+            <PersistentString
+               value = "dealer.hands">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.initMembers() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
@@ -30,13 +41,13 @@
          contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
+               value = "cardsOnTable">
+            </PersistentString>
+            <PersistentString
                value = "opponent">
             </PersistentString>
             <PersistentString
                value = "user">
-            </PersistentString>
-            <PersistentString
-               value = "cardsOnTable">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

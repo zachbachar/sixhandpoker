@@ -12,6 +12,7 @@
 		184878091D070BFE0027C661 /* cardShove2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878061D070BFE0027C661 /* cardShove2.wav */; };
 		1848780A1D070BFE0027C661 /* cardShove3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878071D070BFE0027C661 /* cardShove3.wav */; };
 		1848780D1D0720FF0027C661 /* HandRanks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848780C1D0720FF0027C661 /* HandRanks.swift */; };
+		1848780F1D07444C0027C661 /* Magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1848780E1D07444C0027C661 /* Magic.sks */; };
 		186305F71D04057F0094E732 /* ActionQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186305F61D04057F0094E732 /* ActionQ.swift */; };
 		186305FA1D0423BD0094E732 /* Round1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186305F91D0423BD0094E732 /* Round1.swift */; };
 		186305FC1D04242C0094E732 /* Round2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186305FB1D04242C0094E732 /* Round2.swift */; };
@@ -49,6 +50,7 @@
 		184878061D070BFE0027C661 /* cardShove2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove2.wav; sourceTree = "<group>"; };
 		184878071D070BFE0027C661 /* cardShove3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove3.wav; sourceTree = "<group>"; };
 		1848780C1D0720FF0027C661 /* HandRanks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandRanks.swift; sourceTree = "<group>"; };
+		1848780E1D07444C0027C661 /* Magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Magic.sks; sourceTree = "<group>"; };
 		186305F61D04057F0094E732 /* ActionQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionQ.swift; sourceTree = "<group>"; };
 		186305F91D0423BD0094E732 /* Round1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round1.swift; sourceTree = "<group>"; };
 		186305FB1D04242C0094E732 /* Round2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round2.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				186B3DC31D06AD4D00CC3173 /* Smoke.sks */,
 				186B3DC41D06AD4D00CC3173 /* spark.png */,
+				1848780E1D07444C0027C661 /* Magic.sks */,
 			);
 			name = Emitters;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				1878944B1D00127400BAA358 /* Assets.xcassets in Resources */,
 				186B3DC21D06A91400CC3173 /* cardPlace3.wav in Resources */,
 				184878091D070BFE0027C661 /* cardShove2.wav in Resources */,
+				1848780F1D07444C0027C661 /* Magic.sks in Resources */,
 				186B3DC61D06AD4D00CC3173 /* spark.png in Resources */,
 				1848780A1D070BFE0027C661 /* cardShove3.wav in Resources */,
 				187894491D00127400BAA358 /* Main.storyboard in Resources */,

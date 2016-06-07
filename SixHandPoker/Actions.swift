@@ -101,7 +101,7 @@ extension GameScene{
         hand.card2.runAction(rotate)
         
         dealer.removeHand(hand: hand)
-        print("dealer hands: \(dealer.hands.count)")
+        //print("dealer hands: \(dealer.hands.count)")
     }
     
     func moveToDealer(hand:Hand, player:Player){
@@ -163,6 +163,58 @@ extension GameScene{
         return sounds[Int.nextRandom(upTo: sounds.count)]
     }
     
+    func addNewGameButton(){
+        
+        let newGameBtn = SKSpriteNode(imageNamed: "newGameBtn")
+        newGameBtn.zPosition = 6
+        newGameBtn.xScale = 0.5
+        newGameBtn.yScale = 0.5
+        newGameBtn.position = CGPoint(x: view!.frame.width - newGameBtn.frame.width, y: view!.frame.height - newGameBtn.frame.height)
+        newGameBtn.alpha = 0
+        newGameBtn.name = "newGameBtn"
+        addChild(newGameBtn)
+        
+        let fadeIn = SKAction.fadeAlphaTo(1, duration: 1)
+        let rotate = SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 2)
+        let group = SKAction.group([fadeIn, SKAction.repeatActionForever(rotate)])
+        newGameBtn.runAction(group)
+    }
+    
+    func clearTable(){
+        let actionQ = ActionQ()
+        
+        let moveToCenter = SKAction.moveTo(CGPointMake(midX, midY), duration: 0.3)
+        let getherAll = SKAction.group([moveToCenter, SKAction.rotateToAngle(CGFloat(M_PI*2), duration: 0.3)])
+        let group = SKAction.sequence([getherAll, slideSound(), SKAction.removeFromParent()])
+        
+        for card in cardsOnTable{
+            card.runAction(group)
+        }
+        
+         user.hands.first!.card1.runAction(group)
+         user.hands.first!.card2.runAction(group)
+         opponent.hands.first!.card1.runAction(group)
+         opponent.hands.first!.card2.runAction(group)
+         dealer.hands.first!.card1.runAction(group)
+         dealer.hands.first!.card2.runAction(group)
+        
+        let magic = SKEmitterNode(fileNamed: "Magic")!
+        magic.position = CGPoint(x: midX, y: midY)
+        magic.zPosition = 6
+        magic.particleTexture = cardsOnTable.last!.frontTexture
+        let removeMagic = SKAction.sequence([SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
+        addChild(magic)
+        magic.runAction(removeMagic)
+        
+        let btn = childNodeWithName("newGameBtn")!
+        actionQ.addNext(btn, action: SKAction.sequence([
+            SKAction.waitForDuration(1),
+            SKAction.fadeOutWithDuration(0.3),
+            SKAction.removeFromParent(),
+            SKAction.waitForDuration(actionQ.timeLeftInQ*2),
+            resetGame()
+            ]))
+    }
     
     func roundLabel(text:String){
         let label = SKLabelNode(fontNamed:"American Typewriter")

@@ -31,16 +31,17 @@ class GameScene: SKScene {
         midY = CGRectGetMidY(self.frame)
         initGame()
         initFirstDraw()
-        //addBackground()
     }
     
-    func addBackground(){
-        let bg = SKSpriteNode(imageNamed: "bg")
-        bg.size.height = view!.frame.size.height
-        bg.size.width = view!.frame.size.width 
-        bg.zPosition = -1
-        bg.position = CGPoint(x: midX, y: midY)
-        addChild(bg)
+    func resetGame() -> SKAction{
+        deck = Deck()
+        user.hands.removeAll()
+        dealer.hands.removeAll()
+        opponent.hands.removeAll()
+        cardsOnTable.removeAll()
+        initGame()
+        initFirstDraw()
+        return SKAction()
     }
     
     func initGame(){
@@ -59,84 +60,89 @@ class GameScene: SKScene {
         }
     }
     
+    func endGame(){
+        canPlay = false
+        user.handValue(self.cardsOnTable)
+        opponent.handValue(self.cardsOnTable)
+        dealer.handValue(self.cardsOnTable)
+        round = 0
+        roundLabel("THE END!")
+        addNewGameButton()
+    }
     
-        
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        if round == 1{
-            if user.hands.count == 4 && opponent.hands.count == 4{
-                round += 1
-                self.roundLabel("Dealers Turn!")
+            if round == 1{
+                if user.hands.count == 4 && opponent.hands.count == 4{
+                    round += 1
+                    self.roundLabel("Dealers Turn!")
+                }
             }
-        }
-        else if round == 2{
-            if dealer.hands.count == 2{
-                canPlay = false
-                rearrangeCardsAtDealer()
-                round += 1
-                
-                cardsOnTable[1].flip(1, complition: {
-                    self.canPlay = true
-                    print("round two")
-                    self.roundLabel("Round Two")
-                })
+            else if round == 2{
+                if dealer.hands.count == 2{
+                    canPlay = false
+                    rearrangeCardsAtDealer()
+                    round += 1
+                    
+                    cardsOnTable[1].flip(1, complition: {
+                        self.canPlay = true
+                        print("round two")
+                        self.roundLabel("Round Two")
+                    })
+                }
             }
-        }
-        else if round == 3{
-            if user.hands.count == 3 && opponent.hands.count == 3{
-                round += 1
-                self.roundLabel("Dealers Turn!")
+            else if round == 3{
+                if user.hands.count == 3 && opponent.hands.count == 3{
+                    round += 1
+                    self.roundLabel("Dealers Turn!")
+                }
             }
-        }
-        else if round == 4{
-            if dealer.hands.count == 3{
-                canPlay = false
-                rearrangeCardsAtDealer()
-                round += 1
-                
-                cardsOnTable[2].flip(1, complition: {
-                    self.canPlay = true
-                    self.roundLabel("Round Three")
-                })
+            else if round == 4{
+                if dealer.hands.count == 3{
+                    canPlay = false
+                    rearrangeCardsAtDealer()
+                    round += 1
+                    
+                    cardsOnTable[2].flip(1, complition: {
+                        self.canPlay = true
+                        self.roundLabel("Round Three")
+                    })
+                }
             }
-        }
-        else if round == 5{
-            if user.hands.count == 2 && opponent.hands.count == 2{
-                round += 1
-                self.roundLabel("Dealers Turn!")
+            else if round == 5{
+                if user.hands.count == 2 && opponent.hands.count == 2{
+                    round += 1
+                    self.roundLabel("Dealers Turn!")
+                }
             }
-        }
-        else if round == 6{
-            if dealer.hands.count == 4{
-                canPlay = false
-                rearrangeCardsAtDealer()
-                round += 1
-                
-                cardsOnTable[3].flip(1, complition: {
-                    self.canPlay = true
-                    self.roundLabel("Round Four")
-                })
+            else if round == 6{
+                if dealer.hands.count == 4{
+                    canPlay = false
+                    rearrangeCardsAtDealer()
+                    round += 1
+                    
+                    cardsOnTable[3].flip(1, complition: {
+                        self.canPlay = true
+                        self.roundLabel("Round Four")
+                    })
+                }
             }
-        }
-        else if round == 7{
-            if user.hands.count == 1 && opponent.hands.count == 1{
-                round += 1
-                self.roundLabel("Dealers Turn!")
+            else if round == 7{
+                if user.hands.count == 1 && opponent.hands.count == 1{
+                    round += 1
+                    self.roundLabel("Dealers Turn!")
+                }
             }
-        }
-        else if round == 8{
-            if dealer.hands.count == 1{
-                canPlay = false
-                round += 1
-                
-                cardsOnTable[4].flip(1, complition: {
-                    self.canPlay = false
-                    self.user.handValue(self.cardsOnTable)
-                    self.opponent.handValue(self.cardsOnTable)
-                    self.dealer.handValue(self.cardsOnTable)
-                    self.roundLabel("THE END!")
-                })
+            else if round == 8{
+                if dealer.hands.count == 1{
+                    canPlay = false
+                    round += 1
+                    
+                    cardsOnTable[4].flip(1, complition: {
+                        self.endGame()
+                    })
+                }
             }
-        }
+        
     }
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -144,33 +150,36 @@ class GameScene: SKScene {
         let touch = touches.first!
         let location = touch.locationInNode(self)
         let touchedNode = nodeAtPoint(location)
-        
-        if let card1 = touchedNode as? Card{
-            if round == 1 && canPlay {
-                roundONE(card1)
-            }else if round == 2 && canPlay{
-                roundTWO(card1)
-            }
-            else if round == 3 && canPlay{
-                roundTHREE(card1)
-            }
-            else if round == 4 && canPlay{
-                roundFOUR(card1)
-            }
-            else if round == 5 && canPlay{
-                roundFIVE(card1)
-            }
-            else if round == 6 && canPlay{
-                roundSIX(card1)
-            }
-            else if round == 7 && canPlay{
-                roundSEVEN(card1)
-            }
-            else if round == 8 && canPlay{
-                roundEIGHT(card1)
+        if touchedNode.name == "newGameBtn"{
+            clearTable()
+        }
+        else{
+            if let card1 = touchedNode as? Card{
+                if round == 1 && canPlay {
+                    roundONE(card1)
+                }else if round == 2 && canPlay{
+                    roundTWO(card1)
+                }
+                else if round == 3 && canPlay{
+                    roundTHREE(card1)
+                }
+                else if round == 4 && canPlay{
+                    roundFOUR(card1)
+                }
+                else if round == 5 && canPlay{
+                    roundFIVE(card1)
+                }
+                else if round == 6 && canPlay{
+                    roundSIX(card1)
+                }
+                else if round == 7 && canPlay{
+                    roundSEVEN(card1)
+                }
+                else if round == 8 && canPlay{
+                    roundEIGHT(card1)
+                }
             }
         }
-        
     }
     
    
