@@ -26,44 +26,44 @@ extension GameScene{
         for i in 0..<6{
             let n1 = user.hands[i].card1
             n1.position = CGPointMake(300, 1200)
-            n1.zPosition = 0
+            n1.zPosition = 1
             n1.xScale = 0.65
             n1.yScale = 0.65
             addChild(n1)
             let pos1 = SKAction.moveTo(CGPointMake(positionX, positionYuser), duration: 0.3)
-            let g1 = SKAction.group([pos1, rotate, slideSound()])
+            let g1 = SKAction.group([pos1, rotate, drawCardSound()])
             actionQ.addNext(n1, action: g1)
             
             let n3 = opponent.hands[i].card1
             n3.position = CGPointMake(300, 1200)
             n3.zRotation = CGFloat(M_PI)
-            n3.zPosition = 15
+            n3.zPosition = 2
             n3.xScale = 0.65
             n3.yScale = 0.65
             addChild(n3)
             let pos2 = SKAction.moveTo(CGPointMake(positionX, positionYopp), duration: 0.3)
-            let g2 = SKAction.group([pos2, rotate, slideSound()])
+            let g2 = SKAction.group([pos2, rotate, drawCardSound()])
             actionQ.addNext(n3, action: g2)
             
             let n2 = user.hands[i].card2
             n2.position = CGPointMake(300, 1200)
-            n2.zPosition = 15
+            n2.zPosition = 2
             n2.xScale = 0.65
             n2.yScale = 0.65
             addChild(n2)
             let pos3 = SKAction.moveTo(CGPointMake(positionX + 30, positionYuser), duration: 0.3)
-            let g3 = SKAction.group([pos3, rotate, slideSound()])
+            let g3 = SKAction.group([pos3, rotate, drawCardSound()])
             actionQ.addNext(n2, action: g3)
             
             let n4 = opponent.hands[i].card2
             n4.position = CGPointMake(300, 1200)
             n4.zRotation = CGFloat(M_PI)
-            n4.zPosition = 0
+            n4.zPosition = 1
             n4.xScale = 0.65
             n4.yScale = 0.65
             addChild(n4)
             let pos4 = SKAction.moveTo(CGPointMake(positionX + 30, positionYopp), duration: 0.3)
-            let g4 = SKAction.group([pos4, rotate, slideSound()])
+            let g4 = SKAction.group([pos4, rotate, drawCardSound()])
             actionQ.addNext(n4, action: g4)
             
             positionX += 130
@@ -73,17 +73,18 @@ extension GameScene{
             card.position = CGPointMake(300, 1200)
             card.texture = card.backTexture
             card.faceUp = false
+            card.zPosition = 1
             addChild(card)
             let pos = SKAction.moveTo(CGPointMake(positionXtable, positionYtable), duration: 0.3)
-            let g = SKAction.group([pos, rotate, slideSound()])
+            let g = SKAction.group([pos, rotate, drawCardSound()])
             actionQ.addNext(card, action: g)
+            actionQ.addNext(self, action: drawCardSound())
             positionXtable += 120
             if card == cardsOnTable.last{
                 cardsOnTable.first?.flip(10, complition: {
                     self.canPlay = true
                     self.round = 1
-                    print("round one")
-                    self.runnigLabel("Round One!")
+                    self.roundLabel("Round One")
                 })
             }
         }
@@ -93,6 +94,7 @@ extension GameScene{
         let throwOut = SKAction.moveTo(CGPointMake(1000, 1000), duration: 0.5)
         let rotate = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 0.5)
         
+        runAction(slideSound())
         hand.card1.runAction(throwOut)
         hand.card1.runAction(rotate)
         hand.card2.runAction(throwOut)
@@ -111,14 +113,17 @@ extension GameScene{
         let moveC2 = SKAction.moveTo(c2Position, duration: 0.5)
         let rotate = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 0.5)
         
+        self.runAction(slideSound())
         
         hand.card1.runAction(moveC1) {
             hand.card1.zRotation = CGFloat(M_PI_2)
+            hand.card1.zPosition = 1
         }
         hand.card1.runAction(rotate)
         
         hand.card2.runAction(moveC2) {
             hand.card2.zRotation = CGFloat(M_PI_2)
+            hand.card2.zPosition = 2
         }
         hand.card2.runAction(rotate)
         
@@ -135,12 +140,10 @@ extension GameScene{
             
             dealer.hands[i].card1.runAction(SKAction.moveTo(c1Position, duration: 0.2))
             dealer.hands[i].card2.runAction(SKAction.moveTo(c2Position, duration: 0.2))
-            
-            dealer.hands[i].card2.zPosition = 50
         }
     }
     
-    func slideSound() -> SKAction{
+    func drawCardSound() -> SKAction{
         let sounds = [
             SKAction.playSoundFileNamed("cardSlide1", waitForCompletion: false),SKAction.playSoundFileNamed("cardSlide2", waitForCompletion: false),   SKAction.playSoundFileNamed("cardPlace1", waitForCompletion: false)]
         
@@ -149,18 +152,60 @@ extension GameScene{
         return sounds[rand]
     }
     
-    func runnigLabel(text:String){
-        let label = SKLabelNode(fontNamed:"Chalkduster")
+    func slideSound() -> SKAction{
+        let sounds = [
+            SKAction.playSoundFileNamed("cardShove1", waitForCompletion: false),
+            SKAction.playSoundFileNamed("cardShove2", waitForCompletion: false),
+            SKAction.playSoundFileNamed("cardShove3", waitForCompletion: false),
+            SKAction.playSoundFileNamed("cardShove4", waitForCompletion: false)
+        ]
+        
+        return sounds[Int.nextRandom(upTo: sounds.count)]
+    }
+    
+    
+    func roundLabel(text:String){
+        let label = SKLabelNode(fontNamed:"American Typewriter")
         label.text = text
         label.fontColor = UIColor.whiteColor()
         label.fontSize = 45
         label.position.x = midX
-        label.position.y = midY
+        label.position.y = midY + label.frame.height*3
         label.zPosition = 5
         addChild(label)
         
-        let fadeIn = SKAction.fadeInWithDuration(1.5)
-        // SOPPED HERE!!!!!
+        let upsideLabel = SKLabelNode(fontNamed:"American Typewriter")
+        upsideLabel.position.x = midX
+        upsideLabel.zRotation = CGFloat(M_PI)
+        upsideLabel.text = text
+        upsideLabel.fontColor = UIColor.whiteColor()
+        upsideLabel.fontSize = 45
+        upsideLabel.position.y = midY - upsideLabel.frame.height*2
+        upsideLabel.zPosition = 5
+        addChild(upsideLabel)
+        
+        let fadeIn = SKAction.fadeInWithDuration(1)
+        label.runAction(fadeIn){
+            label.runAction(SKAction.sequence([SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()]))
+        }
+        upsideLabel.runAction(fadeIn){
+            upsideLabel.runAction(SKAction.sequence([SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()]))
+        }
+        
+        let smoke = SKEmitterNode(fileNamed: "Smoke")!
+        smoke.position = label.position
+        smoke.zPosition = 6
+        
+        let upsideSmoke = SKEmitterNode(fileNamed: "Smoke")!
+        upsideSmoke.position = upsideLabel.position
+        upsideSmoke.zRotation = CGFloat(M_PI)
+        upsideSmoke.zPosition = 6
+        
+        let remove = SKAction.sequence([SKAction.waitForDuration(1), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
+        addChild(smoke)
+        addChild(upsideSmoke)
+        smoke.runAction(remove)
+        upsideSmoke.runAction(remove)
     }
 }
 

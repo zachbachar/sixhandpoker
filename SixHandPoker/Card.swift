@@ -42,6 +42,10 @@ class Card: SKSpriteNode{
         return "cardstyle1\(suit.shortName)\(rank.value)"
     }
     
+    override var description: String{
+        return "\(self.rank.description) of \(self.suit.description)"
+    }
+    
     private func flipSound() -> SKAction{
         return SKAction.playSoundFileNamed("cardPlace3", waitForCompletion: false)
     }

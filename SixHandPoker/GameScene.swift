@@ -65,7 +65,7 @@ class GameScene: SKScene {
         if round == 1{
             if user.hands.count == 4 && opponent.hands.count == 4{
                 round += 1
-                print("round two")
+                self.roundLabel("Dealers Turn!")
             }
         }
         else if round == 2{
@@ -76,14 +76,15 @@ class GameScene: SKScene {
                 
                 cardsOnTable[1].flip(1, complition: {
                     self.canPlay = true
-                    print("round three")
+                    print("round two")
+                    self.roundLabel("Round Two")
                 })
             }
         }
         else if round == 3{
             if user.hands.count == 3 && opponent.hands.count == 3{
                 round += 1
-                print("round four")
+                self.roundLabel("Dealers Turn!")
             }
         }
         else if round == 4{
@@ -94,14 +95,14 @@ class GameScene: SKScene {
                 
                 cardsOnTable[2].flip(1, complition: {
                     self.canPlay = true
-                    print("round five")
+                    self.roundLabel("Round Three")
                 })
             }
         }
         else if round == 5{
             if user.hands.count == 2 && opponent.hands.count == 2{
                 round += 1
-                print("round six")
+                self.roundLabel("Dealers Turn!")
             }
         }
         else if round == 6{
@@ -112,14 +113,14 @@ class GameScene: SKScene {
                 
                 cardsOnTable[3].flip(1, complition: {
                     self.canPlay = true
-                    print("round seven")
+                    self.roundLabel("Round Four")
                 })
             }
         }
         else if round == 7{
             if user.hands.count == 1 && opponent.hands.count == 1{
                 round += 1
-                print("round eight")
+                self.roundLabel("Dealers Turn!")
             }
         }
         else if round == 8{
@@ -128,8 +129,11 @@ class GameScene: SKScene {
                 round += 1
                 
                 cardsOnTable[4].flip(1, complition: {
-                    self.canPlay = true
-                    print("END")
+                    self.canPlay = false
+                    self.user.handValue(self.cardsOnTable)
+                    self.opponent.handValue(self.cardsOnTable)
+                    self.dealer.handValue(self.cardsOnTable)
+                    self.roundLabel("THE END!")
                 })
             }
         }
@@ -137,36 +141,36 @@ class GameScene: SKScene {
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //Called when a touch begins
-        for touch in touches {
-            let location = touch.locationInNode(self)
-            let touchedNode = nodeAtPoint(location)
-            
-            if let card1 = touchedNode as? Card{
-                if round == 1 && canPlay {
-                    roundONE(card1)
-                }else if round == 2 && canPlay{
-                    roundTWO(card1)
-                }
-                else if round == 3 && canPlay{
-                    roundTHREE(card1)
-                }
-                else if round == 4 && canPlay{
-                    roundFOUR(card1)
-                }
-                else if round == 5 && canPlay{
-                    roundFIVE(card1)
-                }
-                else if round == 6 && canPlay{
-                    roundSIX(card1)
-                }
-                else if round == 7 && canPlay{
-                    roundSEVEN(card1)
-                }
-                else if round == 8 && canPlay{
-                    roundEIGHT(card1)
-                }
+        let touch = touches.first!
+        let location = touch.locationInNode(self)
+        let touchedNode = nodeAtPoint(location)
+        
+        if let card1 = touchedNode as? Card{
+            if round == 1 && canPlay {
+                roundONE(card1)
+            }else if round == 2 && canPlay{
+                roundTWO(card1)
+            }
+            else if round == 3 && canPlay{
+                roundTHREE(card1)
+            }
+            else if round == 4 && canPlay{
+                roundFOUR(card1)
+            }
+            else if round == 5 && canPlay{
+                roundFIVE(card1)
+            }
+            else if round == 6 && canPlay{
+                roundSIX(card1)
+            }
+            else if round == 7 && canPlay{
+                roundSEVEN(card1)
+            }
+            else if round == 8 && canPlay{
+                roundEIGHT(card1)
             }
         }
+        
     }
     
    

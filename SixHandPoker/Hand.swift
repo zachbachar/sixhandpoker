@@ -11,6 +11,7 @@ import Foundation
 class Hand: CustomStringConvertible{
     var card1:Card!
     var card2:Card!
+    var finalCards:[Card]!
     
     init(card1 c1:Card, card2 c2:Card){
         card1 = c1
