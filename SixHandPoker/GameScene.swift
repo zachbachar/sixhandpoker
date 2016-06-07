@@ -10,75 +10,22 @@ import SpriteKit
 
 class GameScene: SKScene {
     
-    var midX = CGFloat()
-    var midY = CGFloat()
-    
     var deck = Deck()
     var user = Player()
     var opponent = Player()
     var dealer = Player()
-    var emptyCard = SKSpriteNode()
     
     var round = 0
     
     var cardsOnTable = [Card]()
-    //var dealerPositions = [CGPointMake(900, 150), CGPointMake(900, 250), CGPointMake(900, 350), CGPointMake(900, 450), CGPointMake(900, 550), CGPointMake(900, 650)]
-    var dealerPositions = [CGPoint]()
+    var dealerPositions = [CGPointMake(900, 150), CGPointMake(900, 250), CGPointMake(900, 350), CGPointMake(900, 450), CGPointMake(900, 550), CGPointMake(900, 650)]
     
     var canPlay = false
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here*/
-        midX = CGRectGetMidX(self.frame)
-        midY = CGRectGetMidY(self.frame)
-        drawPlayingZones()
         initGame()
         initFirstDraw()
-    }
-    
-    func drawPlayingZones(){
-        emptyCard = SKSpriteNode(imageNamed: "cardstyle1back")
-        let handWidth = emptyCard.frame.width + (emptyCard.frame.width/2)
-        let zoneHeight = emptyCard.frame.height
-        let zoneWidth = handWidth * 6
-        
-
-        let xOffset = midX - zoneWidth/6
-        let playerZone = SKSpriteNode(color: UIColor.blueColor(), size: CGSize(width: zoneWidth, height: zoneHeight))
-        playerZone.name = "playerZone"
-        playerZone.position.x = xOffset
-        playerZone.position.y = zoneHeight
-        playerZone.zPosition = 0
-        addChild(playerZone)
-        
-        let opponentZone = SKSpriteNode(color: UIColor.blueColor(), size: CGSize(width: zoneWidth, height: zoneHeight))
-        opponentZone.name = "opponentZone"
-        opponentZone.position.x = xOffset
-        opponentZone.position.y = view!.frame.height - zoneHeight
-        opponentZone.zPosition = 0
-        addChild(opponentZone)
-        
-        let dealerZone = SKSpriteNode(color: UIColor.blueColor(), size: CGSize(width: zoneHeight, height: zoneWidth))
-        dealerZone.name = "dealerZone"
-        dealerZone.position.x = view!.frame.width - zoneHeight
-        dealerZone.position.y = midY
-        dealerZone.zPosition = 0
-        addChild(dealerZone)
-        
-        var y = dealerZone.position.y - dealerZone.frame.height/2 + emptyCard.frame.height/2
-        for _ in 0...6{
-            let point = CGPoint(x: dealerZone.position.x, y: y)
-            dealerPositions.append(point)
-            y += emptyCard.frame.height * 0.9
-        }
-        
-        let tableZoneWidth = emptyCard.frame.width * 5 + emptyCard.frame.width
-        let tableCardZone = SKSpriteNode(color: UIColor.blueColor(), size: CGSize(width: tableZoneWidth , height: zoneHeight))
-        tableCardZone.name = "tableCardZone"
-        tableCardZone.position.x = xOffset
-        tableCardZone.position.y = midY
-        tableCardZone.zPosition = 0
-        addChild(tableCardZone)
     }
     
     func initGame(){
@@ -207,39 +154,6 @@ class GameScene: SKScene {
         }
     }
     
-//    func addNewGameBtb(){
-//        let btn = SKSpriteNode(imageNamed: "spaceship")
-//        btn.position = CGPointMake(10, view!.frame.height - 20)
-//        addChild(btn)
-//    }
-    
-//    func findHand(card:Card) -> Hand?{
-//        for hand in user.hands{
-//            if card == hand.card1{
-//                return hand
-//            }
-//            else if card == hand.card2{
-//                return hand
-//            }
-//        }
-//        for hand in opponent.hands{
-//            if card == hand.card1{
-//                return hand
-//            }
-//            else if card == hand.card2{
-//                return hand
-//            }
-//        }
-//        for hand in dealer.hands{
-//            if card == hand.card1{
-//                return hand
-//            }
-//            else if card == hand.card2{
-//                return hand
-//            }
-//        }
-//        return nil
-//    }
    
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
