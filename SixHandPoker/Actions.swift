@@ -31,7 +31,7 @@ extension GameScene{
             n1.yScale = 0.65
             addChild(n1)
             let pos1 = SKAction.moveTo(CGPointMake(positionX, positionYuser), duration: 0.3)
-            let g1 = SKAction.group([pos1, rotate])
+            let g1 = SKAction.group([pos1, rotate, slideSound()])
             actionQ.addNext(n1, action: g1)
             
             let n3 = opponent.hands[i].card1
@@ -42,7 +42,7 @@ extension GameScene{
             n3.yScale = 0.65
             addChild(n3)
             let pos2 = SKAction.moveTo(CGPointMake(positionX, positionYopp), duration: 0.3)
-            let g2 = SKAction.group([pos2, rotate])
+            let g2 = SKAction.group([pos2, rotate, slideSound()])
             actionQ.addNext(n3, action: g2)
             
             let n2 = user.hands[i].card2
@@ -52,7 +52,7 @@ extension GameScene{
             n2.yScale = 0.65
             addChild(n2)
             let pos3 = SKAction.moveTo(CGPointMake(positionX + 30, positionYuser), duration: 0.3)
-            let g3 = SKAction.group([pos3, rotate])
+            let g3 = SKAction.group([pos3, rotate, slideSound()])
             actionQ.addNext(n2, action: g3)
             
             let n4 = opponent.hands[i].card2
@@ -63,7 +63,7 @@ extension GameScene{
             n4.yScale = 0.65
             addChild(n4)
             let pos4 = SKAction.moveTo(CGPointMake(positionX + 30, positionYopp), duration: 0.3)
-            let g4 = SKAction.group([pos4, rotate])
+            let g4 = SKAction.group([pos4, rotate, slideSound()])
             actionQ.addNext(n4, action: g4)
             
             positionX += 130
@@ -75,7 +75,7 @@ extension GameScene{
             card.faceUp = false
             addChild(card)
             let pos = SKAction.moveTo(CGPointMake(positionXtable, positionYtable), duration: 0.3)
-            let g = SKAction.group([pos, rotate])
+            let g = SKAction.group([pos, rotate, slideSound()])
             actionQ.addNext(card, action: g)
             positionXtable += 120
             if card == cardsOnTable.last{
@@ -83,6 +83,7 @@ extension GameScene{
                     self.canPlay = true
                     self.round = 1
                     print("round one")
+                    self.runnigLabel("Round One!")
                 })
             }
         }
@@ -139,6 +140,37 @@ extension GameScene{
         }
     }
     
+    func slideSound() -> SKAction{
+        let sounds = [
+            SKAction.playSoundFileNamed("cardSlide1", waitForCompletion: false),SKAction.playSoundFileNamed("cardSlide2", waitForCompletion: false),   SKAction.playSoundFileNamed("cardPlace1", waitForCompletion: false)]
+        
+        let rand = Int.nextRandom(upTo: sounds.count)
+        
+        return sounds[rand]
+    }
     
+    func runnigLabel(text:String){
+        let label = SKLabelNode(fontNamed:"Chalkduster")
+        label.text = text
+        label.fontColor = UIColor.whiteColor()
+        label.fontSize = 45
+        label.position.x = midX
+        label.position.y = midY
+        label.zPosition = 5
+        addChild(label)
+        
+        let fadeIn = SKAction.fadeInWithDuration(1.5)
+        // SOPPED HERE!!!!!
+    }
+}
 
+extension Int{
+    //static function -> called from the class name (Int.nextRandom)
+    static func nextRandom(upTo max:Int) -> Int{
+        var rand:Int = 0
+        arc4random_buf(&rand, sizeof(Int))
+        rand = abs(rand)
+        rand = rand % max
+        return rand
+    }
 }

@@ -15,6 +15,9 @@ class GameScene: SKScene {
     var opponent = Player()
     var dealer = Player()
     
+    var midX = CGFloat()
+    var midY = CGFloat()
+    
     var round = 0
     
     var cardsOnTable = [Card]()
@@ -24,8 +27,20 @@ class GameScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here*/
+        midX = CGRectGetMidX(self.frame)
+        midY = CGRectGetMidY(self.frame)
         initGame()
         initFirstDraw()
+        //addBackground()
+    }
+    
+    func addBackground(){
+        let bg = SKSpriteNode(imageNamed: "bg")
+        bg.size.height = view!.frame.size.height
+        bg.size.width = view!.frame.size.width 
+        bg.zPosition = -1
+        bg.position = CGPoint(x: midX, y: midY)
+        addChild(bg)
     }
     
     func initGame(){

@@ -42,6 +42,10 @@ class Card: SKSpriteNode{
         return "cardstyle1\(suit.shortName)\(rank.value)"
     }
     
+    private func flipSound() -> SKAction{
+        return SKAction.playSoundFileNamed("cardPlace3", waitForCompletion: false)
+    }
+    
     func flip(wait:NSTimeInterval, complition:(() -> ())? ) {
         let firstHalfFlip = SKAction.scaleXTo(0.0, duration: 0.2)
         let secondHalfFlip = SKAction.scaleXTo(1.0, duration: 0.2)
@@ -49,13 +53,13 @@ class Card: SKSpriteNode{
         
         runAction(wait){
             if self.faceUp {
-                self.runAction(firstHalfFlip) {
+                self.runAction(SKAction.sequence([firstHalfFlip, self.flipSound()])) {
                     self.texture = self.backTexture
                     self.faceUp = false
                     self.runAction(secondHalfFlip)
                 }
             } else {
-                self.runAction(firstHalfFlip) {
+                self.runAction(SKAction.sequence([firstHalfFlip, self.flipSound()])) {
                     self.texture = self.frontTexture
                     self.faceUp = true
                     self.runAction(secondHalfFlip){

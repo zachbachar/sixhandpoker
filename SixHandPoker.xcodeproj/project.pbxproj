@@ -17,6 +17,12 @@
 		186306071D0427F90094E732 /* Round6.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186306061D0427F90094E732 /* Round6.swift */; };
 		1863060B1D04295F0094E732 /* Round7.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1863060A1D04295F0094E732 /* Round7.swift */; };
 		1863060D1D0429A80094E732 /* Round8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1863060C1D0429A80094E732 /* Round8.swift */; };
+		186B3DBD1D06A86000CC3173 /* cardPlace1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 186B3DB91D06A86000CC3173 /* cardPlace1.wav */; };
+		186B3DBF1D06A86000CC3173 /* cardSlide1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 186B3DBB1D06A86000CC3173 /* cardSlide1.wav */; };
+		186B3DC01D06A86000CC3173 /* cardSlide2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 186B3DBC1D06A86000CC3173 /* cardSlide2.wav */; };
+		186B3DC21D06A91400CC3173 /* cardPlace3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 186B3DC11D06A91400CC3173 /* cardPlace3.wav */; };
+		186B3DC51D06AD4D00CC3173 /* Smoke.sks in Resources */ = {isa = PBXBuildFile; fileRef = 186B3DC31D06AD4D00CC3173 /* Smoke.sks */; };
+		186B3DC61D06AD4D00CC3173 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 186B3DC41D06AD4D00CC3173 /* spark.png */; };
 		187894401D00127400BAA358 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878943F1D00127400BAA358 /* AppDelegate.swift */; };
 		187894421D00127400BAA358 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 187894411D00127400BAA358 /* GameScene.sks */; };
 		187894441D00127400BAA358 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187894431D00127400BAA358 /* GameScene.swift */; };
@@ -43,6 +49,12 @@
 		186306061D0427F90094E732 /* Round6.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round6.swift; sourceTree = "<group>"; };
 		1863060A1D04295F0094E732 /* Round7.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round7.swift; sourceTree = "<group>"; };
 		1863060C1D0429A80094E732 /* Round8.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round8.swift; sourceTree = "<group>"; };
+		186B3DB91D06A86000CC3173 /* cardPlace1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardPlace1.wav; sourceTree = "<group>"; };
+		186B3DBB1D06A86000CC3173 /* cardSlide1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardSlide1.wav; sourceTree = "<group>"; };
+		186B3DBC1D06A86000CC3173 /* cardSlide2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardSlide2.wav; sourceTree = "<group>"; };
+		186B3DC11D06A91400CC3173 /* cardPlace3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardPlace3.wav; sourceTree = "<group>"; };
+		186B3DC31D06AD4D00CC3173 /* Smoke.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Smoke.sks; sourceTree = "<group>"; };
+		186B3DC41D06AD4D00CC3173 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
 		1878943C1D00127400BAA358 /* SixHandPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SixHandPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1878943F1D00127400BAA358 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		187894411D00127400BAA358 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -130,6 +142,26 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		186B3DA31D06A10C00CC3173 /* Emitters */ = {
+			isa = PBXGroup;
+			children = (
+				186B3DC31D06AD4D00CC3173 /* Smoke.sks */,
+				186B3DC41D06AD4D00CC3173 /* spark.png */,
+			);
+			name = Emitters;
+			sourceTree = "<group>";
+		};
+		186B3DA81D06A53800CC3173 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				186B3DB91D06A86000CC3173 /* cardPlace1.wav */,
+				186B3DBB1D06A86000CC3173 /* cardSlide1.wav */,
+				186B3DC11D06A91400CC3173 /* cardPlace3.wav */,
+				186B3DBC1D06A86000CC3173 /* cardSlide2.wav */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
 		187894331D00127400BAA358 = {
 			isa = PBXGroup;
 			children = (
@@ -155,6 +187,8 @@
 				1863060E1D042DD50094E732 /* Config */,
 				1863060F1D042DE30094E732 /* Layouts & sks */,
 				186306101D042DF90094E732 /* Controllers */,
+				186B3DA31D06A10C00CC3173 /* Emitters */,
+				186B3DA81D06A53800CC3173 /* Sounds */,
 				186306111D042E020094E732 /* Resources */,
 			);
 			path = SixHandPoker;
@@ -232,10 +266,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				186B3DBF1D06A86000CC3173 /* cardSlide1.wav in Resources */,
 				187894421D00127400BAA358 /* GameScene.sks in Resources */,
 				1878944E1D00127400BAA358 /* LaunchScreen.storyboard in Resources */,
 				1878944B1D00127400BAA358 /* Assets.xcassets in Resources */,
+				186B3DC21D06A91400CC3173 /* cardPlace3.wav in Resources */,
+				186B3DC61D06AD4D00CC3173 /* spark.png in Resources */,
 				187894491D00127400BAA358 /* Main.storyboard in Resources */,
+				186B3DBD1D06A86000CC3173 /* cardPlace1.wav in Resources */,
+				186B3DC01D06A86000CC3173 /* cardSlide2.wav in Resources */,
+				186B3DC51D06AD4D00CC3173 /* Smoke.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
