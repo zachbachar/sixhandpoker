@@ -202,7 +202,11 @@ extension GameScene{
         magic.position = CGPoint(x: midX, y: midY)
         magic.zPosition = 6
         magic.particleTexture = cardsOnTable.last!.frontTexture
-        let removeMagic = SKAction.sequence([SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
+        let removeMagic = SKAction.sequence([
+            SKAction.playSoundFileNamed("cardFan2", waitForCompletion: false),
+            SKAction.fadeOutWithDuration(1),
+            SKAction.removeFromParent()
+            ])
         addChild(magic)
         magic.runAction(removeMagic)
         

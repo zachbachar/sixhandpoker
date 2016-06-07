@@ -42,6 +42,7 @@
 		1878945D1D0013FB00BAA358 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878945C1D0013FB00BAA358 /* Deck.swift */; };
 		1878945F1D00145700BAA358 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878945E1D00145700BAA358 /* Hand.swift */; };
 		187894611D001FDE00BAA358 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187894601D001FDE00BAA358 /* Player.swift */; };
+		187F30271D074C4300B3B8BF /* cardFan2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 187F30261D074C4300B3B8BF /* cardFan2.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		1878945C1D0013FB00BAA358 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		1878945E1D00145700BAA358 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		187894601D001FDE00BAA358 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		187F30261D074C4300B3B8BF /* cardFan2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardFan2.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			children = (
 				184878051D070BFE0027C661 /* cardShove1.wav */,
 				184878061D070BFE0027C661 /* cardShove2.wav */,
+				187F30261D074C4300B3B8BF /* cardFan2.wav */,
 				184878071D070BFE0027C661 /* cardShove3.wav */,
 				184878031D0707660027C661 /* cardShove4.wav */,
 				186B3DB91D06A86000CC3173 /* cardPlace1.wav */,
@@ -294,6 +297,7 @@
 				184878091D070BFE0027C661 /* cardShove2.wav in Resources */,
 				1848780F1D07444C0027C661 /* Magic.sks in Resources */,
 				186B3DC61D06AD4D00CC3173 /* spark.png in Resources */,
+				187F30271D074C4300B3B8BF /* cardFan2.wav in Resources */,
 				1848780A1D070BFE0027C661 /* cardShove3.wav in Resources */,
 				187894491D00127400BAA358 /* Main.storyboard in Resources */,
 				186B3DBD1D06A86000CC3173 /* cardPlace1.wav in Resources */,
