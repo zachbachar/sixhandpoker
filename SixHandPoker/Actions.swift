@@ -165,10 +165,10 @@ extension GameScene{
     
     func addNewGameButton(){
         
-        let newGameBtn = SKSpriteNode(imageNamed: "newGameBtn")
+        let newGameBtn = SKSpriteNode(imageNamed: "startBtn")
         newGameBtn.zPosition = 6
-        newGameBtn.xScale = 0.5
-        newGameBtn.yScale = 0.5
+        newGameBtn.xScale = 0.3
+        newGameBtn.yScale = 0.3
         newGameBtn.position = CGPoint(x: view!.frame.width - newGameBtn.frame.width, y: view!.frame.height - newGameBtn.frame.height)
         newGameBtn.alpha = 0
         newGameBtn.name = "newGameBtn"

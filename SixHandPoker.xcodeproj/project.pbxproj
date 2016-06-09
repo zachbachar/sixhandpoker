@@ -7,12 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1819E5871D085F120022AA3C /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819E5861D085F120022AA3C /* MenuScene.swift */; };
 		184878041D0707660027C661 /* cardShove4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878031D0707660027C661 /* cardShove4.wav */; };
 		184878081D070BFE0027C661 /* cardShove1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878051D070BFE0027C661 /* cardShove1.wav */; };
 		184878091D070BFE0027C661 /* cardShove2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878061D070BFE0027C661 /* cardShove2.wav */; };
 		1848780A1D070BFE0027C661 /* cardShove3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878071D070BFE0027C661 /* cardShove3.wav */; };
 		1848780D1D0720FF0027C661 /* HandRanks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1848780C1D0720FF0027C661 /* HandRanks.swift */; };
 		1848780F1D07444C0027C661 /* Magic.sks in Resources */ = {isa = PBXBuildFile; fileRef = 1848780E1D07444C0027C661 /* Magic.sks */; };
+		184AA90D1D09A8390070C6A6 /* MenuScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 184AA90C1D09A8390070C6A6 /* MenuScene.sks */; };
+		184AA9131D09B61E0070C6A6 /* BigSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 184AA9121D09B61E0070C6A6 /* BigSpark.sks */; };
+		184AA9151D09B6AD0070C6A6 /* SmallSpark.sks in Resources */ = {isa = PBXBuildFile; fileRef = 184AA9141D09B6AD0070C6A6 /* SmallSpark.sks */; };
+		184AA9171D09BC0C0070C6A6 /* falling.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184AA9161D09BC0C0070C6A6 /* falling.wav */; };
+		184AA91B1D09C0320070C6A6 /* chipsStack4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184AA91A1D09C0320070C6A6 /* chipsStack4.wav */; };
 		186305F71D04057F0094E732 /* ActionQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186305F61D04057F0094E732 /* ActionQ.swift */; };
 		186305FA1D0423BD0094E732 /* Round1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186305F91D0423BD0094E732 /* Round1.swift */; };
 		186305FC1D04242C0094E732 /* Round2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186305FB1D04242C0094E732 /* Round2.swift */; };
@@ -46,12 +52,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1819E5861D085F120022AA3C /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		184878031D0707660027C661 /* cardShove4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove4.wav; sourceTree = "<group>"; };
 		184878051D070BFE0027C661 /* cardShove1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove1.wav; sourceTree = "<group>"; };
 		184878061D070BFE0027C661 /* cardShove2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove2.wav; sourceTree = "<group>"; };
 		184878071D070BFE0027C661 /* cardShove3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove3.wav; sourceTree = "<group>"; };
 		1848780C1D0720FF0027C661 /* HandRanks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandRanks.swift; sourceTree = "<group>"; };
 		1848780E1D07444C0027C661 /* Magic.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Magic.sks; sourceTree = "<group>"; };
+		184AA90C1D09A8390070C6A6 /* MenuScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MenuScene.sks; sourceTree = "<group>"; };
+		184AA9121D09B61E0070C6A6 /* BigSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BigSpark.sks; sourceTree = "<group>"; };
+		184AA9141D09B6AD0070C6A6 /* SmallSpark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SmallSpark.sks; sourceTree = "<group>"; };
+		184AA9161D09BC0C0070C6A6 /* falling.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = falling.wav; sourceTree = "<group>"; };
+		184AA91A1D09C0320070C6A6 /* chipsStack4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = chipsStack4.wav; sourceTree = "<group>"; };
 		186305F61D04057F0094E732 /* ActionQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionQ.swift; sourceTree = "<group>"; };
 		186305F91D0423BD0094E732 /* Round1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round1.swift; sourceTree = "<group>"; };
 		186305FB1D04242C0094E732 /* Round2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Round2.swift; sourceTree = "<group>"; };
@@ -135,6 +147,7 @@
 				187894411D00127400BAA358 /* GameScene.sks */,
 				187894471D00127400BAA358 /* Main.storyboard */,
 				1878944C1D00127400BAA358 /* LaunchScreen.storyboard */,
+				184AA90C1D09A8390070C6A6 /* MenuScene.sks */,
 			);
 			name = "Layouts & sks";
 			sourceTree = "<group>";
@@ -144,6 +157,7 @@
 			children = (
 				187894431D00127400BAA358 /* GameScene.swift */,
 				187894451D00127400BAA358 /* GameViewController.swift */,
+				1819E5861D085F120022AA3C /* MenuScene.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -162,6 +176,8 @@
 				186B3DC31D06AD4D00CC3173 /* Smoke.sks */,
 				186B3DC41D06AD4D00CC3173 /* spark.png */,
 				1848780E1D07444C0027C661 /* Magic.sks */,
+				184AA9121D09B61E0070C6A6 /* BigSpark.sks */,
+				184AA9141D09B6AD0070C6A6 /* SmallSpark.sks */,
 			);
 			name = Emitters;
 			sourceTree = "<group>";
@@ -173,7 +189,9 @@
 				184878061D070BFE0027C661 /* cardShove2.wav */,
 				187F30261D074C4300B3B8BF /* cardFan2.wav */,
 				184878071D070BFE0027C661 /* cardShove3.wav */,
+				184AA9161D09BC0C0070C6A6 /* falling.wav */,
 				184878031D0707660027C661 /* cardShove4.wav */,
+				184AA91A1D09C0320070C6A6 /* chipsStack4.wav */,
 				186B3DB91D06A86000CC3173 /* cardPlace1.wav */,
 				186B3DBB1D06A86000CC3173 /* cardSlide1.wav */,
 				186B3DC11D06A91400CC3173 /* cardPlace3.wav */,
@@ -291,6 +309,7 @@
 				186B3DBF1D06A86000CC3173 /* cardSlide1.wav in Resources */,
 				187894421D00127400BAA358 /* GameScene.sks in Resources */,
 				184878041D0707660027C661 /* cardShove4.wav in Resources */,
+				184AA90D1D09A8390070C6A6 /* MenuScene.sks in Resources */,
 				1878944E1D00127400BAA358 /* LaunchScreen.storyboard in Resources */,
 				1878944B1D00127400BAA358 /* Assets.xcassets in Resources */,
 				186B3DC21D06A91400CC3173 /* cardPlace3.wav in Resources */,
@@ -299,11 +318,15 @@
 				186B3DC61D06AD4D00CC3173 /* spark.png in Resources */,
 				187F30271D074C4300B3B8BF /* cardFan2.wav in Resources */,
 				1848780A1D070BFE0027C661 /* cardShove3.wav in Resources */,
+				184AA9171D09BC0C0070C6A6 /* falling.wav in Resources */,
 				187894491D00127400BAA358 /* Main.storyboard in Resources */,
 				186B3DBD1D06A86000CC3173 /* cardPlace1.wav in Resources */,
+				184AA91B1D09C0320070C6A6 /* chipsStack4.wav in Resources */,
 				186B3DC01D06A86000CC3173 /* cardSlide2.wav in Resources */,
 				184878081D070BFE0027C661 /* cardShove1.wav in Resources */,
 				186B3DC51D06AD4D00CC3173 /* Smoke.sks in Resources */,
+				184AA9151D09B6AD0070C6A6 /* SmallSpark.sks in Resources */,
+				184AA9131D09B61E0070C6A6 /* BigSpark.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +340,7 @@
 				186306071D0427F90094E732 /* Round6.swift in Sources */,
 				186306031D0424BB0094E732 /* Actions.swift in Sources */,
 				1878945F1D00145700BAA358 /* Hand.swift in Sources */,
+				1819E5871D085F120022AA3C /* MenuScene.swift in Sources */,
 				1878945D1D0013FB00BAA358 /* Deck.swift in Sources */,
 				187894441D00127400BAA358 /* GameScene.swift in Sources */,
 				186306051D0427AD0094E732 /* Round5.swift in Sources */,
