@@ -51,8 +51,8 @@ class Card: SKSpriteNode{
     }
     
     func flip(wait:NSTimeInterval, complition:(() -> ())? ) {
-        let firstHalfFlip = SKAction.scaleXTo(0.0, duration: 0.2)
-        let secondHalfFlip = SKAction.scaleXTo(1.0, duration: 0.2)
+        let firstHalfFlip = SKAction.group([SKAction.scaleBy(1.2, duration: 0.2), SKAction.scaleXTo(0.0, duration: 0.2)])
+        let secondHalfFlip = SKAction.group([SKAction.scaleXTo(1.0, duration: 0.2), SKAction.scaleBy(0.8, duration: 0.2)])
         let wait = SKAction.waitForDuration(wait)
         
         runAction(wait){
