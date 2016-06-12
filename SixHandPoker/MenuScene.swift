@@ -113,9 +113,9 @@ class MenuScene: SKScene {
         tutorialBtn.xScale = 1.5
         tutorialBtn.yScale = 1.5
         
-        startBtn.runAction(SKAction.sequence([SKAction.waitForDuration(1.5), buttonsFall()]))
-        optionsBtn.runAction(SKAction.sequence([SKAction.waitForDuration(1.8), buttonsFall()]))
-        tutorialBtn.runAction(SKAction.sequence([SKAction.waitForDuration(2), buttonsFall()]))
+        startBtn.runAction(SKAction.sequence([SKAction.waitForDuration(1.3), buttonsFall()]))
+        optionsBtn.runAction(SKAction.sequence([SKAction.waitForDuration(1.5), buttonsFall()]))
+        tutorialBtn.runAction(SKAction.sequence([SKAction.waitForDuration(1.7), buttonsFall()]))
         
     }
     
