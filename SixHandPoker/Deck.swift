@@ -15,12 +15,13 @@ struct Deck:CustomStringConvertible {
     
     init() {
         for i in 1...4{
-            for y in 1...13{
+            for y in 2...14{
                 if let s = Suit(rawValue: i), let r = Rank(rawValue: y){
                     let tex = SKTexture(imageNamed: "cardstyle1\(s.shortName)\(r.value)")
                     let card = Card(texture: tex, color: UIColor.clearColor(), size: tex.size())
                     card.suit = s
                     card.rank = r
+                    print(card.rank)
                     deck.append(card)
                 }
             }

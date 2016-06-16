@@ -157,6 +157,30 @@ extension Hand{
                 return (true, finalCards[i+4])
             }
         }
+        
+        var aceFlag = false
+        for card in cards{
+            if card.rank == Rank.Ace{
+                card.rank = Rank.LowAce
+                aceFlag = true
+            }
+        }
+        if aceFlag{
+            cards.sortInPlace { (c1, c2) -> Bool in
+                return c1.rank.rawValue < c2.rank.rawValue
+            }
+            for i in 0..<maxStartPosition{
+                let compare1 = finalCards[i] << finalCards[i+1]
+                let compare2 = finalCards[i+1] << finalCards[i+2]
+                let compare3 = finalCards[i+2] << finalCards[i+3]
+                let compare4 = finalCards[i+3] << finalCards[i+4]
+                
+                if compare1 && compare2 && compare3 && compare4{
+                    return (true, finalCards[i+4])
+                }
+            }
+        }
+        
         return (false, nil)
     }
     
@@ -284,6 +308,34 @@ extension Hand{
         if straightCards != nil{
             return (isSameSuit(cards!).0, isSameSuit(cards!).1)
         }
+        
+        var aceFlag = false
+        for card in cards{
+            if card.rank == Rank.Ace{
+                card.rank = Rank.LowAce
+                aceFlag = true
+            }
+        }
+        if aceFlag{
+            cards.sortInPlace { (c1, c2) -> Bool in
+                return c1.rank.rawValue < c2.rank.rawValue
+            }
+            for i in 0..<maxStartPosition{
+                let compare1 = finalCards[i] << finalCards[i+1]
+                let compare2 = finalCards[i+1] << finalCards[i+2]
+                let compare3 = finalCards[i+2] << finalCards[i+3]
+                let compare4 = finalCards[i+3] << finalCards[i+4]
+                
+                if compare1 && compare2 && compare3 && compare4{
+                    straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
+                }
+            }
+            
+            if straightCards != nil{
+                return (isSameSuit(cards!).0, isSameSuit(cards!).1)
+            }
+        }
+
         return (false, nil)
     }
     

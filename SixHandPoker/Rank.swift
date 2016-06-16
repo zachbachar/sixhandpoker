@@ -9,6 +9,7 @@
 import Foundation
 
 enum Rank:Int, CustomStringConvertible{
+    case LowAce = 1
     case Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten
     case Jack, Queen, King, Ace
     
