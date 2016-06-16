@@ -45,9 +45,15 @@ func > (lhs:Rank, rhs:Rank) -> Bool{
 func == (lhs:Rank, rhs:Rank) -> Bool{
     return lhs.rawValue == rhs.rawValue
 }
+
 func == (lhs:Rank, rhs:Int) -> Bool{
     return lhs.rawValue == rhs
 }
+
 func + (lhs:Rank, rhs:Int) -> Int{
     return lhs.rawValue + rhs
+}
+
+func - (lhs:Rank, rhs:Int) -> Int{
+    return lhs.rawValue - rhs
 }

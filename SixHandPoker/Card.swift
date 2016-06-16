@@ -95,7 +95,7 @@ func == (lhs:Card, rhs:Card) -> Bool{
 }
 
 func << (lhs:Card, rhs:Card) -> Bool{
-    return lhs.rank == (rhs.rank+1)
+    return lhs.rank == (rhs.rank-1)
 }
 
 
