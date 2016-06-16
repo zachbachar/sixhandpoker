@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1819E5871D085F120022AA3C /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819E5861D085F120022AA3C /* MenuScene.swift */; };
+		18283AA11D132090007EF816 /* FireWorks.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18283AA01D132090007EF816 /* FireWorks.sks */; };
 		184878041D0707660027C661 /* cardShove4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878031D0707660027C661 /* cardShove4.wav */; };
 		184878081D070BFE0027C661 /* cardShove1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878051D070BFE0027C661 /* cardShove1.wav */; };
 		184878091D070BFE0027C661 /* cardShove2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 184878061D070BFE0027C661 /* cardShove2.wav */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		1819E5861D085F120022AA3C /* MenuScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
+		18283AA01D132090007EF816 /* FireWorks.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = FireWorks.sks; sourceTree = "<group>"; };
 		184878031D0707660027C661 /* cardShove4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove4.wav; sourceTree = "<group>"; };
 		184878051D070BFE0027C661 /* cardShove1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove1.wav; sourceTree = "<group>"; };
 		184878061D070BFE0027C661 /* cardShove2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardShove2.wav; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				1848780E1D07444C0027C661 /* Magic.sks */,
 				184AA9121D09B61E0070C6A6 /* BigSpark.sks */,
 				184AA9141D09B6AD0070C6A6 /* SmallSpark.sks */,
+				18283AA01D132090007EF816 /* FireWorks.sks */,
 			);
 			name = Emitters;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				187894491D00127400BAA358 /* Main.storyboard in Resources */,
 				186B3DBD1D06A86000CC3173 /* cardPlace1.wav in Resources */,
 				184AA91B1D09C0320070C6A6 /* chipsStack4.wav in Resources */,
+				18283AA11D132090007EF816 /* FireWorks.sks in Resources */,
 				186B3DC01D06A86000CC3173 /* cardSlide2.wav in Resources */,
 				184878081D070BFE0027C661 /* cardShove1.wav in Resources */,
 				186B3DC51D06AD4D00CC3173 /* Smoke.sks in Resources */,

@@ -8,80 +8,79 @@
 
 import UIKit
 
-extension Hand{
+enum HandRanks:Int, CustomStringConvertible{
+    case HighCard = 0
+    case Pair
+    case TwoPairs
+    case ThreeOfKind
+    case Straight
+    case Flush
+    case FullHouse
+    case FourOfKind
+    case StraightFlush
+    case RoyalFlush
     
-    enum HandRanks:Int, CustomStringConvertible{
-        case HighCard = 0
-        case Pair
-        case TwoPairs
-        case ThreeOfKind
-        case Straight
-        case Flush
-        case FullHouse
-        case FourOfKind
-        case StraightFlush
-        case RoyalFlush
-        
-        var description: String{
-            switch self {
-            case .HighCard:
-                return "High Card"
-            case .Pair:
-                return "Pair"
-            case .TwoPairs:
-                return "Two Pairs"
-            case .ThreeOfKind:
-                return "Three Of A Kind"
-            case .Straight:
-                return "Straight"
-            case .Flush:
-                return "Flush"
-            case .FullHouse:
-                return "Full House"
-            case .FourOfKind:
-                return "Four Of A Kind"
-            case .StraightFlush:
-                return "Straight Flush"
-            case .RoyalFlush:
-                return "Royal Flush"
-            }
+    var description: String{
+        switch self {
+        case .HighCard:
+            return "High Card"
+        case .Pair:
+            return "Pair"
+        case .TwoPairs:
+            return "Two Pairs"
+        case .ThreeOfKind:
+            return "Three Of A Kind"
+        case .Straight:
+            return "Straight"
+        case .Flush:
+            return "Flush"
+        case .FullHouse:
+            return "Full House"
+        case .FourOfKind:
+            return "Four Of A Kind"
+        case .StraightFlush:
+            return "Straight Flush"
+        case .RoyalFlush:
+            return "Royal Flush"
         }
     }
-    
-    func checkHandRank(cards:[Card]) -> HandRanks{
+}
+
+extension Hand{
+    func checkHandRank(cards:[Card]) -> (HandRanks, Card, String){
         finalCards = cards
         finalCards.sortInPlace { (c1, c2) -> Bool in
             return c1.rank.rawValue < c2.rank.rawValue
         }
         
         if isRoyalFlush(){
-            return .RoyalFlush
+            return (.RoyalFlush, finalCards.last!, "Royal Flush!")
         }
         else if isStraightFlush().0{
-            return.StraightFlush
+            return (.StraightFlush, isStraightFlush().1!, "Straight Flush Of \(isStraightFlush().1!.suit.description) To \(isStraightFlush().1!.rank.description)!")
         }
         else if isFourOfKind().0{
-            return .FourOfKind
+            return (.FourOfKind, isFourOfKind().1!, "Four Of A Kind Of \(isFourOfKind().1!.rank.description)!")
         }
         else if isFullHouse().0{
-            return .FullHouse
+            return (.FullHouse, isFullHouse().1!, "House Of \(isFullHouse().1!.rank.description) Filled With \(isFullHouse().2!.rank.description)!")
         }
         else if isFlush().0{
-            return .Flush
+            return (.Flush, isFlush().1!, "Flush Of \(isFlush().1!.suit.description)!")
         }
         else if isStraight().0{
-            return .Straight
+            return (.Straight, isStraight().1!, "Straight To \(isStraight().1!.rank.description)!")
         }
         else if isThreeOfKind().0{
-            return .ThreeOfKind
+            return (.ThreeOfKind, isThreeOfKind().1!, "Three Of \(isThreeOfKind().1!.rank.description)!")
         }
         else if isTwoPairs().0{
-            return .TwoPairs
+            return (.TwoPairs, isTwoPairs().1!, "Two Pairs Of \(isTwoPairs().1!.rank.description) And \(isTwoPairs().2!.rank.description)!")
         }else if isPair().0{
-            return .Pair
+            return (.Pair, isPair().1!, "Pair Of \(isPair().1!.rank.description)!")
         }
         else{
-            return .HighCard
+            return (.HighCard, isHighCard().1!, "High Card \(isHighCard().1!.rank.description)!")
         }
     }
     
@@ -99,18 +98,22 @@ extension Hand{
         return (false, nil)
     }
     
-    func isTwoPairs() -> (Bool, Card?){
+    func isTwoPairs() -> (Bool, Card?, Card?){
         var pairsCount = 0
+        var firstPair:Card!
         let maxStartPosition = finalCards.count - 1
         for i in 0..<maxStartPosition{
             if finalCards[i].rank == finalCards[i+1].rank{
                 pairsCount += 1
+                if pairsCount == 1{
+                    firstPair = finalCards[i]
+                }
                 if pairsCount == 2{
-                    return (true, finalCards[i])
+                    return (true, finalCards[i], firstPair)
                 }
             }
         }
-        return (false, nil)
+        return (false, nil, nil)
     }
     
     func isThreeOfKind() -> (Bool, Card?){
@@ -226,15 +229,15 @@ extension Hand{
         }
     }
     
-    func isFullHouse() -> (Bool, Card?){
+    func isFullHouse() -> (Bool, Card?, Card?){
         if let pairCard = isPair().1{
             if let threeCard = isThreeOfKind().1{
                 if pairCard.rank != threeCard.rank{
-                    return (true, threeCard)
+                    return (true, threeCard, pairCard)
                 }
             }
         }
-        return (false, nil)
+        return (false, nil, nil)
     }
     
     func isFourOfKind() -> (Bool, Card?){
@@ -400,4 +403,14 @@ extension Hand{
         }
         else{ return (false, nil) }
     }
+}
+
+/*--------------------------Operators--------------------------*/
+
+func > (lhs:HandRanks, rhs:HandRanks) -> Bool{
+    return lhs.rawValue > rhs.rawValue
+}
+
+func == (lhs:HandRanks, rhs:HandRanks) -> Bool{
+    return lhs.rawValue == rhs.rawValue
 }

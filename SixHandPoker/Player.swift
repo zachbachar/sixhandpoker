@@ -16,18 +16,14 @@ class Player{
         hands = [Hand]()
     }
     
-    func handValue(tableCards:[Card]){
+    func handValue(tableCards:[Card]) -> (HandRanks, Card, String){
         var finalCards = tableCards
         finalCards.append(hands.first!.card1)
         finalCards.append(hands.first!.card2)
         finalCards.sortInPlace { (c1, c2) -> Bool in
             return c1.rank.rawValue < c2.rank.rawValue
         }
-        var description = "\(finalCards.count) "
-        for card in finalCards{
-            description += "\(card.description), "
-        }
-        print(hands.first?.checkHandRank(finalCards).description)
+        return hands.first!.checkHandRank(finalCards)
     }
     
     func removeHand(hand hand:Hand) -> Hand{

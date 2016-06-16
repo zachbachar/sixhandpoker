@@ -218,6 +218,11 @@ extension GameScene{
             SKAction.waitForDuration(actionQ.timeLeftInQ*2),
             resetGame()
             ]))
+        
+        childNodeWithName("label")?.removeFromParent()
+        childNodeWithName("upsideLabel")?.removeFromParent()
+        childNodeWithName("upsideSmoke")?.removeFromParent()
+        childNodeWithName("smoke")?.removeFromParent()
     }
     
     func roundLabel(text:String){
@@ -262,6 +267,82 @@ extension GameScene{
         addChild(upsideSmoke)
         smoke.runAction(remove)
         upsideSmoke.runAction(remove)
+    }
+    
+    func winnerLabel(text:String){
+        let userCard1 = user.hands.first!.card1
+        let userCard2 = user.hands.first!.card2
+        let oppCard1 = opponent.hands.first!.card1
+        let oppCard2 = opponent.hands.first!.card2
+        
+        let positionX:CGFloat = 100
+        let positionYuser:CGFloat = 200
+        let positionYopp:CGFloat = 600
+        
+        //let actionQ = ActionQ()
+        
+        let moveUser1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+        let moveUser2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+        let moveOpp1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+        let moveOpp2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+        
+        userCard1.runAction(moveUser1)
+        userCard2.runAction(moveUser2)
+        oppCard1.runAction(moveOpp1)
+        oppCard2.runAction(moveOpp2)
+        rearrangeCardsAtDealer()
+        
+        let label = SKLabelNode(fontNamed:"American Typewriter")
+        label.name = "label"
+        label.text = text
+        label.fontColor = UIColor.whiteColor()
+        label.fontSize = 45
+        label.position.x = midX
+        label.position.y = midY + label.frame.height*3
+        label.zPosition = 5
+        addChild(label)
+        
+        let upsideLabel = SKLabelNode(fontNamed:"American Typewriter")
+        upsideLabel.name = "upsideLabel"
+        upsideLabel.position.x = midX
+        upsideLabel.zRotation = CGFloat(M_PI)
+        upsideLabel.text = text
+        upsideLabel.fontColor = UIColor.whiteColor()
+        upsideLabel.fontSize = 45
+        upsideLabel.position.y = midY - upsideLabel.frame.height*2
+        upsideLabel.zPosition = 5
+        addChild(upsideLabel)
+
+        
+        
+        let fadeIn = SKAction.fadeInWithDuration(1)
+        label.runAction(fadeIn)
+        upsideLabel.runAction(fadeIn)
+        
+        let smoke = SKEmitterNode(fileNamed: "Smoke")!
+        smoke.name = "smoke"
+        smoke.position = label.position
+        smoke.zPosition = 6
+        addChild(smoke)
+        
+        let upsideSmoke = SKEmitterNode(fileNamed: "Smoke")!
+        upsideSmoke.name = "upsideSmoke"
+        upsideSmoke.position = upsideLabel.position
+        upsideSmoke.zRotation = CGFloat(M_PI)
+        upsideSmoke.zPosition = 6
+        addChild(upsideSmoke)
+        
+        var wait = 1.0
+        for _ in 0...10{
+            let fireWorks = SKEmitterNode(fileNamed: "FireWorks")!
+            fireWorks.position.x = CGFloat(Int.nextRandom(upTo: Int(frame.width)))
+            fireWorks.position.y = CGFloat(Int.nextRandom(upTo: Int(frame.height)))
+            fireWorks.zPosition = 6
+            let remove = SKAction.sequence([SKAction.waitForDuration(wait), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
+            addChild(fireWorks)
+            fireWorks.runAction(remove)
+            wait += 1
+        }
     }
 }
 

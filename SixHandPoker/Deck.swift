@@ -21,7 +21,6 @@ struct Deck:CustomStringConvertible {
                     let card = Card(texture: tex, color: UIColor.clearColor(), size: tex.size())
                     card.suit = s
                     card.rank = r
-                    print(card.rank)
                     deck.append(card)
                 }
             }

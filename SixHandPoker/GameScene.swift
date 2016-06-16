@@ -62,12 +62,28 @@ class GameScene: SKScene {
     
     func endGame(){
         canPlay = false
-        user.handValue(self.cardsOnTable)
-        opponent.handValue(self.cardsOnTable)
-        dealer.handValue(self.cardsOnTable)
         round = 0
-        roundLabel("THE END!")
+        checkForWinner()
         addNewGameButton()
+    }
+    
+    func checkForWinner(){
+        let userScore = user.handValue(self.cardsOnTable)
+        let oppScore = opponent.handValue(self.cardsOnTable)
+        let dealerScore = dealer.handValue(self.cardsOnTable)
+        
+        if userScore.0 > oppScore.0 && userScore.0 > dealerScore.0{
+            winnerLabel("User Wins With a \(userScore.2)")
+        }
+        else if oppScore.0 > userScore.0 && oppScore.0 > dealerScore.0{
+            winnerLabel("Opponent Winns With a \(oppScore.2)")
+        }
+        else if dealerScore.0 > userScore.0 && dealerScore.0 > oppScore.0{
+            winnerLabel("Dealer Winns With a \(dealerScore.2)")
+        }
+        else if userScore.0 == oppScore.0 || userScore.0 == dealerScore.0 || oppScore.0 == dealerScore.0{
+            winnerLabel("It's A Tie!")
+        }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
