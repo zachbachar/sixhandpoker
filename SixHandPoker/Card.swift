@@ -94,4 +94,8 @@ func == (lhs:Card, rhs:Card) -> Bool{
         && (lhs.rank.rawValue == rhs.rank.rawValue))
 }
 
+func << (lhs:Card, rhs:Card) -> Bool{
+    return lhs.rank == (rhs.rank+1)
+}
+
 

@@ -3,18 +3,40 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GameScene.touchesMoved(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
+         contextName = "GLOBAL">
          <PersistentStrings>
             <PersistentString
-               value = "dealer">
+               value = "cards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameScene.moveToDealer(Hand, player : Player) -&gt; ():GameScene.swift">
+         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
-               value = "dealer">
+               value = "user">
+            </PersistentString>
+            <PersistentString
+               value = "opponent">
+            </PersistentString>
+            <PersistentString
+               value = "cardsOnTable">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.checkHandRank([Card]) -&gt; Hand.HandRanks:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.initMembers() -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cardNodes">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -30,24 +52,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameScene.initMembers() -&gt; ():GameScene.swift">
+         contextName = "GameScene.moveToDealer(Hand, player : Player) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cardNodes">
+               value = "dealer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         contextName = "GameScene.touchesMoved(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cardsOnTable">
-            </PersistentString>
-            <PersistentString
-               value = "opponent">
-            </PersistentString>
-            <PersistentString
-               value = "user">
+               value = "dealer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

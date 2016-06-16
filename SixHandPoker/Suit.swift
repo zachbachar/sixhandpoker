@@ -38,3 +38,9 @@ enum Suit:Int, CustomStringConvertible{
         }
     }
 }
+
+/*--------------------Operators-------------------------*/
+
+func == (lhs:Suit, rhs:Suit) -> Bool{
+    return lhs.rawValue == rhs.rawValue
+}

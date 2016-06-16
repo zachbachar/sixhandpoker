@@ -27,7 +27,7 @@ class Player{
         for card in finalCards{
             description += "\(card.description), "
         }
-        print(description)
+        print(hands.first?.checkHandRank(finalCards).description)
     }
     
     func removeHand(hand hand:Hand) -> Hand{
