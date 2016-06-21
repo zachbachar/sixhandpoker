@@ -231,7 +231,7 @@ extension GameScene{
         label.fontColor = UIColor.whiteColor()
         label.fontSize = 45
         label.position.x = midX
-        label.position.y = midY + label.frame.height*3
+        label.position.y = midY - label.frame.height*3
         label.zPosition = 5
         addChild(label)
         
@@ -241,7 +241,7 @@ extension GameScene{
         upsideLabel.text = text
         upsideLabel.fontColor = UIColor.whiteColor()
         upsideLabel.fontSize = 45
-        upsideLabel.position.y = midY - upsideLabel.frame.height*2
+        upsideLabel.position.y = midY + upsideLabel.frame.height*4
         upsideLabel.zPosition = 5
         addChild(upsideLabel)
         
@@ -270,27 +270,7 @@ extension GameScene{
     }
     
     func winnerLabel(text:String){
-//        let userCard1 = user.hands.first!.card1
-//        let userCard2 = user.hands.first!.card2
-//        let oppCard1 = opponent.hands.first!.card1
-//        let oppCard2 = opponent.hands.first!.card2
-//        
-//        let positionX:CGFloat = 100
-//        let positionYuser:CGFloat = 200
-//        let positionYopp:CGFloat = 600
-        
-       
-        
-//        let moveUser1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-//        let moveUser2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-//        let moveOpp1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-//        let moveOpp2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-//        
-//        userCard1.runAction(moveUser1)
-//        userCard2.runAction(moveUser2)
-//        oppCard1.runAction(moveOpp1)
-//        oppCard2.runAction(moveOpp2)
-//        rearrangeCardsAtDealer()
+        rearrangeCardsAtDealer()
         
         let label = SKLabelNode(fontNamed:"American Typewriter")
         label.name = "label"
@@ -298,7 +278,7 @@ extension GameScene{
         label.fontColor = UIColor.whiteColor()
         label.fontSize = 45
         label.position.x = midX
-        label.position.y = midY + label.frame.height*3
+        label.position.y = midY - label.frame.height*3
         label.zPosition = 5
         addChild(label)
         
@@ -309,7 +289,7 @@ extension GameScene{
         upsideLabel.text = text
         upsideLabel.fontColor = UIColor.whiteColor()
         upsideLabel.fontSize = 45
-        upsideLabel.position.y = midY - upsideLabel.frame.height*2
+        upsideLabel.position.y = midY + upsideLabel.frame.height*4
         upsideLabel.zPosition = 5
         addChild(upsideLabel)
 
@@ -332,20 +312,105 @@ extension GameScene{
         upsideSmoke.zPosition = 6
         addChild(upsideSmoke)
         
-        //var wait = 1.0
-        let actionQ = ActionQ()
+        var wait = 1.0
+        //let actionQ = ActionQ()
         for _ in 0...5{
             let fireWorks = SKEmitterNode(fileNamed: "FireWorks")!
             fireWorks.position.x = CGFloat(Int.nextRandom(upTo: Int(frame.width)))
             fireWorks.position.y = CGFloat(Int.nextRandom(upTo: Int(frame.height)))
             fireWorks.zPosition = 6
-            fireWorks.alpha = 0
-            let remove = SKAction.sequence([SKAction.fadeInWithDuration(0.1), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
+            //fireWorks.alpha = 0
+            let remove = SKAction.sequence([SKAction.waitForDuration(wait), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
             addChild(fireWorks)
             fireWorks.runAction(remove)
-            actionQ.addNext(fireWorks, action: remove)
+            wait += 1.0
+            //actionQ.addNext(fireWorks, action: remove)
+        }
+        
+    }
+    
+    func increaseHandSize(h:(Hand, Player)){
+        let hand = h.0
+        let player = h.1
+        /*
+         , SKAction.moveToX(hand.card1.position.x - 10 , duration: 0.2)
+         , SKAction.moveToX(hand.card2.position.x + 10 , duration: 0.2)
+         
+         , SKAction.moveToX(hand.card1.position.x - 10 , duration: 0.2)
+         , SKAction.moveToX(hand.card2.position.x + 10 , duration: 0.2)
+         
+         , SKAction.moveToY(hand.card1.position.y - 10 , duration: 0.2)
+         , SKAction.moveToY(hand.card2.position.y + 10 , duration: 0.2)
+         */
+        if player.name == "User" && round%2 != 0{
+            hand.canThrow = true
+            hand.isBig = true
+            hand.card1.zPosition = 3
+            hand.card2.zPosition = 4
+            hand.card1.runAction(SKAction.group([SKAction.scaleBy(1.25, duration: 0.2)]))
+            hand.card2.runAction(SKAction.group([SKAction.scaleBy(1.25, duration: 0.2)]))
+        }
+        else if player.name == "Opponent" && round%2 != 0{
+            hand.canThrow = true
+            hand.isBig = true
+            hand.card1.zPosition = 4
+            hand.card2.zPosition = 3
+            hand.card1.runAction(SKAction.group([SKAction.scaleBy(1.25, duration: 0.2)]))
+            hand.card2.runAction(SKAction.group([SKAction.scaleBy(1.25, duration: 0.2)]))
+        }
+        else if player.name == "Dealer" && round%2 == 0{
+            hand.canThrow = true
+            hand.isBig = true
+            hand.card1.zPosition = 3
+            hand.card2.zPosition = 4
+            hand.card1.runAction(SKAction.group([SKAction.scaleBy(1.25, duration: 0.2)]))
+            hand.card2.runAction(SKAction.group([SKAction.scaleBy(1.25, duration: 0.2)]))
         }
     }
+    
+    func decreaseHandSize(h:(Hand, Player)) {
+        let hand = h.0
+        let player = h.1
+        /*
+         , SKAction.moveToX(hand.card1.position.x + 10, duration: 0.2)
+         , SKAction.moveToX(hand.card2.position.x - 10, duration: 0.2)
+         
+         , SKAction.moveToX(hand.card1.position.x + 10, duration: 0.2)
+         , SKAction.moveToX(hand.card2.position.x - 10, duration: 0.2)
+         
+         , SKAction.moveToY(hand.card1.position.y + 10 , duration: 0.2)
+         , SKAction.moveToY(hand.card2.position.y - 10 , duration: 0.2)
+         */
+        if hand.isBig{
+            if player.name == "User" && round%2 != 0{
+                hand.canThrow = false
+                hand.isBig = false
+                hand.card1.zPosition = 1
+                hand.card2.zPosition = 2
+                hand.card1.runAction(SKAction.group([SKAction.scaleBy(0.8, duration: 0.2)]))
+                hand.card2.runAction(SKAction.group([SKAction.scaleBy(0.8, duration: 0.2)]))
+
+            }
+            else if player.name == "Opponent" && round%2 != 0{
+                hand.canThrow = false
+                hand.isBig = false
+                hand.card1.zPosition = 2
+                hand.card2.zPosition = 1
+                hand.card1.runAction(SKAction.group([SKAction.scaleBy(0.8, duration: 0.2)]))
+                hand.card2.runAction(SKAction.group([SKAction.scaleBy(0.8, duration: 0.2)]))
+            }
+            else if player.name == "Dealer" && round%2 == 0{
+                hand.canThrow = true
+                hand.isBig = true
+                hand.card1.zPosition = 1
+                hand.card2.zPosition = 2
+                hand.card1.runAction(SKAction.group([SKAction.scaleBy(0.8, duration: 0.2)]))
+                hand.card2.runAction(SKAction.group([SKAction.scaleBy(0.8, duration: 0.2)]))
+            }
+
+        }
+    }
+    
 }
 
 extension Int{

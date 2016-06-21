@@ -12,6 +12,8 @@ class Hand: CustomStringConvertible{
     var card1:Card!
     var card2:Card!
     var finalCards:[Card]!
+    var canThrow:Bool = false
+    var isBig:Bool = false
     
     init(card1 c1:Card, card2 c2:Card){
         card1 = c1

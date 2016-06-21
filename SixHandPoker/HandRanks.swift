@@ -161,6 +161,7 @@ extension Hand{
         }
         
         let maxStartPosition = finalCards.count - 4
+        var highest:Card? = nil
         for i in 0..<maxStartPosition{
             let compare1 = finalCards[i] << finalCards[i+1]
             let compare2 = finalCards[i+1] << finalCards[i+2]
@@ -168,8 +169,18 @@ extension Hand{
             let compare4 = finalCards[i+3] << finalCards[i+4]
             
             if compare1 && compare2 && compare3 && compare4{
-                return (true, finalCards[i+4])
+                if highest == nil{
+                    highest = finalCards[i+4]
+                }
+                else if let h = highest{
+                    if finalCards[i+4].rank > h.rank{
+                        highest = finalCards[i+4]
+                    }
+                }
             }
+        }
+        if highest != nil{
+            return (true, highest)
         }
         
         var aceFlag = false
@@ -322,7 +333,15 @@ extension Hand{
             let compare4 = finalCards[i+3] << finalCards[i+4]
             
             if compare1 && compare2 && compare3 && compare4{
-                straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
+                if straightCards == nil{
+                    straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
+                }
+                else if let cards = straightCards{
+                    if finalCards[i+4].rank > cards.last!.rank{
+                        straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
+                    }
+                }
+                
             }
         }
         
