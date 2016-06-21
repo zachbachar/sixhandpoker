@@ -11,9 +11,9 @@ import SpriteKit
 class GameScene: SKScene {
     
     var deck = Deck()
-    var user = Player()
-    var opponent = Player()
-    var dealer = Player()
+    var user = Player(name: "Player")
+    var opponent = Player(name: "Opponent")
+    var dealer = Player(name: "Dealer")
     
     var midX = CGFloat()
     var midY = CGFloat()
@@ -68,22 +68,30 @@ class GameScene: SKScene {
     }
     
     func checkForWinner(){
-        let userScore = user.handValue(self.cardsOnTable)
-        let oppScore = opponent.handValue(self.cardsOnTable)
-        let dealerScore = dealer.handValue(self.cardsOnTable)
+        var results = [user.handValue(self.cardsOnTable),
+                       opponent.handValue(self.cardsOnTable),
+                       dealer.handValue(self.cardsOnTable)]
         
-        if userScore.0 > oppScore.0 && userScore.0 > dealerScore.0{
-            winnerLabel("User Wins With a \(userScore.2)")
+        let temp = results.sort { (x, y) -> Bool in
+            return x.1 > y.1
         }
-        else if oppScore.0 > userScore.0 && oppScore.0 > dealerScore.0{
-            winnerLabel("Opponent Winns With a \(oppScore.2)")
-        }
-        else if dealerScore.0 > userScore.0 && dealerScore.0 > oppScore.0{
-            winnerLabel("Dealer Winns With a \(dealerScore.2)")
-        }
-        else if userScore.0 == oppScore.0 || userScore.0 == dealerScore.0 || oppScore.0 == dealerScore.0{
-            winnerLabel("It's A Tie!")
-        }
+        
+        results = temp
+        
+        winnerLabel("\(results.first!.0.name) Wins With a \(results.first!.2)!")
+        
+//        if userScore.0 > oppScore.0 && userScore.0 > dealerScore.0{
+//            winnerLabel("User Wins With a \(userScore.2)")
+//        }
+//        else if oppScore.0 > userScore.0 && oppScore.0 > dealerScore.0{
+//            winnerLabel("Opponent Winns With a \(oppScore.2)")
+//        }
+//        else if dealerScore.0 > userScore.0 && dealerScore.0 > oppScore.0{
+//            winnerLabel("Dealer Winns With a \(dealerScore.2)")
+//        }
+//        else if userScore.0 == oppScore.0 || userScore.0 == dealerScore.0 || oppScore.0 == dealerScore.0{
+//            winnerLabel("It's A Tie!")
+//        }
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

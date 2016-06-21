@@ -9,16 +9,16 @@
 import UIKit
 
 enum HandRanks:Int, CustomStringConvertible{
-    case HighCard = 0
-    case Pair
-    case TwoPairs
-    case ThreeOfKind
-    case Straight
-    case Flush
-    case FullHouse
-    case FourOfKind
-    case StraightFlush
-    case RoyalFlush
+    case HighCard = 1
+    case Pair = 8
+    case TwoPairs = 38
+    case ThreeOfKind = 267
+    case Straight = 748
+    case Flush = 1497
+    case FullHouse = 6987
+    case FourOfKind = 48910
+    case StraightFlush = 136949
+    case RoyalFlush = 383458
     
     var description: String{
         switch self {
@@ -47,6 +47,17 @@ enum HandRanks:Int, CustomStringConvertible{
 }
 
 extension Hand{
+    func handScore(cards:[Card]) -> (Int, HandRanks){
+        let handRank = checkHandRank(cards)
+        let rank = handRank.0
+        let highCard = handRank.1
+        //let message = handRank.2
+        
+        let handScore = rank.rawValue * highCard.rank.rawValue
+        
+        return (handScore, rank)
+    }
+    
     func checkHandRank(cards:[Card]) -> (HandRanks, Card, String){
         finalCards = cards
         finalCards.sortInPlace { (c1, c2) -> Bool in
@@ -180,6 +191,13 @@ extension Hand{
                 
                 if compare1 && compare2 && compare3 && compare4{
                     return (true, finalCards[i+4])
+                }
+                else{
+                    for card in cards{
+                        if card.rank == Rank.LowAce{
+                            card.rank = Rank.Ace
+                        }
+                    }
                 }
             }
         }
@@ -336,6 +354,13 @@ extension Hand{
             
             if straightCards != nil{
                 return (isSameSuit(cards!).0, isSameSuit(cards!).1)
+            }
+            else{
+                for card in cards{
+                    if card.rank == Rank.LowAce{
+                        card.rank = Rank.Ace
+                    }
+                }
             }
         }
 

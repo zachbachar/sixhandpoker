@@ -270,27 +270,27 @@ extension GameScene{
     }
     
     func winnerLabel(text:String){
-        let userCard1 = user.hands.first!.card1
-        let userCard2 = user.hands.first!.card2
-        let oppCard1 = opponent.hands.first!.card1
-        let oppCard2 = opponent.hands.first!.card2
+//        let userCard1 = user.hands.first!.card1
+//        let userCard2 = user.hands.first!.card2
+//        let oppCard1 = opponent.hands.first!.card1
+//        let oppCard2 = opponent.hands.first!.card2
+//        
+//        let positionX:CGFloat = 100
+//        let positionYuser:CGFloat = 200
+//        let positionYopp:CGFloat = 600
         
-        let positionX:CGFloat = 100
-        let positionYuser:CGFloat = 200
-        let positionYopp:CGFloat = 600
+       
         
-        //let actionQ = ActionQ()
-        
-        let moveUser1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-        let moveUser2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-        let moveOpp1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-        let moveOpp2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
-        
-        userCard1.runAction(moveUser1)
-        userCard2.runAction(moveUser2)
-        oppCard1.runAction(moveOpp1)
-        oppCard2.runAction(moveOpp2)
-        rearrangeCardsAtDealer()
+//        let moveUser1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+//        let moveUser2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYuser) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+//        let moveOpp1 = SKAction.group([SKAction.moveTo(CGPointMake(positionX, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+//        let moveOpp2 = SKAction.group([SKAction.moveTo(CGPointMake(positionX + 30, positionYopp) , duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)])
+//        
+//        userCard1.runAction(moveUser1)
+//        userCard2.runAction(moveUser2)
+//        oppCard1.runAction(moveOpp1)
+//        oppCard2.runAction(moveOpp2)
+//        rearrangeCardsAtDealer()
         
         let label = SKLabelNode(fontNamed:"American Typewriter")
         label.name = "label"
@@ -332,16 +332,18 @@ extension GameScene{
         upsideSmoke.zPosition = 6
         addChild(upsideSmoke)
         
-        var wait = 1.0
-        for _ in 0...10{
+        //var wait = 1.0
+        let actionQ = ActionQ()
+        for _ in 0...5{
             let fireWorks = SKEmitterNode(fileNamed: "FireWorks")!
             fireWorks.position.x = CGFloat(Int.nextRandom(upTo: Int(frame.width)))
             fireWorks.position.y = CGFloat(Int.nextRandom(upTo: Int(frame.height)))
             fireWorks.zPosition = 6
-            let remove = SKAction.sequence([SKAction.waitForDuration(wait), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
+            fireWorks.alpha = 0
+            let remove = SKAction.sequence([SKAction.fadeInWithDuration(0.1), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
             addChild(fireWorks)
             fireWorks.runAction(remove)
-            wait += 1
+            actionQ.addNext(fireWorks, action: remove)
         }
     }
 }

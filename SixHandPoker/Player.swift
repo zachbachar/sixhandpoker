@@ -11,19 +11,27 @@ import UIKit
 class Player{
 
     var hands:[Hand]
+    var name:String
     
-    init(){
+    init(name:String){
         hands = [Hand]()
+        self.name = name
     }
     
-    func handValue(tableCards:[Card]) -> (HandRanks, Card, String){
+    func handValue(tableCards:[Card]) -> (Player, Int, HandRanks){
         var finalCards = tableCards
         finalCards.append(hands.first!.card1)
         finalCards.append(hands.first!.card2)
         finalCards.sortInPlace { (c1, c2) -> Bool in
             return c1.rank.rawValue < c2.rank.rawValue
         }
-        return hands.first!.checkHandRank(finalCards)
+        
+        let ans = hands.first!.handScore(finalCards)
+        let score = ans.0
+        let rank = ans.1
+        //let message = ans.1
+        
+        return (self, score, rank)
     }
     
     func removeHand(hand hand:Hand) -> Hand{
