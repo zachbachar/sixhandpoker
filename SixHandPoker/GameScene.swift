@@ -78,20 +78,7 @@ class GameScene: SKScene {
         
         results = temp
         
-        winnerLabel("\(results.first!.0.name) Wins With a \(results.first!.2)!")
-        
-//        if userScore.0 > oppScore.0 && userScore.0 > dealerScore.0{
-//            winnerLabel("User Wins With a \(userScore.2)")
-//        }
-//        else if oppScore.0 > userScore.0 && oppScore.0 > dealerScore.0{
-//            winnerLabel("Opponent Winns With a \(oppScore.2)")
-//        }
-//        else if dealerScore.0 > userScore.0 && dealerScore.0 > oppScore.0{
-//            winnerLabel("Dealer Winns With a \(dealerScore.2)")
-//        }
-//        else if userScore.0 == oppScore.0 || userScore.0 == dealerScore.0 || oppScore.0 == dealerScore.0{
-//            winnerLabel("It's A Tie!")
-//        }
+        winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

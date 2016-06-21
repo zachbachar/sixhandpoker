@@ -18,7 +18,7 @@ class Player{
         self.name = name
     }
     
-    func handValue(tableCards:[Card]) -> (Player, Int, HandRanks){
+    func handValue(tableCards:[Card]) -> (Player, Int, HandRanks, String){
         var finalCards = tableCards
         finalCards.append(hands.first!.card1)
         finalCards.append(hands.first!.card2)
@@ -29,9 +29,9 @@ class Player{
         let ans = hands.first!.handScore(finalCards)
         let score = ans.0
         let rank = ans.1
-        //let message = ans.1
+        let message = ans.2
         
-        return (self, score, rank)
+        return (self, score, rank, message)
     }
     
     func removeHand(hand hand:Hand) -> Hand{

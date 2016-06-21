@@ -47,15 +47,15 @@ enum HandRanks:Int, CustomStringConvertible{
 }
 
 extension Hand{
-    func handScore(cards:[Card]) -> (Int, HandRanks){
+    func handScore(cards:[Card]) -> (Int, HandRanks, String){
         let handRank = checkHandRank(cards)
         let rank = handRank.0
         let highCard = handRank.1
-        //let message = handRank.2
+        let message = handRank.2
         
         let handScore = rank.rawValue * highCard.rank.rawValue
         
-        return (handScore, rank)
+        return (handScore, rank, message)
     }
     
     func checkHandRank(cards:[Card]) -> (HandRanks, Card, String){
@@ -100,27 +100,33 @@ extension Hand{
     }
     
     func isPair() -> (Bool, Card?){
-        let maxStartPosition = finalCards.count - 1
+        var cards = finalCards.sort { (c1, c2) -> Bool in
+            return c1.rank.rawValue > c2.rank.rawValue
+        }
+        let maxStartPosition = cards.count - 1
         for i in 0..<maxStartPosition{
-            if finalCards[i].rank == finalCards[i+1].rank{
-                return (true, finalCards[i])
+            if cards[i].rank == cards[i+1].rank{
+                return (true, cards[i])
             }
         }
         return (false, nil)
     }
     
     func isTwoPairs() -> (Bool, Card?, Card?){
+        var cards = finalCards.sort { (c1, c2) -> Bool in
+            return c1.rank.rawValue > c2.rank.rawValue
+        }
         var pairsCount = 0
         var firstPair:Card!
-        let maxStartPosition = finalCards.count - 1
+        let maxStartPosition = cards.count - 1
         for i in 0..<maxStartPosition{
-            if finalCards[i].rank == finalCards[i+1].rank{
+            if cards[i].rank == cards[i+1].rank{
                 pairsCount += 1
                 if pairsCount == 1{
-                    firstPair = finalCards[i]
+                    firstPair = cards[i]
                 }
                 if pairsCount == 2{
-                    return (true, finalCards[i], firstPair)
+                    return (true, cards[i], firstPair)
                 }
             }
         }
