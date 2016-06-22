@@ -78,6 +78,38 @@ class GameScene: SKScene {
         
         results = temp
         
+        //Tie Handeling
+        if results[0].1 == results[1].1{
+            if results[0].2 == .Straight || results[0].2 == .StraightFlush{
+                winnerLabel("Its A Tie With" + results.first!.3)
+            }
+            else {
+                var p1Cards = results[0].0.hands.first!.finalCards
+                var p2Cards = results[1].0.hands.first!.finalCards
+                
+                p1Cards.sortInPlace({ (c1, c2) -> Bool in
+                    return c1.rank.rawValue > c2.rank.rawValue
+                })
+                p2Cards.sortInPlace({ (c1, c2) -> Bool in
+                    return c1.rank.rawValue > c2.rank.rawValue
+                })
+                
+                let range = p1Cards.count < p2Cards.count ? p1Cards.count : p2Cards.count
+                
+                for i in 0...range - 1{
+                    if p1Cards[i].rank > p2Cards[i].rank{
+                        winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3)
+                        return
+                    }
+                    if p1Cards[i].rank < p2Cards[i].rank{
+                        winnerLabel("\(results[1].0.name) Wins With " + results[1].3)
+                        return
+                    }
+                }
+                winnerLabel("Its A Tie With" + results.first!.3)
+            }
+        }
+        
         winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3)
     }
     
@@ -211,32 +243,6 @@ class GameScene: SKScene {
                         increaseHandSize(hand)
                     }
                 }
-            
-                /* if round == 1 && canPlay {
-                    roundONE(card1)
-                }
-            else if round == 2 && canPlay{
-                    roundTWO(card1)
-                }
-                else if round == 3 && canPlay{
-                    roundTHREE(card1)
-                }
-                else if round == 4 && canPlay{
-                    roundFOUR(card1)
-                }
-                else if round == 5 && canPlay{
-                    roundFIVE(card1)
-                }
-                else if round == 6 && canPlay{
-                    roundSIX(card1)
-                }
-                else if round == 7 && canPlay{
-                    roundSEVEN(card1)
-                }
-                else if round == 8 && canPlay{
-                    roundEIGHT(card1)
-                }
-            }*/
             }
         }
     }

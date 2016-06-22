@@ -14,13 +14,13 @@
          contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
+               value = "cardsOnTable">
+            </PersistentString>
+            <PersistentString
                value = "user">
             </PersistentString>
             <PersistentString
                value = "opponent">
-            </PersistentString>
-            <PersistentString
-               value = "cardsOnTable">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -37,6 +37,14 @@
          <PersistentStrings>
             <PersistentString
                value = "cardNodes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.checkHandRank([Card]) -&gt; (HandRanks, [Card], String):HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "finalCards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

@@ -128,7 +128,6 @@ extension GameScene{
         
         player.removeHand(hand: hand)
         dealer.hands.append(hand)
-        print(dealer.hands.count)
     }
     
     func rearrangeCardsAtDealer(){
@@ -317,7 +316,7 @@ extension GameScene{
             let remove = SKAction.sequence([SKAction.waitForDuration(wait), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
             addChild(fireWorks)
             fireWorks.runAction(remove)
-            wait += 1
+            wait += 3.0
         }
         
     }
