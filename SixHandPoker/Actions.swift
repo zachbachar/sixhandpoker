@@ -101,7 +101,6 @@ extension GameScene{
         hand.card2.runAction(rotate)
         
         dealer.removeHand(hand: hand)
-        //print("dealer hands: \(dealer.hands.count)")
     }
     
     func moveToDealer(hand:Hand, player:Player){
@@ -164,7 +163,6 @@ extension GameScene{
     }
     
     func addNewGameButton(){
-        
         let newGameBtn = SKSpriteNode(imageNamed: "startBtn")
         newGameBtn.zPosition = 6
         newGameBtn.xScale = 0.3
@@ -278,7 +276,7 @@ extension GameScene{
         label.fontColor = UIColor.whiteColor()
         label.fontSize = 45
         label.position.x = midX
-        label.position.y = midY - label.frame.height*3.5
+        label.position.y = midY - label.frame.height*3
         label.zPosition = 5
         addChild(label)
         
@@ -292,8 +290,6 @@ extension GameScene{
         upsideLabel.position.y = midY + upsideLabel.frame.height*3.5
         upsideLabel.zPosition = 5
         addChild(upsideLabel)
-
-        
         
         let fadeIn = SKAction.fadeInWithDuration(1)
         label.runAction(fadeIn)
