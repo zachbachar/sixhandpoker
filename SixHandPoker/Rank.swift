@@ -43,6 +43,10 @@ func > (lhs:Rank, rhs:Rank) -> Bool{
     return lhs.rawValue > rhs.rawValue
 }
 
+func != (lhs:Rank, rhs:Rank) -> Bool{
+    return lhs.rawValue != rhs.rawValue
+}
+
 func == (lhs:Rank, rhs:Rank) -> Bool{
     return lhs.rawValue == rhs.rawValue
 }

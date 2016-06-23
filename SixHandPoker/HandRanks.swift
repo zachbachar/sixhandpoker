@@ -77,33 +77,35 @@ extension Hand{
             return (.RoyalFlush, [finalCards.last!], "Royal Flush!")
         }
         else if let ans = isStraightFlush(){
-            return (.StraightFlush, [ans.1!], "Straight Flush Of \(ans.1!.suit.description) To \(ans.1!.rank.description)!")
+            return (.StraightFlush, [ans.1], "Straight Flush Of \(ans.1.suit.description) To \(ans.1.rank.description)!")
         }
         else if let ans = isFourOfKind(){
-            return (.FourOfKind, [ans.1!], "Four Of A Kind Of \(ans.1!.rank.description)!")
+            return (.FourOfKind, [ans.1], "Four Of A Kind Of \(ans.1.rank.description)!")
         }
         else if let ans = isFullHouse(){
-            return (.FullHouse, [ans.1!, ans.2!], "House Of \(ans.1!.rank.description) Filled With \(ans.2!.rank.description)!")
+            return (.FullHouse, [ans.1, ans.2], "House Of \(ans.1.rank.description) Filled With \(ans.2.rank.description)!")
         }
         else if let ans = isFlush(){
-            return (.Flush, [ans.1!], "Flush Of \(ans.1!.suit.description)!")
+            return (.Flush, [ans.1], "Flush Of \(ans.1.suit.description)!")
         }
         else if let ans = isStraight(){
-            return (.Straight, [ans.1!], "Straight To \(ans.1!.rank.description)!")
+            return (.Straight, [ans.1], "Straight To \(ans.1.rank.description)!")
         }
         else if let ans = isThreeOfKind(){
-            return (.ThreeOfKind, [ans.1!], "Three Of \(ans.1!.rank.description)!")
+            return (.ThreeOfKind, [ans.1], "Three Of \(ans.1.rank.description)!")
         }
         else if let ans = isTwoPairs(){
-            return (.TwoPairs, [ans.1!, ans.2!], "Two Pairs Of \(ans.1!.rank.description) And \(ans.2!.rank.description)!")
+            return (.TwoPairs, [ans.1, ans.2], "Two Pairs Of \(ans.1.rank.description) And \(ans.2.rank.description)!")
         }else if let ans = isPair(){
-            return (.Pair, [ans.1!], "Pair Of \(ans.1!.rank.description)!")
+            return (.Pair, [ans.1], "Pair Of \(ans.1.rank.description)!")
         }
         else{
             let ans = isHighCard()
-            return (.HighCard, [ans.1!], "High Card \(ans.1!.rank.description)!")
+            return (.HighCard, [ans.1], "High Card \(ans.1.rank.description)!")
         }
     }
+    
+    /*----------------------------------------------------------------------------------------------------------------*/
     
     func finalCardsFromLowToHigh() -> [Card]{
         finalCards.sortInPlace { (c1, c2) -> Bool in
@@ -119,26 +121,42 @@ extension Hand{
         return finalCards
     }
     
-    func isHighCard() -> (Bool, Card?){
+    func removeFromFinalCards(indexs :[Int]){
+        let toRemove = indexs.sort { (i, y) -> Bool in
+            return i > y
+        }
+        for index in toRemove{
+            finalCards.removeAtIndex(index)
+        }
+        
+    }
+    
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isHighCard() -> (Bool, Card){
         finalCardsFromLowToHigh()
         let highCard = finalCards.removeLast()
         return (true, highCard)
     }
     
-    func isPair() -> (Bool, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isPair() -> (Bool, Card)?{
         var cards = finalCardsFromHighToLow()
         let maxStartPosition = cards.count - 1
         for i in 0..<maxStartPosition{
             if cards[i].rank == cards[i+1].rank{
-                let pairCard = finalCards.removeAtIndex(i+1)
-                finalCards.removeAtIndex(i)
+                let pairCard = finalCards[i+1]
+                removeFromFinalCards([i, i+1])
                 return (true, pairCard)
             }
         }
         return nil
     }
     
-    func isTwoPairs() -> (Bool, Card?, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isTwoPairs() -> (Bool, Card, Card)?{
         var cards = finalCardsFromHighToLow()
         var pairsCount = 0
         var highPair:Card!
@@ -151,11 +169,13 @@ extension Hand{
                 }
                 if pairsCount == 2{
                     let lowPair = cards[i]
+                    var toRemove = [Int]()
                     for i in 0...cards.count-1{
                         if cards[i].rank == highPair.rank || cards[i].rank == lowPair.rank{
-                            finalCards.removeAtIndex(i)
+                            toRemove.append(i)
                         }
                     }
+                    removeFromFinalCards(toRemove)
                     return (true, highPair, lowPair)
                 }
             }
@@ -163,21 +183,24 @@ extension Hand{
         return nil
     }
     
-    func isThreeOfKind() -> (Bool, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isThreeOfKind() -> (Bool, Card)?{
         finalCardsFromLowToHigh()
         let maxStartPosition = finalCards.count - 2
         for i in 0..<maxStartPosition{
             if finalCards[i].rank == finalCards[i+1].rank && finalCards[i].rank == finalCards[i+2].rank{
-                let threeKindCard = finalCards.removeAtIndex(i)
-                finalCards.removeAtIndex(i+1)
-                finalCards.removeAtIndex(i+2)
+                let threeKindCard = finalCards[i]
+                removeFromFinalCards([i, i+1, i+2])
                 return(true, threeKindCard)
             }
         }
         return nil
     }
     
-    func isStraight() -> (Bool, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isStraight() -> (Bool, Card)?{
         var cards = finalCardsFromLowToHigh()
         var indexToRemove = [Int]()
         for i in 0..<cards.count-1{
@@ -188,7 +211,7 @@ extension Hand{
        
         if indexToRemove.count > 0{
             var newCards = [Card]()
-            for i in 0...cards.count-1{
+            for i in 0..<cards.count-1{
                 if !indexToRemove.contains(i){
                     newCards.append(cards[i])
                 }
@@ -220,7 +243,7 @@ extension Hand{
             }
         }
         if highest != nil{
-            return (true, highest)
+            return (true, highest!)
         }
         
         var aceFlag = false
@@ -231,9 +254,7 @@ extension Hand{
             }
         }
         if aceFlag{
-            cards.sortInPlace { (c1, c2) -> Bool in
-                return c1.rank.rawValue < c2.rank.rawValue
-            }
+            cards = finalCardsFromLowToHigh()
             for i in 0..<maxStartPosition{
                 let compare1 = finalCards[i] << finalCards[i+1]
                 let compare2 = finalCards[i+1] << finalCards[i+2]
@@ -256,7 +277,9 @@ extension Hand{
         return nil
     }
     
-    func isFlush() -> (Bool, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isFlush() -> (Bool, Card)?{
         finalCardsFromLowToHigh()
         var spadesCount = 0
         var heartCount = 0
@@ -291,24 +314,28 @@ extension Hand{
             }
         }
         
+        var toRemove = [Int]()
         if highCard != nil{
             let cards = finalCardsFromLowToHigh()
             for i in 0...cards.count - 1{
                 if cards[i].suit != highCard!.suit{
-                    finalCards.removeAtIndex(i)
+                    toRemove.append(i)
                 }
                 if cards[i].rank == highCard!.rank{
-                    finalCards.removeAtIndex(i)
+                    toRemove.append(i)
                 }
             }
-            return (true, highCard)
+            removeFromFinalCards(toRemove)
+            return (true, highCard!)
         }
         else{
             return nil
         }
     }
     
-    func isFullHouse() -> (Bool, Card?, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isFullHouse() -> (Bool, Card, Card)?{
         var cards = finalCardsFromHighToLow()
         let maxStartPosition = cards.count - 2
         var pairCard:Card! = nil
@@ -319,36 +346,43 @@ extension Hand{
                 threeCard = cards[i]
             }
             else if cards[i].rank == cards[i+1].rank{
-                pairCard = cards[i]
+                if threeCard == nil{
+                    pairCard = cards[i]
+                }
+                else if let threeCard = threeCard{
+                    if cards[i].rank != threeCard.rank{
+                        pairCard = cards[i]
+                    }
+                }
+            }
+            else if cards[i+1].rank == cards[i+2].rank{
+                if threeCard == nil{
+                    pairCard = cards[i+1]
+                }
+                else if let threeCard = threeCard{
+                    if cards[i+1].rank != threeCard.rank{
+                        pairCard = cards[i+1]
+                    }
+                }
             }
         }
         
+        var toRemove = [Int]()
         if pairCard != nil && threeCard != nil{
             for i in 0...cards.count - 1{
                 if cards[i].rank == threeCard.rank || cards[i].rank == pairCard.rank{
-                    finalCards.removeAtIndex(i)
+                    toRemove.append(i)
                 }
             }
+            removeFromFinalCards(toRemove)
             return (true, threeCard, pairCard)
         }
         return nil
-        
-        /*let cards = finalCardsFromHighToLow()
-        if let pairCard = isPair().1{
-            if let threeCard = isThreeOfKind().1{
-                if pairCard.rank != threeCard.rank{
-                    for i in 0...cards.count - 1{
-                        if cards[i].rank == threeCard.rank || cards[i].rank == pairCard.rank{
-                            finalCards.removeAtIndex(i)
-                        }
-                    }
-                    return (true, threeCard, pairCard)
-                }
-            }
-        }*/
     }
     
-    func isFourOfKind() -> (Bool, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isFourOfKind() -> (Bool, Card)?{
         finalCardsFromLowToHigh()
         let maxStartPosiotin = finalCards.count - 3
         for i in 0..<maxStartPosiotin{
@@ -357,24 +391,22 @@ extension Hand{
             let compare3 = finalCards[i].rank == finalCards[i+3].rank
             
             if compare1 && compare2 && compare3{
-                let fourKindCard = finalCards.removeAtIndex(i)
-                finalCards.removeAtIndex(i+1)
-                finalCards.removeAtIndex(i+2)
-                finalCards.removeAtIndex(i+3)
+                let fourKindCard = finalCards[i]
+                removeFromFinalCards([i, i+1, i+2, i+3])
                 return(true, fourKindCard)
             }
         }
         return nil
     }
     
-    func isStraightFlush() -> (Bool, Card?)?{
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isStraightFlush() -> (Bool, Card)?{
         var cards = finalCards
         var checkedSuit:Suit!
         
-        if let ans = isFlush(){
-            if let card = ans.1{
-                checkedSuit = card.suit
-            }
+        if let ans = isSameSuit(cards){
+            checkedSuit = ans.1.suit
         }
         else{
             return nil
@@ -430,7 +462,9 @@ extension Hand{
         }
         
         if straightCards != nil{
-            return (isSameSuit(cards!).0, isSameSuit(cards!).1)
+            if let ans = isSameSuit(cards!){
+                return (ans.0, ans.1)
+            }
         }
         
         var aceFlag = false
@@ -441,9 +475,7 @@ extension Hand{
             }
         }
         if aceFlag{
-            cards.sortInPlace { (c1, c2) -> Bool in
-                return c1.rank.rawValue < c2.rank.rawValue
-            }
+            cards = finalCardsFromLowToHigh()
             for i in 0..<maxStartPosition{
                 let compare1 = finalCards[i] << finalCards[i+1]
                 let compare2 = finalCards[i+1] << finalCards[i+2]
@@ -456,7 +488,9 @@ extension Hand{
             }
             
             if straightCards != nil{
-                return (isSameSuit(cards!).0, isSameSuit(cards!).1)
+                if let ans = isSameSuit(cards!){
+                    return (ans.0, ans.1)
+                }
             }
             else{
                 for card in cards{
@@ -470,8 +504,10 @@ extension Hand{
         return nil
     }
     
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
     func isRoyalFlush() -> Bool?{
-        if isFlush() == nil{
+        if isSameSuit(finalCards) == nil{
             return nil
         }
         var rankChecker = 10
@@ -484,7 +520,7 @@ extension Hand{
             }
         }
         if rankChecker == 14{
-            if (isSameSuit(cards).0){
+            if isSameSuit(cards) != nil{
                 return true
             }
             else{ return nil }
@@ -492,7 +528,9 @@ extension Hand{
         else{ return nil }
     }
     
-    func isSameSuit(cards:[Card]) -> (Bool, Card?){
+    /*----------------------------------------------------------------------------------------------------------------*/
+    
+    func isSameSuit(cards:[Card]) -> (Bool, Card)?{
         var spadesCount = 0
         var heartCount = 0
         var diamondCount = 0
@@ -529,7 +567,7 @@ extension Hand{
         if let highCard = highCard{
             return (true, highCard)
         }
-        else{ return (false, nil) }
+        else{ return nil }
     }
 }
 

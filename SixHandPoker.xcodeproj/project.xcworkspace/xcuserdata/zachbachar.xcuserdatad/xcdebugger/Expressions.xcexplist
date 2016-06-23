@@ -3,24 +3,21 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GLOBAL">
+         contextName = "Hand.isFullHouse() -&gt; (Bool, Card?, Card?)?:HandRanks.swift">
          <PersistentStrings>
             <PersistentString
                value = "cards.description">
             </PersistentString>
+            <PersistentString
+               value = "finalCards.description">
+            </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         contextName = "Hand.checkHandRank([Card]) -&gt; (HandRanks, [Card], String):HandRanks.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cardsOnTable">
-            </PersistentString>
-            <PersistentString
-               value = "user">
-            </PersistentString>
-            <PersistentString
-               value = "opponent">
+               value = "finalCards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -41,8 +38,25 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Hand.checkHandRank([Card]) -&gt; (HandRanks, [Card], String):HandRanks.swift">
+         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
          <PersistentStrings>
+            <PersistentString
+               value = "opponent">
+            </PersistentString>
+            <PersistentString
+               value = "user">
+            </PersistentString>
+            <PersistentString
+               value = "cardsOnTable">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isFullHouse() -&gt; (Bool, Card, Card)?:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
             <PersistentString
                value = "finalCards.description">
             </PersistentString>
@@ -64,6 +78,25 @@
          <PersistentStrings>
             <PersistentString
                value = "dealer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isTwoPairs() -&gt; (Bool, Card, Card)?:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "finalCards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isStraight() -&gt; (Bool, Card)?:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+            <PersistentString
+               value = "finalCards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

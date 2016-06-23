@@ -72,6 +72,10 @@ class GameScene: SKScene {
                        opponent.handValue(self.cardsOnTable),
                        dealer.handValue(self.cardsOnTable)]
         
+        print(results[0].3)
+        print(results[1].3)
+        print(results[2].3)
+        
         let temp = results.sort { (x, y) -> Bool in
             return x.1 > y.1
         }
