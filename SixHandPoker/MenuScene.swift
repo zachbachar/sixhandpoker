@@ -137,10 +137,13 @@ class MenuScene: SKScene {
     }
     
     func moveToGameScene(){
+        let chip = childNodeWithName("startBtn")!
+        let flyAway = SKAction.group([SKAction.moveToY((view?.frame.height)!+100, duration: 0.15), SKAction.repeatAction(SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.15), count: 2)])
+        let bounce = SKAction.sequence([SKAction.scaleBy(1.25, duration: 0.15), SKAction.scaleBy(0.8, duration: 0.15), flyAway])
         let gameScene = GameScene(fileNamed:"GameScene")!
         let transition = SKTransition.crossFadeWithDuration(1)
-        let sound = SKAction.playSoundFileNamed("cardFan2", waitForCompletion: false)
-        runAction(sound)
-        view?.presentScene(gameScene, transition: transition)
+        chip.runAction(SKAction.group([bounce, SKAction.playSoundFileNamed("cardFan2", waitForCompletion: false)])){
+            self.view?.presentScene(gameScene, transition: transition)
+        }
     }
 }
