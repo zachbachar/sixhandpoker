@@ -273,7 +273,7 @@ extension GameScene{
         label.name = "label"
         label.text = text
         label.fontColor = UIColor.whiteColor()
-        label.fontSize = 45
+        label.fontSize = 40
         label.position.x = midX
         label.position.y = midY - label.frame.height*3
         label.zPosition = 5
@@ -285,8 +285,8 @@ extension GameScene{
         upsideLabel.zRotation = CGFloat(M_PI)
         upsideLabel.text = text
         upsideLabel.fontColor = UIColor.whiteColor()
-        upsideLabel.fontSize = 45
-        upsideLabel.position.y = midY + upsideLabel.frame.height*3.5
+        upsideLabel.fontSize = 40
+        upsideLabel.position.y = midY + upsideLabel.frame.height*4
         upsideLabel.zPosition = 5
         addChild(upsideLabel)
         

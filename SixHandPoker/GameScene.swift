@@ -72,9 +72,9 @@ class GameScene: SKScene {
                        opponent.handValue(self.cardsOnTable),
                        dealer.handValue(self.cardsOnTable)]
         
-        print(results[0].3)
-        print(results[1].3)
-        print(results[2].3)
+        print("User: \(results[0].3) - score: \(results[0].1)")
+        print("Opp: \(results[1].3) - score: \(results[1].1)")
+        print("Dealer: \(results[2].3) - score: \(results[2].1)")
         
         let temp = results.sort { (x, y) -> Bool in
             return x.1 > y.1
@@ -98,19 +98,21 @@ class GameScene: SKScene {
                     return c1.rank.rawValue > c2.rank.rawValue
                 })
                 
-                let range = p1Cards.count < p2Cards.count ? p1Cards.count : p2Cards.count
+                repeat{
+                    if p1Cards.first!.rank > p2Cards.first!.rank{
+                        winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3 + "Kicker \(p1Cards.first!.rank)")
+                        return
+                    }
+                    if p1Cards.first!.rank < p2Cards.first!.rank{
+                        winnerLabel("\(results[1].0.name) Wins With " + results[1].3 + "Kicker \(p2Cards.first!.rank)")
+                        return
+                    }
+                    p1Cards.removeFirst()
+                    p2Cards.removeFirst()
+                } while (p1Cards.count > 2)
                 
-                for i in 0...range - 1{
-                    if p1Cards[i].rank > p2Cards[i].rank{
-                        winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3)
-                        return
-                    }
-                    if p1Cards[i].rank < p2Cards[i].rank{
-                        winnerLabel("\(results[1].0.name) Wins With " + results[1].3)
-                        return
-                    }
-                }
                 winnerLabel("Its A Tie With" + results.first!.3)
+                return
             }
         }
         

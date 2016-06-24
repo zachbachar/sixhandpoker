@@ -3,29 +3,18 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Hand.isFullHouse() -&gt; (Bool, Card?, Card?)?:HandRanks.swift">
+         contextName = "GameScene.moveToDealer(Hand, player : Player) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cards.description">
-            </PersistentString>
-            <PersistentString
-               value = "finalCards.description">
+               value = "dealer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Hand.checkHandRank([Card]) -&gt; (HandRanks, [Card], String):HandRanks.swift">
+         contextName = "Hand.removeFromFinalCards([Int]) -&gt; ():HandRanks.swift">
          <PersistentStrings>
             <PersistentString
                value = "finalCards.description">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Hand.checkHandRank([Card]) -&gt; Hand.HandRanks:HandRanks.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -34,50 +23,6 @@
          <PersistentStrings>
             <PersistentString
                value = "cardNodes">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "opponent">
-            </PersistentString>
-            <PersistentString
-               value = "user">
-            </PersistentString>
-            <PersistentString
-               value = "cardsOnTable">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Hand.isFullHouse() -&gt; (Bool, Card, Card)?:HandRanks.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cards.description">
-            </PersistentString>
-            <PersistentString
-               value = "finalCards.description">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameScene.clearTable() -&gt; ():Actions.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "user.hands">
-            </PersistentString>
-            <PersistentString
-               value = "dealer.hands">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "GameScene.moveToDealer(Hand, player : Player) -&gt; ():GameScene.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "dealer">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -101,10 +46,84 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GameScene.clearTable() -&gt; ():Actions.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "user.hands">
+            </PersistentString>
+            <PersistentString
+               value = "dealer.hands">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.checkHandRank([Card]) -&gt; (HandRanks, [Card], String):HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "finalCards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isFullHouse() -&gt; (Bool, Card, Card)?:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+            <PersistentString
+               value = "finalCards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.checkHandRank([Card]) -&gt; Hand.HandRanks:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.touchesMoved(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
                value = "dealer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cardsOnTable">
+            </PersistentString>
+            <PersistentString
+               value = "opponent">
+            </PersistentString>
+            <PersistentString
+               value = "user">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isFullHouse() -&gt; (Bool, Card?, Card?)?:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+            <PersistentString
+               value = "finalCards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.checkForWinner() -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "p2Cards.description">
+            </PersistentString>
+            <PersistentString
+               value = "p1Cards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

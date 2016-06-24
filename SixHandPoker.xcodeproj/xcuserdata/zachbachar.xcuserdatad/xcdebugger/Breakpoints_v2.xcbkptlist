@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488401512.506226"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "144"
-            endingLineNumber = "144"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "isPair()"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488401512.506226"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
             landmarkName = "isTwoPairs()"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488401512.506226"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "isThreeOfKind()"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488401512.506226"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "isStraight()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488404757.159794"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "isFlush()"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488405748.902346"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "338"
-            endingLineNumber = "338"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
             landmarkName = "isFullHouse()"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488461966.625093"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "387"
-            endingLineNumber = "387"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
             landmarkName = "isFourOfKind()"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488461966.625093"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "406"
-            endingLineNumber = "406"
+            startingLineNumber = "400"
+            endingLineNumber = "400"
             landmarkName = "isStraightFlush()"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +138,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488461966.625093"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "511"
-            endingLineNumber = "511"
+            startingLineNumber = "505"
+            endingLineNumber = "505"
             landmarkName = "isRoyalFlush()"
             landmarkType = "5">
          </BreakpointContent>
@@ -154,12 +154,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandRanks.swift"
-            timestampString = "488404932.529026"
+            timestampString = "488464063.379405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "checkHandRank(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SixHandPoker/GameScene.swift"
+            timestampString = "488463926.331054"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "checkForWinner()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
