@@ -59,12 +59,6 @@ extension Hand{
         if rank == .TwoPairs || rank == .FullHouse{
            handScore += handRank.1.last!.rank.rawValue
         }
-        /*
-            if let card = handRank.1.last{
-                handScore += handRank.1.last!.rank.rawValue
-            }
-        */
-        
         
         return (handScore, rank, message)
     }
@@ -355,13 +349,15 @@ extension Hand{
                     }
                 }
             }
-            else if cards[i+1].rank == cards[i+2].rank{
-                if threeCard == nil{
-                    pairCard = cards[i+1]
-                }
-                else if let threeCard = threeCard{
-                    if cards[i+1].rank != threeCard.rank{
+            else if i == maxStartPosition - 1{
+                if cards[i+1].rank == cards[i+2].rank{
+                    if threeCard == nil{
                         pairCard = cards[i+1]
+                    }
+                    else if let threeCard = threeCard{
+                        if cards[i+1].rank != threeCard.rank{
+                            pairCard = cards[i+1]
+                        }
                     }
                 }
             }
