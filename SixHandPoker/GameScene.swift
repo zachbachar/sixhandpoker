@@ -85,7 +85,8 @@ class GameScene: SKScene {
         //Tie Handeling
         if results[0].1 == results[1].1{
             if results[0].2 == .Straight || results[0].2 == .StraightFlush{
-                winnerLabel("Its A Tie With" + results.first!.3)
+                //winnerLabel("Its A Tie With" + results.first!.3)
+                animateWinnerCards(results[0])
             }
             else {
                 var p1Cards = results[0].0.hands.first!.finalCards
@@ -100,23 +101,27 @@ class GameScene: SKScene {
                 
                 repeat{
                     if p1Cards.first!.rank > p2Cards.first!.rank{
-                        winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3 + "Kicker \(p1Cards.first!.rank)")
+                        //winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3 + "Kicker \(p1Cards.first!.rank)")
+                        animateWinnerCards(results[0])
                         return
                     }
                     if p1Cards.first!.rank < p2Cards.first!.rank{
-                        winnerLabel("\(results[1].0.name) Wins With " + results[1].3 + "Kicker \(p2Cards.first!.rank)")
+                        //winnerLabel("\(results[1].0.name) Wins With " + results[1].3 + "Kicker \(p2Cards.first!.rank)")
+                        animateWinnerCards(results[1])
                         return
                     }
                     p1Cards.removeFirst()
                     p2Cards.removeFirst()
                 } while (p1Cards.count > 2)
                 
-                winnerLabel("Its A Tie With" + results.first!.3)
+                //winnerLabel("Its A Tie With" + results.first!.3)
+                animateWinnerCards(nil)
                 return
             }
         }
         
-        winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3)
+        //winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3)
+        animateWinnerCards(results[0])
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {

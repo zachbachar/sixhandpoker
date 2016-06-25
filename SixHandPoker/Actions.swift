@@ -166,7 +166,7 @@ extension GameScene{
         newGameBtn.zPosition = 6
         newGameBtn.xScale = 0.3
         newGameBtn.yScale = 0.3
-        newGameBtn.position = CGPoint(x: view!.frame.width - newGameBtn.frame.width, y: view!.frame.height - newGameBtn.frame.height)
+        newGameBtn.position = CGPoint(x: view!.frame.width - newGameBtn.frame.width/2, y: view!.frame.height - newGameBtn.frame.height/2)
         newGameBtn.alpha = 0
         newGameBtn.name = "newGameBtn"
         addChild(newGameBtn)
@@ -220,6 +220,7 @@ extension GameScene{
         childNodeWithName("upsideLabel")?.removeFromParent()
         childNodeWithName("upsideSmoke")?.removeFromParent()
         childNodeWithName("smoke")?.removeFromParent()
+        childNodeWithName("winnerLabel")?.removeFromParent()
     }
     
     func roundLabel(text:String){
@@ -318,6 +319,16 @@ extension GameScene{
             fireWorks.runAction(remove)
             wait += 3.0
         }
+        
+        
+        /*  Stopped Here! */
+        let firework = SKEmitterNode(fileNamed: "FireWorks")!
+        let fire = SKAction.sequence([
+            SKAction.fadeInWithDuration(0.3),
+            SKAction.fadeOutWithDuration(0.7),
+            SKAction.moveTo(CGPoint(x: CGFloat(Int.nextRandom(upTo: Int(frame.width))), y: CGFloat(Int.nextRandom(upTo: Int(frame.height)))) , duration: 0.1)
+            ])
+        
         
     }
     
