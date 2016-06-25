@@ -101,12 +101,12 @@ class GameScene: SKScene {
                 
                 repeat{
                     if p1Cards.first!.rank > p2Cards.first!.rank{
-                        //winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3 + "Kicker \(p1Cards.first!.rank)")
+                        winnerLabel("Kicker \(p1Cards.first!.rank)")
                         animateWinnerCards(results[0])
                         return
                     }
                     if p1Cards.first!.rank < p2Cards.first!.rank{
-                        //winnerLabel("\(results[1].0.name) Wins With " + results[1].3 + "Kicker \(p2Cards.first!.rank)")
+                        winnerLabel("Kicker \(p2Cards.first!.rank)")
                         animateWinnerCards(results[1])
                         return
                     }

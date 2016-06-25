@@ -13,7 +13,18 @@ extension GameScene{
     
     func animateWinnerCards(result:(Player, Int, HandRanks, String)?){
         rearrangeCardsAtDealer()
+        
+        let firework = SKEmitterNode(fileNamed: "FireWorks")!
+        let fire = SKAction.sequence([
+            SKAction.fadeInWithDuration(0.3),
+            SKAction.fadeOutWithDuration(0.7),
+            SKAction.moveTo(CGPoint(x: CGFloat(Int.nextRandom(upTo: Int(frame.width))), y: CGFloat(Int.nextRandom(upTo: Int(frame.height)))) , duration: 0.1)
+            ])
+        addChild(firework)
+        firework.runAction(SKAction.repeatAction(fire, count: 5))
+        
         if let result = result{
+            winnerLabel(result.3)
             let card1 = result.0.hands.first!.card1
             let card2 = result.0.hands.first!.card2
             let sound = SKAction.playSoundFileNamed("falling", waitForCompletion: false)
@@ -173,6 +184,45 @@ extension GameScene{
         }
         else{
             /*                TIE   			   */
+            let labelPosition = CGPoint(x: self.midX, y: midY)
+            let sound = SKAction.playSoundFileNamed("falling", waitForCompletion: false)
+            let winnerLabel = SKSpriteNode(imageNamed: "winner")
+            winnerLabel.position = labelPosition
+            winnerLabel.zPosition = 7
+            
+            let fallIn = SKAction.group([SKAction.fadeAlphaTo(1, duration: 0.3), SKAction.scaleXTo(0.6, duration: 0.3), SKAction.scaleYTo(0.6, duration: 0.3)])
+            let remove = SKAction.sequence([SKAction.fadeOutWithDuration(0.5), SKAction.removeFromParent()])
+            
+            let spark = SKEmitterNode(fileNamed: "SmallSpark")!
+            spark.zPosition = 6
+            spark.position = winnerLabel.position
+            
+            self.addChild(winnerLabel)
+            winnerLabel.runAction(fallIn){
+                self.runAction(sound)
+                winnerLabel.runAction(remove)
+                self.addChild(spark)
+                spark.runAction(remove){
+                    /*   winner label dissmissed   */
+                    
+                    let winDescription = SKSpriteNode(imageNamed: "tie")
+                    winDescription.zPosition = 7
+                    //winDescription.zRotation = CGFloat(M_PI_2)
+                    winDescription.position = labelPosition
+                    winDescription.name = "winnerLabel"
+                    self.addChild(winDescription)
+                    winDescription.runAction(fallIn){
+                        let spark = SKEmitterNode(fileNamed: "SmallSpark")!
+                        spark.position = labelPosition
+                        spark.zPosition = 6
+                        self.runAction(sound)
+                        self.addChild(spark)
+                        spark.runAction(remove)
+                    }
+                }
+            }
         }
+
     }
 }
+

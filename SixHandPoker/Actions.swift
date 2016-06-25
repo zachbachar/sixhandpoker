@@ -308,7 +308,7 @@ extension GameScene{
         upsideSmoke.zPosition = 6
         addChild(upsideSmoke)
         
-        var wait = 1.0
+        /*var wait = 1.0
         for _ in 0...10{
             let fireWorks = SKEmitterNode(fileNamed: "FireWorks")!
             fireWorks.position.x = CGFloat(Int.nextRandom(upTo: Int(frame.width)))
@@ -318,18 +318,7 @@ extension GameScene{
             addChild(fireWorks)
             fireWorks.runAction(remove)
             wait += 3.0
-        }
-        
-        
-        /*  Stopped Here! */
-        let firework = SKEmitterNode(fileNamed: "FireWorks")!
-        let fire = SKAction.sequence([
-            SKAction.fadeInWithDuration(0.3),
-            SKAction.fadeOutWithDuration(0.7),
-            SKAction.moveTo(CGPoint(x: CGFloat(Int.nextRandom(upTo: Int(frame.width))), y: CGFloat(Int.nextRandom(upTo: Int(frame.height)))) , duration: 0.1)
-            ])
-        
-        
+        }*/
     }
     
     func increaseHandSize(h:(Hand, Player)){
