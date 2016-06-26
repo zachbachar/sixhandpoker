@@ -160,45 +160,51 @@ extension Hand{
     
     func isStraight() -> (Bool, Card, [Card])?{
         var cards = finalCardsFromLowToHigh()
-        var indexToRemove = [Int]()
+        var indexes = [Int]()
         for i in 0..<cards.count-1{
             if cards[i].rank == cards[i+1].rank{
-                indexToRemove.append(i+1)
+                indexes.append(i+1)
             }
         }
-        
-        if indexToRemove.count > 0{
-            var newCards = [Card]()
+
+        if indexes.count > 0{
+            let toRemove = indexes.sort { (i, y) -> Bool in
+                return i > y
+            }
+            for index in toRemove{
+                cards.removeAtIndex(index)
+            }
+            /*var newCards = [Card]()
             for i in 0..<cards.count-1{
                 if !indexToRemove.contains(i){
                     newCards.append(cards[i])
                 }
             }
-            cards = newCards
+            cards = newCards*/
         }
         
         if cards.count < 5{
             return nil
         }
         
-        let maxStartPosition = finalCards.count - 4
+        let maxStartPosition = cards.count - 4
         var highest:Card? = nil
         var straightCards = [Card]()
         for i in 0..<maxStartPosition{
-            let compare1 = finalCards[i] << finalCards[i+1]
-            let compare2 = finalCards[i+1] << finalCards[i+2]
-            let compare3 = finalCards[i+2] << finalCards[i+3]
-            let compare4 = finalCards[i+3] << finalCards[i+4]
+            let compare1 = cards[i] << cards[i+1]
+            let compare2 = cards[i+1] << cards[i+2]
+            let compare3 = cards[i+2] << cards[i+3]
+            let compare4 = cards[i+3] << cards[i+4]
             
             if compare1 && compare2 && compare3 && compare4{
                 if highest == nil{
-                    highest = finalCards[i+4]
-                    straightCards = [finalCards[i], finalCards[i+1], finalCards[i+2], finalCards[i+3], finalCards[i+4]]
+                    highest = cards[i+4]
+                    straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
                 }
                 else if let h = highest{
-                    if finalCards[i+4].rank > h.rank{
-                        highest = finalCards[i+4]
-                        straightCards = [finalCards[i], finalCards[i+1], finalCards[i+2], finalCards[i+3], finalCards[i+4]]
+                    if cards[i+4].rank > h.rank{
+                        highest = cards[i+4]
+                        straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
                     }
                 }
             }
@@ -215,16 +221,18 @@ extension Hand{
             }
         }
         if aceFlag{
-            cards = finalCardsFromLowToHigh()
+            cards.sortInPlace({ (c1, c2) -> Bool in
+                return c1.rank.rawValue > c2.rank.rawValue
+            })
             for i in 0..<maxStartPosition{
-                let compare1 = finalCards[i] << finalCards[i+1]
-                let compare2 = finalCards[i+1] << finalCards[i+2]
-                let compare3 = finalCards[i+2] << finalCards[i+3]
-                let compare4 = finalCards[i+3] << finalCards[i+4]
+                let compare1 = cards[i] << cards[i+1]
+                let compare2 = cards[i+1] << cards[i+2]
+                let compare3 = cards[i+2] << cards[i+3]
+                let compare4 = cards[i+3] << cards[i+4]
                 
                 if compare1 && compare2 && compare3 && compare4{
-                    straightCards = [finalCards[i], finalCards[i+1], finalCards[i+2], finalCards[i+3], finalCards[i+4]]
-                    return (true, finalCards[i+4], straightCards)
+                    straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
+                    return (true, cards[i+4], straightCards)
                 }
                 else{
                     for card in cards{
@@ -382,25 +390,33 @@ extension Hand{
         }
         
         //rearrange cards without duplicate ranks
-        var indexToRemove = [Int]()
+        var indexes = [Int]()
         for i in 0..<cards.count-1{
             if cards[i].rank == cards[i+1].rank{
                 if cards[i].suit == checkedSuit{
-                    indexToRemove.append(i+1)
+                    indexes.append(i+1)
                 }
                 else{
-                    indexToRemove.append(i)
+                    indexes.append(i)
                 }
             }
         }
-        if indexToRemove.count > 0{
+        if indexes.count > 0{
+            let toRemove = indexes.sort { (i, y) -> Bool in
+                return i > y
+            }
+            for index in toRemove{
+                cards.removeAtIndex(index)
+            }
+            
+            /*
             var newCards = [Card]()
             for i in 0...cards.count-1{
-                if !indexToRemove.contains(i){
+                if !indexes.contains(i){
                     newCards.append(cards[i])
                 }
             }
-            cards = newCards
+            cards = newCards*/
         }
         
         //if there is less than 5 cards, it cannot be a Straight
@@ -412,17 +428,17 @@ extension Hand{
         let maxStartPosition = cards.count - 4
         var straightCards:[Card]?
         for i in 0..<maxStartPosition{
-            let compare1 = finalCards[i] << finalCards[i+1]
-            let compare2 = finalCards[i+1] << finalCards[i+2]
-            let compare3 = finalCards[i+2] << finalCards[i+3]
-            let compare4 = finalCards[i+3] << finalCards[i+4]
+            let compare1 = cards[i] << cards[i+1]
+            let compare2 = cards[i+1] << cards[i+2]
+            let compare3 = cards[i+2] << cards[i+3]
+            let compare4 = cards[i+3] << cards[i+4]
             
             if compare1 && compare2 && compare3 && compare4{
                 if straightCards == nil{
                     straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
                 }
                 else if let cards = straightCards{
-                    if finalCards[i+4].rank > cards.last!.rank{
+                    if cards[i+4].rank > cards.last!.rank{
                         straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
                     }
                 }
@@ -444,12 +460,14 @@ extension Hand{
             }
         }
         if aceFlag{
-            cards = finalCardsFromLowToHigh()
+            cards.sortInPlace({ (c1, c2) -> Bool in
+                return c1.rank.rawValue > c2.rank.rawValue
+            })
             for i in 0..<maxStartPosition{
-                let compare1 = finalCards[i] << finalCards[i+1]
-                let compare2 = finalCards[i+1] << finalCards[i+2]
-                let compare3 = finalCards[i+2] << finalCards[i+3]
-                let compare4 = finalCards[i+3] << finalCards[i+4]
+                let compare1 = cards[i] << cards[i+1]
+                let compare2 = cards[i+1] << cards[i+2]
+                let compare3 = cards[i+2] << cards[i+3]
+                let compare4 = cards[i+3] << cards[i+4]
                 
                 if compare1 && compare2 && compare3 && compare4{
                     straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
@@ -476,25 +494,14 @@ extension Hand{
     /*----------------------------------------------------------------------------------------------------------------*/
     
     func isRoyalFlush() -> (Bool, [Card])?{
-        if isSameSuit(finalCards) == nil{
-            return nil
+        if let straightFlush = isStraightFlush(){
+            let highCard = straightFlush.1
+            if highCard.rank == .Ace{
+                return (true, straightFlush.2)
+            }
         }
-        var rankChecker = 10
-        var cards = [Card]()
         
-        for card in finalCards{
-            if card.rank == rankChecker{
-                rankChecker += 1
-                cards.append(card)
-            }
-        }
-        if rankChecker == 14{
-            if isSameSuit(cards) != nil{
-                return (true, cards)
-            }
-            else{ return nil }
-        }
-        else{ return nil }
+        return nil
     }
     
     /*----------------------------------------------------------------------------------------------------------------*/

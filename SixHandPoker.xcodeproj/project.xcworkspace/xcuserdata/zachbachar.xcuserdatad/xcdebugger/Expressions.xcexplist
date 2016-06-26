@@ -3,10 +3,26 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Hand.isStraightFlush() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.moveToDealer(Hand, player : Player) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
                value = "dealer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.touchesBegan(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "touched">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -40,6 +56,14 @@
             <PersistentString
                value = "cards.description">
             </PersistentString>
+            <PersistentString
+               value = "finalCards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isRoyalFlush() -&gt; (Bool, [Card])?:HandScoreEvaluate.swift">
+         <PersistentStrings>
             <PersistentString
                value = "finalCards.description">
             </PersistentString>
@@ -129,6 +153,14 @@
       </ContextState>
       <ContextState
          contextName = "Hand.isFlush() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isStraight() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
          <PersistentStrings>
             <PersistentString
                value = "cards.description">

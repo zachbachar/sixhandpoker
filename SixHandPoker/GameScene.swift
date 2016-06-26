@@ -240,10 +240,9 @@ class GameScene: SKScene {
         if let touching = touched{
             if let hand = findHand(touching){
                 decreaseHandSize(hand)
-                touched = nil
             }
         }
-        
+        touched = nil
     }
 
     var touched:Card?
@@ -274,12 +273,13 @@ class GameScene: SKScene {
         let location = touch.locationInNode(self)
         //let touchedNode = nodeAtPoint(location)
         
-        guard let touching = touched else {return}
-        if !touching.frame.contains(location){
-            if let hand = findHand(touching){
-                decreaseHandSize(hand)
+        if let touching = touched{
+            if !touching.frame.contains(location){
+                if let hand = findHand(touching){
+                    decreaseHandSize(hand)
+                }
+                touched = nil
             }
-            touched = nil
         }
     }
     

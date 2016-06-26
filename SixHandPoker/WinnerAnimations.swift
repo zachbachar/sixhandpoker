@@ -228,29 +228,10 @@ extension GameScene{
             self.addChild(winnerLabel)
             winnerLabel.runAction(fallIn){
                 self.runAction(sound)
-                winnerLabel.runAction(remove)
                 self.addChild(spark)
-                spark.runAction(remove){
-                    /*   winner label dissmissed   */
-                    
-                    let winDescription = SKSpriteNode(imageNamed: "tie")
-                    winDescription.zPosition = 7
-                    //winDescription.zRotation = CGFloat(M_PI_2)
-                    winDescription.position = labelPosition
-                    winDescription.name = "winnerLabel"
-                    self.addChild(winDescription)
-                    winDescription.runAction(fallIn){
-                        let spark = SKEmitterNode(fileNamed: "SmallSpark")!
-                        spark.position = labelPosition
-                        spark.zPosition = 6
-                        self.runAction(sound)
-                        self.addChild(spark)
-                        spark.runAction(remove)
-                    }
-                }
+                spark.runAction(remove)
             }
         }
-
     }
     
     func winnerLabel(text:String){
