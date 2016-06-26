@@ -127,22 +127,48 @@ class MenuScene: SKScene {
         return sequence
     }
     
+    var touched:SKNode?
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first!
         let location = touch.locationInNode(self)
         let touchedNode = nodeAtPoint(location)
         if touchedNode.name == "startBtn"{
+            //moveToGameScene()
+            touched = touchedNode
+            touchedNode.runAction(SKAction.scaleBy(1.25, duration: 0.05))
+        }
+    }
+    
+    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.locationInNode(self)
+        //let touchedNode = nodeAtPoint(location)
+        guard let touching = touched else {return}
+        if !touching.frame.contains(location){
+            touching.runAction(SKAction.scaleBy(0.8, duration: 0.05))
+            touched = nil
+        }
+        
+    }
+    
+    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        let touch = touches.first!
+        let location = touch.locationInNode(self)
+        let touchedNode = nodeAtPoint(location)
+        if touchedNode.name == "startBtn"{
+            touchedNode.runAction(SKAction.scaleBy(0.8, duration: 0.05))
+            touched = nil
             moveToGameScene()
         }
     }
     
     func moveToGameScene(){
         let chip = childNodeWithName("startBtn")!
-        let flyAway = SKAction.group([SKAction.moveToY((view?.frame.height)!+100, duration: 0.15), SKAction.repeatAction(SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.15), count: 2)])
-        let bounce = SKAction.sequence([SKAction.scaleBy(1.25, duration: 0.05), SKAction.scaleBy(0.8, duration: 0.05), flyAway])
+        let flyAway = SKAction.group([SKAction.moveToY((view?.frame.height)!+100, duration: 0.15), SKAction.repeatAction(SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.2), count: 1)])
+        //let bounce = SKAction.sequence([SKAction.scaleBy(1.25, duration: 0.05), SKAction.scaleBy(0.8, duration: 0.05), flyAway])
         let gameScene = GameScene(fileNamed:"GameScene")!
         let transition = SKTransition.crossFadeWithDuration(0.5)
-        chip.runAction(SKAction.group([bounce, SKAction.playSoundFileNamed("cardFan2", waitForCompletion: false)])){
+        chip.runAction(SKAction.group([flyAway, SKAction.playSoundFileNamed("cardFan2", waitForCompletion: false)])){
             self.view?.presentScene(gameScene, transition: transition)
         }
     }

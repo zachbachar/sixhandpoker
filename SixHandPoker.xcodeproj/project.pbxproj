@@ -51,6 +51,8 @@
 		1878945F1D00145700BAA358 /* Hand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1878945E1D00145700BAA358 /* Hand.swift */; };
 		187894611D001FDE00BAA358 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 187894601D001FDE00BAA358 /* Player.swift */; };
 		187F30271D074C4300B3B8BF /* cardFan2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 187F30261D074C4300B3B8BF /* cardFan2.wav */; };
+		18E729DF1D2016D100649656 /* HandScoreEvaluate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E729DE1D2016D100649656 /* HandScoreEvaluate.swift */; };
+		18E729E11D20241400649656 /* DayPosterBlackNF.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18E729E01D20211F00649656 /* DayPosterBlackNF.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +102,8 @@
 		1878945E1D00145700BAA358 /* Hand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hand.swift; sourceTree = "<group>"; };
 		187894601D001FDE00BAA358 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		187F30261D074C4300B3B8BF /* cardFan2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = cardFan2.wav; sourceTree = "<group>"; };
+		18E729DE1D2016D100649656 /* HandScoreEvaluate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HandScoreEvaluate.swift; sourceTree = "<group>"; };
+		18E729E01D20211F00649656 /* DayPosterBlackNF.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DayPosterBlackNF.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +174,7 @@
 		186306111D042E020094E732 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				18E729E01D20211F00649656 /* DayPosterBlackNF.ttf */,
 				1878944A1D00127400BAA358 /* Assets.xcassets */,
 			);
 			name = Resources;
@@ -249,6 +254,7 @@
 				1878945E1D00145700BAA358 /* Hand.swift */,
 				187894601D001FDE00BAA358 /* Player.swift */,
 				1848780C1D0720FF0027C661 /* HandRanks.swift */,
+				18E729DE1D2016D100649656 /* HandScoreEvaluate.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18E729E11D20241400649656 /* DayPosterBlackNF.ttf in Resources */,
 				186B3DBF1D06A86000CC3173 /* cardSlide1.wav in Resources */,
 				187894421D00127400BAA358 /* GameScene.sks in Resources */,
 				184878041D0707660027C661 /* cardShove4.wav in Resources */,
@@ -348,6 +355,7 @@
 				186306031D0424BB0094E732 /* Actions.swift in Sources */,
 				1878945F1D00145700BAA358 /* Hand.swift in Sources */,
 				1819E5871D085F120022AA3C /* MenuScene.swift in Sources */,
+				18E729DF1D2016D100649656 /* HandScoreEvaluate.swift in Sources */,
 				1878945D1D0013FB00BAA358 /* Deck.swift in Sources */,
 				187894441D00127400BAA358 /* GameScene.swift in Sources */,
 				186306051D0427AD0094E732 /* Round5.swift in Sources */,

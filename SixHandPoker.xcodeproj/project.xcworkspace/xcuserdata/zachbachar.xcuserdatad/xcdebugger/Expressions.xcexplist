@@ -65,17 +65,6 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Hand.isFullHouse() -&gt; (Bool, Card, Card)?:HandRanks.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cards.description">
-            </PersistentString>
-            <PersistentString
-               value = "finalCards.description">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "Hand.checkHandRank([Card]) -&gt; Hand.HandRanks:HandRanks.swift">
          <PersistentStrings>
             <PersistentString
@@ -92,21 +81,32 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "Hand.isFullHouse() -&gt; (Bool, Card?, Card?)?:HandRanks.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
+            </PersistentString>
+            <PersistentString
+               value = "finalCards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cardsOnTable">
+               value = "user">
             </PersistentString>
             <PersistentString
                value = "opponent">
             </PersistentString>
             <PersistentString
-               value = "user">
+               value = "cardsOnTable">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Hand.isFullHouse() -&gt; (Bool, Card?, Card?)?:HandRanks.swift">
+         contextName = "Hand.isFullHouse() -&gt; (Bool, Card, Card)?:HandRanks.swift">
          <PersistentStrings>
             <PersistentString
                value = "cards.description">
@@ -124,6 +124,14 @@
             </PersistentString>
             <PersistentString
                value = "p1Cards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isFlush() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

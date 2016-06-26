@@ -101,12 +101,12 @@ class GameScene: SKScene {
                 
                 repeat{
                     if p1Cards.first!.rank > p2Cards.first!.rank{
-                        winnerLabel("Kicker \(p1Cards.first!.rank)")
+                        //winnerLabel("Kicker \(p1Cards.first!.rank)")
                         animateWinnerCards(results[0])
                         return
                     }
                     if p1Cards.first!.rank < p2Cards.first!.rank{
-                        winnerLabel("Kicker \(p2Cards.first!.rank)")
+                        //winnerLabel("Kicker \(p2Cards.first!.rank)")
                         animateWinnerCards(results[1])
                         return
                     }
@@ -237,8 +237,16 @@ class GameScene: SKScene {
             }
         }
         
+        if let touching = touched{
+            if let hand = findHand(touching){
+                decreaseHandSize(hand)
+                touched = nil
+            }
+        }
+        
     }
 
+    var touched:Card?
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         //Called when a touch begins
         let touch = touches.first!
@@ -251,7 +259,10 @@ class GameScene: SKScene {
             if let card1 = touchedNode as? Card{
                 if canPlay{
                     if let hand = findHand(card1){
-                        increaseHandSize(hand)
+                        if touched == nil{
+                            touched = card1
+                            increaseHandSize(hand)
+                        }
                     }
                 }
             }
@@ -261,14 +272,14 @@ class GameScene: SKScene {
     override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
         let touch = touches.first!
         let location = touch.locationInNode(self)
-        let touchedNode = nodeAtPoint(location)
+        //let touchedNode = nodeAtPoint(location)
         
-        if canPlay{
-            if let card1 = touchedNode as? Card{
-                if let hand = findHand(card1){
-                    decreaseHandSize(hand)
-                }
+        guard let touching = touched else {return}
+        if !touching.frame.contains(location){
+            if let hand = findHand(touching){
+                decreaseHandSize(hand)
             }
+            touched = nil
         }
     }
     

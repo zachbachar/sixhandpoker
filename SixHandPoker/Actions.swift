@@ -21,7 +21,8 @@ extension GameScene{
         
         let actionQ = ActionQ()
         
-        let rotate = SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.3)
+        let rotate = SKAction.rotateByAngle(CGFloat(M_PI*2), duration: 0.2)
+        let duration = 0.2
         
         for i in 0..<6{
             let n1 = user.hands[i].card1
@@ -30,7 +31,7 @@ extension GameScene{
             n1.xScale = 0.65
             n1.yScale = 0.65
             addChild(n1)
-            let pos1 = SKAction.moveTo(CGPointMake(positionX, positionYuser), duration: 0.3)
+            let pos1 = SKAction.moveTo(CGPointMake(positionX, positionYuser), duration: duration)
             let g1 = SKAction.group([pos1, rotate, drawCardSound()])
             actionQ.addNext(n1, action: g1)
             
@@ -41,7 +42,7 @@ extension GameScene{
             n3.xScale = 0.65
             n3.yScale = 0.65
             addChild(n3)
-            let pos2 = SKAction.moveTo(CGPointMake(positionX, positionYopp), duration: 0.3)
+            let pos2 = SKAction.moveTo(CGPointMake(positionX, positionYopp), duration: duration)
             let g2 = SKAction.group([pos2, rotate, drawCardSound()])
             actionQ.addNext(n3, action: g2)
             
@@ -51,7 +52,7 @@ extension GameScene{
             n2.xScale = 0.65
             n2.yScale = 0.65
             addChild(n2)
-            let pos3 = SKAction.moveTo(CGPointMake(positionX + 30, positionYuser), duration: 0.3)
+            let pos3 = SKAction.moveTo(CGPointMake(positionX + 30, positionYuser), duration: duration)
             let g3 = SKAction.group([pos3, rotate, drawCardSound()])
             actionQ.addNext(n2, action: g3)
             
@@ -62,7 +63,7 @@ extension GameScene{
             n4.xScale = 0.65
             n4.yScale = 0.65
             addChild(n4)
-            let pos4 = SKAction.moveTo(CGPointMake(positionX + 30, positionYopp), duration: 0.3)
+            let pos4 = SKAction.moveTo(CGPointMake(positionX + 30, positionYopp), duration: duration)
             let g4 = SKAction.group([pos4, rotate, drawCardSound()])
             actionQ.addNext(n4, action: g4)
             
@@ -75,13 +76,13 @@ extension GameScene{
             card.faceUp = false
             card.zPosition = 1
             addChild(card)
-            let pos = SKAction.moveTo(CGPointMake(positionXtable, positionYtable), duration: 0.3)
+            let pos = SKAction.moveTo(CGPointMake(positionXtable, positionYtable), duration: duration)
             let g = SKAction.group([pos, rotate, drawCardSound()])
             actionQ.addNext(card, action: g)
             actionQ.addNext(self, action: drawCardSound())
             positionXtable += 120
             if card == cardsOnTable.last{
-                cardsOnTable.first?.flip(10, complition: {
+                cardsOnTable.first?.flip(7, complition: {
                     self.canPlay = true
                     self.round = 1
                     self.roundLabel("Round One")
@@ -224,7 +225,7 @@ extension GameScene{
     }
     
     func roundLabel(text:String){
-        let label = SKLabelNode(fontNamed:"American Typewriter")
+        let label = SKLabelNode(fontNamed:"DayPosterBlackNF")
         label.text = text
         label.fontColor = UIColor.whiteColor()
         label.fontSize = 45
@@ -233,13 +234,13 @@ extension GameScene{
         label.zPosition = 5
         addChild(label)
         
-        let upsideLabel = SKLabelNode(fontNamed:"American Typewriter")
+        let upsideLabel = SKLabelNode(fontNamed:"DayPosterBlackNF")
         upsideLabel.position.x = midX
         upsideLabel.zRotation = CGFloat(M_PI)
         upsideLabel.text = text
         upsideLabel.fontColor = UIColor.whiteColor()
         upsideLabel.fontSize = 45
-        upsideLabel.position.y = midY + upsideLabel.frame.height*4
+        upsideLabel.position.y = midY + upsideLabel.frame.height*3.8
         upsideLabel.zPosition = 5
         addChild(upsideLabel)
         
@@ -267,60 +268,7 @@ extension GameScene{
         upsideSmoke.runAction(remove)
     }
     
-    func winnerLabel(text:String){
-        rearrangeCardsAtDealer()
         
-        let label = SKLabelNode(fontNamed:"American Typewriter")
-        label.name = "label"
-        label.text = text
-        label.fontColor = UIColor.whiteColor()
-        label.fontSize = 40
-        label.position.x = midX
-        label.position.y = midY - label.frame.height*3
-        label.zPosition = 5
-        addChild(label)
-        
-        let upsideLabel = SKLabelNode(fontNamed:"American Typewriter")
-        upsideLabel.name = "upsideLabel"
-        upsideLabel.position.x = midX
-        upsideLabel.zRotation = CGFloat(M_PI)
-        upsideLabel.text = text
-        upsideLabel.fontColor = UIColor.whiteColor()
-        upsideLabel.fontSize = 40
-        upsideLabel.position.y = midY + upsideLabel.frame.height*4
-        upsideLabel.zPosition = 5
-        addChild(upsideLabel)
-        
-        let fadeIn = SKAction.fadeInWithDuration(1)
-        label.runAction(fadeIn)
-        upsideLabel.runAction(fadeIn)
-        
-        let smoke = SKEmitterNode(fileNamed: "Smoke")!
-        smoke.name = "smoke"
-        smoke.position = label.position
-        smoke.zPosition = 6
-        addChild(smoke)
-        
-        let upsideSmoke = SKEmitterNode(fileNamed: "Smoke")!
-        upsideSmoke.name = "upsideSmoke"
-        upsideSmoke.position = upsideLabel.position
-        upsideSmoke.zRotation = CGFloat(M_PI)
-        upsideSmoke.zPosition = 6
-        addChild(upsideSmoke)
-        
-        /*var wait = 1.0
-        for _ in 0...10{
-            let fireWorks = SKEmitterNode(fileNamed: "FireWorks")!
-            fireWorks.position.x = CGFloat(Int.nextRandom(upTo: Int(frame.width)))
-            fireWorks.position.y = CGFloat(Int.nextRandom(upTo: Int(frame.height)))
-            fireWorks.zPosition = 6
-            let remove = SKAction.sequence([SKAction.waitForDuration(wait), SKAction.fadeOutWithDuration(1), SKAction.removeFromParent()])
-            addChild(fireWorks)
-            fireWorks.runAction(remove)
-            wait += 3.0
-        }*/
-    }
-    
     func increaseHandSize(h:(Hand, Player)){
         let hand = h.0
         let player = h.1
