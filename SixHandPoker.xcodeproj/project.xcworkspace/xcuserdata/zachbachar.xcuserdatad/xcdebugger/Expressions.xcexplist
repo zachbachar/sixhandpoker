@@ -11,6 +11,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "GameScene.(animateWinnerCards((Player, Int, HandRanks, String, [Card])?) -&gt; ()).(closure #1):WinnerAnimations.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cardsOnTable.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.moveToDealer(Hand, player : Player) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString

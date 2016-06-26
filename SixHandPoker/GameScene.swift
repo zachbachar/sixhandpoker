@@ -86,7 +86,7 @@ class GameScene: SKScene {
         if results[0].1 == results[1].1{
             if results[0].2 == .Straight || results[0].2 == .StraightFlush{
                 //winnerLabel("Its A Tie With" + results.first!.3)
-                animateWinnerCards(results[0])
+                animateWinnerCards(nil)
             }
             else {
                 var p1Cards = results[0].0.hands.first!.finalCards

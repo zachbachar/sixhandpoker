@@ -34,23 +34,26 @@ extension GameScene{
             
             let enlarge = SKAction.scaleBy(1.8, duration: 0.3)
             let yPosition = cardsOnTable[0].position.y
+            let xPosition1 = cardsOnTable[0].position.x - cardsOnTable[0].frame.width
+            let xPosition2 = cardsOnTable[4].position.x + cardsOnTable[4].frame.width
             
             switch result.0.name {
             case "User":
                 let labelPosition = CGPoint(x: self.midX, y: result.0.hands.first!.card1.position.y)
-                card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3), enlarge]))
-                card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3), enlarge])){
+                card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3)]))
+                card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3)])){
                     /*   cards moved to center */
-                    for cardFromTable in self.cardsOnTable{
-                        if result.4.contains(cardFromTable) {
-                            cardFromTable.runAction(SKAction.scaleBy(1.2, duration: 0.3))
-                        }else{
-                            cardFromTable.runAction(SKAction.scaleBy(0.9, duration: 0.3))
+                    for card in result.4{
+                        if self.cardsOnTable.contains(card){
+                            card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                        }
+                        else{
+                            card.runAction(enlarge)
                         }
                     }
                     
-                    card1.runAction(SKAction.moveToX(card1.frame.width, duration: 0.3))
-                    card2.runAction(SKAction.moveToX(self.view!.frame.width - card2.frame.width*1.25, duration: 0.3)){
+                    card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
+                    card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3)){
                         /*   cards moved to sides   */
                         
                         let winnerLabel = SKSpriteNode(imageNamed: "winner")
@@ -93,19 +96,20 @@ extension GameScene{
 
             case "Opponent":
                 let labelPosition = CGPoint(x: self.midX, y: result.0.hands.first!.card1.position.y)
-                card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3), enlarge]))
-                card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3), enlarge])){
+                card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3)]))
+                card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3)])){
                     /*   cards moved to center */
-                    for cardFromTable in result.4{
-                        if result.4.contains(cardFromTable) {
-                            cardFromTable.runAction(SKAction.scaleBy(1.2, duration: 0.3))
-                        }else{
-                            cardFromTable.runAction(SKAction.scaleBy(0.9, duration: 0.3))
+                    for card in result.4{
+                        if self.cardsOnTable.contains(card){
+                            card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                        }
+                        else{
+                            card.runAction(enlarge)
                         }
                     }
                     
-                    card1.runAction(SKAction.moveToX(card1.frame.width, duration: 0.3))
-                    card2.runAction(SKAction.moveToX(self.view!.frame.width - card2.frame.width*1.25, duration: 0.3)){
+                    card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
+                    card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3)){
                         /*   cards moved to sides   */
                         
                         let winnerLabel = SKSpriteNode(imageNamed: "winner")
@@ -149,22 +153,23 @@ extension GameScene{
                 }
 
             case "Dealer":
-                
+                // find the right angle!!!
                 let rotate = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 0.2)
                 let labelPosition = CGPoint(x: self.midX, y: dealerPositions[0].y)
-                card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3), enlarge, rotate]))
-                card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3), enlarge, rotate])){
+                card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3), rotate]))
+                card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3), rotate])){
                     /*   cards moved to center */
-                    for cardFromTable in result.4{
-                        if result.4.contains(cardFromTable) {
-                            cardFromTable.runAction(SKAction.scaleBy(1.2, duration: 0.3))
-                        }else{
-                            cardFromTable.runAction(SKAction.scaleBy(0.9, duration: 0.3))
+                    for card in result.4{
+                        if self.cardsOnTable.contains(card){
+                            card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                        }
+                        else{
+                            card.runAction(enlarge)
                         }
                     }
                     
-                    card1.runAction(SKAction.moveToX(card1.frame.width, duration: 0.3))
-                    card2.runAction(SKAction.moveToX(self.view!.frame.width - card2.frame.width*1.25, duration: 0.3)){
+                    card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
+                    card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3)){
                         /*   cards moved to sides   */
                         
                         let winnerLabel = SKSpriteNode(imageNamed: "winner")
