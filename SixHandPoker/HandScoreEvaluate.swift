@@ -408,15 +408,6 @@ extension Hand{
             for index in toRemove{
                 cards.removeAtIndex(index)
             }
-            
-            /*
-            var newCards = [Card]()
-            for i in 0...cards.count-1{
-                if !indexes.contains(i){
-                    newCards.append(cards[i])
-                }
-            }
-            cards = newCards*/
         }
         
         //if there is less than 5 cards, it cannot be a Straight
@@ -437,8 +428,8 @@ extension Hand{
                 if straightCards == nil{
                     straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
                 }
-                else if let cards = straightCards{
-                    if cards[i+4].rank > cards.last!.rank{
+                else if let oldStraightCards = straightCards{
+                    if cards[i+4].rank > oldStraightCards.last!.rank{
                         straightCards = [cards[i], cards[i+1], cards[i+2], cards[i+3], cards[i+4]]
                     }
                 }

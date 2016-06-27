@@ -13,6 +13,7 @@ class Card: SKSpriteNode{
     var rank:Rank!
     var suit:Suit!
     var faceUp = true
+    var enlarged = false
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         self.rank = nil

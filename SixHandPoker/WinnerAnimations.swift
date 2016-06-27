@@ -11,7 +11,7 @@ import SpriteKit
 
 extension GameScene{
     
-    func animateWinnerCards(result:(Player, Int, HandRanks, String, [Card])?){
+    func animateWinnerCards(result:(Player, Int, HandRanks, String, [Card])?, kicker:Card?){
         rearrangeCardsAtDealer()
         
         let firework = SKEmitterNode(fileNamed: "FireWorks")!
@@ -24,7 +24,14 @@ extension GameScene{
         firework.runAction(SKAction.repeatAction(fire, count: 5))
         
         if let result = result{
-            winnerLabel(result.3)
+            var winningCards = result.4
+            if let kicker = kicker{
+                winnerLabel(result.3 + " " + kicker.rank.description)
+                winningCards.append(kicker)
+            }
+            else{
+                winnerLabel(result.3)
+            }
             let card1 = result.0.hands.first!.card1
             let card2 = result.0.hands.first!.card2
             card1.zPosition = 6
@@ -34,8 +41,8 @@ extension GameScene{
             
             let enlarge = SKAction.scaleBy(1.8, duration: 0.3)
             let yPosition = cardsOnTable[0].position.y
-            let xPosition1 = cardsOnTable[0].position.x - cardsOnTable[0].frame.width
-            let xPosition2 = cardsOnTable[4].position.x + cardsOnTable[4].frame.width
+            let xPosition1 = cardsOnTable[0].position.x - cardsOnTable[0].frame.width*1.3
+            let xPosition2 = cardsOnTable[4].position.x + cardsOnTable[4].frame.width*1.3
             
             switch result.0.name {
             case "User":
@@ -43,9 +50,12 @@ extension GameScene{
                 card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3)]))
                 card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3)])){
                     /*   cards moved to center */
-                    for card in result.4{
+                    for card in winningCards{
                         if self.cardsOnTable.contains(card){
-                            card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                            if !card.enlarged{
+                                card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                                card.enlarged = true
+                            }
                         }
                         else{
                             card.runAction(enlarge)
@@ -99,9 +109,12 @@ extension GameScene{
                 card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3)]))
                 card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3)])){
                     /*   cards moved to center */
-                    for card in result.4{
+                    for card in winningCards{
                         if self.cardsOnTable.contains(card){
-                            card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                            if !card.enlarged{
+                                card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                                card.enlarged = true
+                            }
                         }
                         else{
                             card.runAction(enlarge)
@@ -154,14 +167,17 @@ extension GameScene{
 
             case "Dealer":
                 // find the right angle!!!
-                let rotate = SKAction.rotateByAngle(CGFloat(M_PI_2), duration: 0.2)
+                let rotate = SKAction.rotateByAngle(CGFloat(M_PI_2 + M_PI), duration: 0.2)
                 let labelPosition = CGPoint(x: self.midX, y: dealerPositions[0].y)
                 card1.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX - card1.frame.width, y: yPosition) , duration: 0.3), rotate]))
                 card2.runAction(SKAction.group([SKAction.moveTo(CGPoint(x: midX + card2.frame.width , y:yPosition) , duration: 0.3), rotate])){
                     /*   cards moved to center */
-                    for card in result.4{
+                    for card in winningCards{
                         if self.cardsOnTable.contains(card){
-                            card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                            if !card.enlarged{
+                                card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                                card.enlarged = true
+                            }
                         }
                         else{
                             card.runAction(enlarge)
@@ -219,19 +235,19 @@ extension GameScene{
             /*                TIE   			   */
             let labelPosition = CGPoint(x: self.midX, y: midY)
             let sound = SKAction.playSoundFileNamed("falling", waitForCompletion: false)
-            let winnerLabel = SKSpriteNode(imageNamed: "winner")
-            winnerLabel.position = labelPosition
-            winnerLabel.zPosition = 7
+            let tieLabel = SKSpriteNode(imageNamed: "tie")
+            tieLabel.position = labelPosition
+            tieLabel.zPosition = 7
             
             let fallIn = SKAction.group([SKAction.fadeAlphaTo(1, duration: 0.3), SKAction.scaleXTo(0.6, duration: 0.3), SKAction.scaleYTo(0.6, duration: 0.3)])
             let remove = SKAction.sequence([SKAction.fadeOutWithDuration(0.5), SKAction.removeFromParent()])
             
             let spark = SKEmitterNode(fileNamed: "SmallSpark")!
             spark.zPosition = 6
-            spark.position = winnerLabel.position
+            spark.position = tieLabel.position
             
-            self.addChild(winnerLabel)
-            winnerLabel.runAction(fallIn){
+            self.addChild(tieLabel)
+            tieLabel.runAction(fallIn){
                 self.runAction(sound)
                 self.addChild(spark)
                 spark.runAction(remove)

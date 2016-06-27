@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "14"
             endingLineNumber = "14"
-            landmarkName = "animateWinnerCards(_:)"
+            landmarkName = "animateWinnerCards(_:kicker:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/WinnerAnimations.swift"
-            timestampString = "488660130.822959"
+            timestampString = "488735431.082718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
-            landmarkName = "animateWinnerCards(_:)"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "animateWinnerCards(_:kicker:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/WinnerAnimations.swift"
-            timestampString = "488660130.822959"
+            timestampString = "488735431.082718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "animateWinnerCards(_:)"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "animateWinnerCards(_:kicker:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/HandScoreEvaluate.swift"
-            timestampString = "488657591.536754"
+            timestampString = "488732830.37396"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "496"
-            endingLineNumber = "496"
+            startingLineNumber = "487"
+            endingLineNumber = "487"
             landmarkName = "isRoyalFlush()"
             landmarkType = "5">
          </BreakpointContent>
@@ -234,12 +234,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SixHandPoker/WinnerAnimations.swift"
-            timestampString = "488660130.822959"
+            timestampString = "488735431.082718"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "animateWinnerCards(_:)"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "animateWinnerCards(_:kicker:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SixHandPoker/WinnerAnimations.swift"
+            timestampString = "488735431.082718"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "animateWinnerCards(_:kicker:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

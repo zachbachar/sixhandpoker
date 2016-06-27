@@ -85,8 +85,7 @@ class GameScene: SKScene {
         //Tie Handeling
         if results[0].1 == results[1].1{
             if results[0].2 == .Straight || results[0].2 == .StraightFlush{
-                //winnerLabel("Its A Tie With" + results.first!.3)
-                animateWinnerCards(nil)
+                animateWinnerCards(nil, kicker: nil)
             }
             else {
                 var p1Cards = results[0].0.hands.first!.finalCards
@@ -101,27 +100,21 @@ class GameScene: SKScene {
                 
                 repeat{
                     if p1Cards.first!.rank > p2Cards.first!.rank{
-                        //winnerLabel("Kicker \(p1Cards.first!.rank)")
-                        animateWinnerCards(results[0])
+                        animateWinnerCards(results[0], kicker: p1Cards.first!)
                         return
                     }
                     if p1Cards.first!.rank < p2Cards.first!.rank{
-                        //winnerLabel("Kicker \(p2Cards.first!.rank)")
-                        animateWinnerCards(results[1])
+                        animateWinnerCards(results[1], kicker: p2Cards.first!)
                         return
                     }
                     p1Cards.removeFirst()
                     p2Cards.removeFirst()
                 } while (p1Cards.count > 2)
-                
-                //winnerLabel("Its A Tie With" + results.first!.3)
-                animateWinnerCards(nil)
+                animateWinnerCards(nil, kicker: nil)
                 return
             }
         }
-        
-        //winnerLabel("\(results.first!.0.name) Wins With " + results.first!.3)
-        animateWinnerCards(results[0])
+        animateWinnerCards(results[0], kicker: nil)
     }
     
     override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
