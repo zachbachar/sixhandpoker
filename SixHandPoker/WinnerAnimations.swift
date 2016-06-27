@@ -26,7 +26,7 @@ extension GameScene{
         if let result = result{
             var winningCards = result.4
             if let kicker = kicker{
-                winnerLabel(result.3 + " " + kicker.rank.description)
+                winnerLabel(result.3 + " Kicker " + kicker.rank.description)
                 winningCards.append(kicker)
             }
             else{
@@ -62,8 +62,12 @@ extension GameScene{
                         }
                     }
                     
-                    card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
-                    card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3)){
+                    if !card1.enlarged{
+                        card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
+                    }
+                    if !card2.enlarged{
+                        card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3))
+                    }
                         /*   cards moved to sides   */
                         
                         let winnerLabel = SKSpriteNode(imageNamed: "winner")
@@ -102,7 +106,6 @@ extension GameScene{
                         }
                         
                     }
-                }
 
             case "Opponent":
                 let labelPosition = CGPoint(x: self.midX, y: result.0.hands.first!.card1.position.y)
@@ -112,7 +115,7 @@ extension GameScene{
                     for card in winningCards{
                         if self.cardsOnTable.contains(card){
                             if !card.enlarged{
-                                card.runAction(SKAction.scaleBy(1.2, duration: 0.3))
+                                card.runAction(SKAction.group([SKAction.scaleBy(1.2, duration: 0.3), SKAction.rotateByAngle(CGFloat(M_PI), duration: 0.3)]))
                                 card.enlarged = true
                             }
                         }
@@ -121,8 +124,12 @@ extension GameScene{
                         }
                     }
                     
-                    card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
-                    card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3)){
+                    if !card1.enlarged{
+                        card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
+                    }
+                    if !card2.enlarged{
+                        card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3))
+                    }
                         /*   cards moved to sides   */
                         
                         let winnerLabel = SKSpriteNode(imageNamed: "winner")
@@ -163,8 +170,7 @@ extension GameScene{
                         }
                         
                     }
-                }
-
+                
             case "Dealer":
                 // find the right angle!!!
                 let rotate = SKAction.rotateByAngle(CGFloat(M_PI_2 + M_PI), duration: 0.2)
@@ -183,9 +189,14 @@ extension GameScene{
                             card.runAction(enlarge)
                         }
                     }
+                    if !card1.enlarged{
+                        card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
+                    }
+                    if !card2.enlarged{
+                        card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3))
+                    }
                     
-                    card1.runAction(SKAction.moveToX(xPosition1, duration: 0.3))
-                    card2.runAction(SKAction.moveToX(xPosition2, duration: 0.3)){
+                    
                         /*   cards moved to sides   */
                         
                         let winnerLabel = SKSpriteNode(imageNamed: "winner")
@@ -226,7 +237,6 @@ extension GameScene{
                             }
                         }
                     }
-                }
             default:
                 break
             }

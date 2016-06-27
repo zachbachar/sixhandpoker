@@ -66,14 +66,14 @@ extension Hand{
     
     func finalCardsFromLowToHigh() -> [Card]{
         finalCards.sortInPlace { (c1, c2) -> Bool in
-            return c1.rank.rawValue < c2.rank.rawValue
+            return c1.rank < c2.rank
         }
         return finalCards
     }
     
     func finalCardsFromHighToLow() -> [Card]{
         finalCards.sortInPlace { (c1, c2) -> Bool in
-            return c1.rank.rawValue > c2.rank.rawValue
+            return c1.rank > c2.rank
         }
         return finalCards
     }
@@ -299,6 +299,12 @@ extension Hand{
                     toRemove.append(i)
                     flushCards.append(cards[i])
                 }
+            }
+            flushCards.sortInPlace({ (c1, c2) -> Bool in
+                return c1.rank < c2.rank
+            })
+            while flushCards.count > 5 {
+                flushCards.removeFirst()
             }
             removeFromFinalCards(toRemove)
             return (true, highCard!, flushCards)
