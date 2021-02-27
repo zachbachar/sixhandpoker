@@ -9,38 +9,38 @@
 import UIKit
 
 enum HandRanks:Int, CustomStringConvertible{
-    case HighCard = 1
-    case Pair = 8
-    case TwoPairs = 37
-    case ThreeOfKind = 266
-    case Straight = 745
-    case Flush = 1491
-    case FullHouse = 10437
-    case FourOfKind = 73066
-    case StraightFlush = 204585
-    case RoyalFlush = 204586
+    case highCard = 1
+    case pair = 8
+    case twoPairs = 37
+    case threeOfKind = 266
+    case straight = 745
+    case flush = 1491
+    case fullHouse = 10437
+    case fourOfKind = 73066
+    case straightFlush = 204585
+    case royalFlush = 204586
     
     var description: String{
         switch self {
-        case .HighCard:
+        case .highCard:
             return "High Card"
-        case .Pair:
+        case .pair:
             return "Pair"
-        case .TwoPairs:
+        case .twoPairs:
             return "Two Pairs"
-        case .ThreeOfKind:
+        case .threeOfKind:
             return "Three Of A Kind"
-        case .Straight:
+        case .straight:
             return "Straight"
-        case .Flush:
+        case .flush:
             return "Flush"
-        case .FullHouse:
+        case .fullHouse:
             return "Full House"
-        case .FourOfKind:
+        case .fourOfKind:
             return "Four Of A Kind"
-        case .StraightFlush:
+        case .straightFlush:
             return "Straight Flush"
-        case .RoyalFlush:
+        case .royalFlush:
             return "Royal Flush"
         }
     }

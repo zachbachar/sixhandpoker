@@ -1,26 +1,123 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BV1-FR-VrT">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="ipad10_5" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Game View Controller-->
+        <!--Menu View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="SixHandPoker" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="MenuViewController" customModule="SixHandPoker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8aa-yV-Osq"/>
                         <viewControllerLayoutGuide type="bottom" id="qHh-Mt-9TT"/>
                     </layoutGuides>
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="O6S-gQ-jsT"/>
+                    <connections>
+                        <segue destination="t7J-ou-dWd" kind="presentation" identifier="tutorialSegue" modalPresentationStyle="fullScreen" id="2h4-OH-Hwl"/>
+                        <segue destination="ATC-Ma-CgR" kind="presentation" identifier="mainSceneSegue" modalPresentationStyle="fullScreen" id="kMq-eo-IJP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="502" y="-922"/>
+        </scene>
+        <!--Game View Controller-->
+        <scene sceneID="sQ6-SI-0EQ">
+            <objects>
+                <viewController id="ATC-Ma-CgR" customClass="GameViewController" customModule="SixHandPoker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Cu-Sg-6Rf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zbp-zR-nLJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pLi-cK-ZI8" customClass="SKView">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Tqg-0Z-OyQ"/>
+                    <connections>
+                        <segue destination="BV1-FR-VrT" kind="presentation" identifier="menuSegue" modalPresentationStyle="fullScreen" id="m7l-aL-uZ1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0p2-b9-8mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1279" y="-352"/>
+        </scene>
+        <!--Tutorial View Controller-->
+        <scene sceneID="QoD-jI-6Ug">
+            <objects>
+                <viewController id="t7J-ou-dWd" customClass="TutorialViewController" customModule="SixHandPoker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j8c-UE-Wt1"/>
+                        <viewControllerLayoutGuide type="bottom" id="2bb-Y4-WJl"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8yv-ji-RdH">
+                        <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tuto1" translatesAutoresizingMaskIntoConstraints="NO" id="Auk-2g-pZQ">
+                                <rect key="frame" x="0.0" y="0.0" width="1112" height="834"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ec8-ey-Dbs" userLabel="nextBtn">
+                                <rect key="frame" x="996" y="719" width="116" height="115"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="116" id="hE4-ly-hse"/>
+                                    <constraint firstAttribute="height" constant="115" id="uyb-hY-Peg"/>
+                                </constraints>
+                                <state key="normal" image="nextBtn"/>
+                                <connections>
+                                    <action selector="nextBtnTouched:" destination="t7J-ou-dWd" eventType="touchUpInside" id="xZh-Nd-WgR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="myL-dG-aYq" userLabel="menuBtn">
+                                <rect key="frame" x="0.0" y="722" width="112" height="112"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="112" id="Yur-VU-Lpj"/>
+                                    <constraint firstAttribute="width" constant="112" id="zqI-xL-6Ln"/>
+                                </constraints>
+                                <state key="normal" image="menuBtn"/>
+                                <connections>
+                                    <segue destination="BV1-FR-VrT" kind="presentation" modalPresentationStyle="fullScreen" id="0vJ-6B-xzH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="2bb-Y4-WJl" firstAttribute="top" secondItem="myL-dG-aYq" secondAttribute="bottom" id="DwU-ah-eyf"/>
+                            <constraint firstAttribute="trailing" secondItem="ec8-ey-Dbs" secondAttribute="trailing" id="EVk-rv-vFV"/>
+                            <constraint firstItem="myL-dG-aYq" firstAttribute="leading" secondItem="8yv-ji-RdH" secondAttribute="leading" id="LdQ-1w-i4g"/>
+                            <constraint firstItem="2bb-Y4-WJl" firstAttribute="top" secondItem="Auk-2g-pZQ" secondAttribute="bottom" id="j9z-KL-nlq"/>
+                            <constraint firstAttribute="trailing" secondItem="Auk-2g-pZQ" secondAttribute="trailing" id="pJc-8y-XV8"/>
+                            <constraint firstItem="Auk-2g-pZQ" firstAttribute="leading" secondItem="8yv-ji-RdH" secondAttribute="leading" id="qAY-YA-4KK"/>
+                            <constraint firstItem="Auk-2g-pZQ" firstAttribute="top" secondItem="j8c-UE-Wt1" secondAttribute="bottom" id="qdn-yF-Onz"/>
+                            <constraint firstItem="2bb-Y4-WJl" firstAttribute="top" secondItem="ec8-ey-Dbs" secondAttribute="bottom" id="qqO-Vk-fhj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="MdR-OL-B3X"/>
+                    <connections>
+                        <outlet property="tutorialImageView" destination="Auk-2g-pZQ" id="ab3-H1-CeG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8IQ-gX-ldO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-88" y="22"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="m7l-aL-uZ1"/>
+    </inferredMetricsTieBreakers>
+    <resources>
+        <image name="menuBtn" width="491" height="492"/>
+        <image name="nextBtn" width="491" height="492"/>
+        <image name="tuto1" width="1024" height="768"/>
+    </resources>
 </document>

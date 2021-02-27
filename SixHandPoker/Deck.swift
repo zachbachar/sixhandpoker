@@ -17,8 +17,8 @@ struct Deck:CustomStringConvertible {
         for i in 1...4{
             for y in 2...14{
                 if let s = Suit(rawValue: i), let r = Rank(rawValue: y){
-                    let tex = SKTexture(imageNamed: "cardstyle1\(s.shortName)\(r.value)")
-                    let card = Card(texture: tex, color: UIColor.clearColor(), size: tex.size())
+                    let tex = SKTexture(imageNamed: "cardstyle2\(s.shortName)\(r.value)")
+                    let card = Card(texture: tex, color: UIColor.clear, size: tex.size())
                     card.suit = s
                     card.rank = r
                     deck.append(card)
@@ -29,9 +29,9 @@ struct Deck:CustomStringConvertible {
     
     mutating func shuffle(){
         for _ in 1...3{
-            deck.sortInPlace{(num1, num2)  -> Bool in
+            deck.sort{(num1, num2)  -> Bool in
                 var rand = 0
-                arc4random_buf(&rand, sizeof(Int))
+                arc4random_buf(&rand, MemoryLayout<Int>.size)
                 return rand % 2 == 0
             }
         }

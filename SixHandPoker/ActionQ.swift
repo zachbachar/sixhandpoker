@@ -32,7 +32,7 @@ class ActionQ {
     var tail: Node? = nil
     
     // timeLeftInQ is is the number of seconds left for all actions int the queue to finish
-    var timeLeftInQ :NSTimeInterval = 0
+    var timeLeftInQ :TimeInterval = 0
     
     init(){
         
@@ -40,14 +40,14 @@ class ActionQ {
     
     
     // add a new sprite/action to the end of the queue to be processed.
-    func addNext(sprite : SKNode, action :SKAction){
+    func addNext(_ sprite : SKNode, action :SKAction){
         let n = Node(sprite : sprite, action: action)
         timeLeftInQ += action.duration
         if self.isEmpty() {
             self.count += 1
             self.head = n
             self.tail = n
-            sprite.runAction(action, completion: actionComplete)
+            sprite.run(action, completion: actionComplete)
         } else {
             self.count += 1
             self.tail!.next = n
@@ -66,7 +66,7 @@ class ActionQ {
             timeLeftInQ -= self.head!.action!.duration
             if self.head!.next != nil {
                 self.head! = self.head!.next!
-                self.head?.sprite.runAction((self.head?.action)!, completion: self.actionComplete)
+                self.head?.sprite.run((self.head?.action)!, completion: self.actionComplete)
             } else {
                 self.head = nil
             }

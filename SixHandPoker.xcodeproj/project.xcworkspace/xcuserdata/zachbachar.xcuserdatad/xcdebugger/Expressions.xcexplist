@@ -11,10 +11,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Hand.isStraight() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
+         contextName = "Hand.isFullHouse() -&gt; (Bool, Card, Card)?:HandRanks.swift">
          <PersistentStrings>
             <PersistentString
                value = "cards.description">
+            </PersistentString>
+            <PersistentString
+               value = "finalCards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -27,13 +30,18 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Hand.isFullHouse() -&gt; (Bool, Card, Card)?:HandRanks.swift">
+         contextName = "Hand.isStraight() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
          <PersistentStrings>
             <PersistentString
                value = "cards.description">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in MenuScene.moveToGameScene():MenuScene.swift">
+         <PersistentStrings>
             <PersistentString
-               value = "finalCards.description">
+               value = "self.view">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -68,6 +76,9 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "MenuScene.moveToTutorialScene():MenuScene.swift">
+      </ContextState>
+      <ContextState
          contextName = "Hand.isFullHouse() -&gt; (Bool, Card?, Card?)?:HandRanks.swift">
          <PersistentStrings>
             <PersistentString
@@ -87,10 +98,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "specialized GameScene.(animateWinnerCards((Player, Int, HandRanks, String, [Card])?, kicker : Card?) -&gt; ()).(closure #2):WinnerAnimations.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "winningCards.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "GameScene.initMembers() -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
                value = "cardNodes">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isFourOfKind() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "finalCards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -119,16 +146,32 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         contextName = "TutorialScene.TutorialImageSelector():TutorialPagesHandler.swift">
          <PersistentStrings>
             <PersistentString
-               value = "cardsOnTable">
+               value = "tutorialImageStatus">
             </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GameScene.didMoveToView(SKView) -&gt; ():GameScene.swift">
+         <PersistentStrings>
             <PersistentString
                value = "user">
             </PersistentString>
             <PersistentString
                value = "opponent">
+            </PersistentString>
+            <PersistentString
+               value = "cardsOnTable">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.isStraightFlush() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "cards.description">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -149,18 +192,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "Hand.isStraightFlush() -&gt; (Bool, Card, [Card])?:HandScoreEvaluate.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "cards.description">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
          contextName = "GameScene.touchesMoved(Set&lt;UITouch&gt;, withEvent : UIEvent?) -&gt; ():GameScene.swift">
          <PersistentStrings>
             <PersistentString
                value = "dealer">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TutorialScene.didMove(to:):TutorialScene.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tutorials">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "TutorialViewController.changeTutorialScreen():TutorialViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "tutorials">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -172,6 +223,14 @@
             </PersistentString>
             <PersistentString
                value = "self.cardsOnTable.description">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Hand.removeFromFinalCardsNoReturn(indexs:):HandScoreEvaluate.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "finalCards">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

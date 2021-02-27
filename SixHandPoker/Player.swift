@@ -18,11 +18,11 @@ class Player{
         self.name = name
     }
     
-    func handValue(tableCards:[Card]) -> (Player, Int, HandRanks, String, [Card]){
+    func handValue(_ tableCards:[Card]) -> (Player, Int, HandRanks, String, [Card]){
         var finalCards = tableCards
         finalCards.append(hands.first!.card1)
         finalCards.append(hands.first!.card2)
-        finalCards.sortInPlace { (c1, c2) -> Bool in
+        finalCards.sort { (c1, c2) -> Bool in
             return c1.rank.rawValue < c2.rank.rawValue
         }
         
@@ -35,13 +35,13 @@ class Player{
         return (self, score, rank, message, winningCards)
     }
     
-    func removeHand(hand hand:Hand) -> Hand{
+    func removeHand(hand:Hand) -> Hand{
         var indexToRemove = 0
         for index in 0...hands.count - 1 {
             if hands[index] == hand{
                 indexToRemove = index
             }
         }
-        return hands.removeAtIndex(indexToRemove)
+        return hands.remove(at: indexToRemove)
     }
 }

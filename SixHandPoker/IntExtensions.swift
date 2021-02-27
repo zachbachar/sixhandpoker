@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+extension Int{
+    //static function -> called from the class name (Int.nextRandom)
+    static func nextRandom(upTo max:Int) -> Int{
+        var rand:Int = 0
+        arc4random_buf(&rand, MemoryLayout<Int>.size)
+        rand = abs(rand)
+        rand = rand % max
+        return rand
+    }
+}

@@ -9,19 +9,19 @@
 import Foundation
 
 enum Rank:Int, CustomStringConvertible{
-    case LowAce = 1
-    case Two = 2, Three, Four, Five, Six, Seven, Eight, Nine, Ten
-    case Jack, Queen, King, Ace
+    case lowAce = 1
+    case two = 2, three, four, five, six, seven, eight, nine, ten
+    case jack, queen, king, ace
     
     var description:String{
         switch self{
-        case .Ace:
+        case .ace:
             return "Ace"
-        case .Jack:
+        case .jack:
             return "Jack"
-        case .Queen:
+        case .queen:
             return "Queen"
-        case King:
+        case .king:
             return "King"
         default:
             return "\(self.rawValue)"

@@ -10,6 +10,8 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    var viewController:UIViewController?
+    
     var deck = Deck()
     var user = Player(name: "User")
     var opponent = Player(name: "Opponent")
@@ -21,113 +23,32 @@ class GameScene: SKScene {
     var round = 0
     
     var cardsOnTable = [Card]()
-    var dealerPositions = [CGPointMake(900, 150), CGPointMake(900, 250), CGPointMake(900, 350), CGPointMake(900, 450), CGPointMake(900, 550), CGPointMake(900, 650)]
+    var dealerPositions = [CGPoint(x: 900, y: 150), CGPoint(x: 900, y: 250),
+                           CGPoint(x: 900, y: 350), CGPoint(x: 900, y: 450),
+                           CGPoint(x: 900, y: 550), CGPoint(x: 900, y: 650)]
     
     var canPlay = false
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         /* Setup your scene here*/
-        midX = CGRectGetMidX(self.frame)
-        midY = CGRectGetMidY(self.frame)
-        initGame()
+        super.didMove(to: view)
+        midX = self.frame.midX
+        midY = self.frame.midY 
+        self.initGame()
         initFirstDraw()
     }
     
-    func resetGame() -> SKAction{
-        deck = Deck()
-        user.hands.removeAll()
-        dealer.hands.removeAll()
-        opponent.hands.removeAll()
-        cardsOnTable.removeAll()
-        initGame()
-        initFirstDraw()
-        return SKAction()
-    }
-    
-    func initGame(){
-        deck.shuffle()
-        
-        for _ in 0..<6{
-            user.hands.append(Hand(card1: deck.drawCard()))
-            opponent.hands.append(Hand(card1: deck.drawCard()))
-        }
-        for i in 0..<6{
-            user.hands[i].card2 = deck.drawCard()
-            opponent.hands[i].card2 = deck.drawCard()
-        }
-        for _ in 0..<5{
-            cardsOnTable.append(deck.drawCard())
-        }
-    }
-    
-    func endGame(){
-        canPlay = false
-        round = 0
-        checkForWinner()
-        addNewGameButton()
-    }
-    
-    func checkForWinner(){
-        var results = [user.handValue(self.cardsOnTable),
-                       opponent.handValue(self.cardsOnTable),
-                       dealer.handValue(self.cardsOnTable)]
-        
-        print("User: \(results[0].3) - score: \(results[0].1)")
-        print("Opp: \(results[1].3) - score: \(results[1].1)")
-        print("Dealer: \(results[2].3) - score: \(results[2].1)")
-        
-        let temp = results.sort { (x, y) -> Bool in
-            return x.1 > y.1
-        }
-        
-        results = temp
-        
-        //Tie Handeling
-        if results[0].1 == results[1].1{
-            if results[0].2 == .Straight || results[0].2 == .StraightFlush{
-                animateWinnerCards(nil, kicker: nil)
-            }
-            else {
-                var p1Cards = results[0].0.hands.first!.finalCards
-                var p2Cards = results[1].0.hands.first!.finalCards
-                
-                p1Cards.sortInPlace({ (c1, c2) -> Bool in
-                    return c1.rank.rawValue > c2.rank.rawValue
-                })
-                p2Cards.sortInPlace({ (c1, c2) -> Bool in
-                    return c1.rank.rawValue > c2.rank.rawValue
-                })
-                
-                repeat{
-                    if p1Cards.first!.rank > p2Cards.first!.rank{
-                        animateWinnerCards(results[0], kicker: p1Cards.first!)
-                        return
-                    }
-                    if p1Cards.first!.rank < p2Cards.first!.rank{
-                        animateWinnerCards(results[1], kicker: p2Cards.first!)
-                        return
-                    }
-                    p1Cards.removeFirst()
-                    p2Cards.removeFirst()
-                } while (p1Cards.count > 2)
-                animateWinnerCards(nil, kicker: nil)
-                return
-            }
-        }
-        animateWinnerCards(results[0], kicker: nil)
-    }
-    
-    override func touchesEnded(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
-        let location = touch.locationInNode(self)
-        let touchedNode = nodeAtPoint(location)
+        let location = touch.location(in: self)
+        let touchedNode = atPoint(location)
         
         if let card1 = touchedNode as? Card{
-            if let hand = findHand(card1){
+            if let hand = self.findHand(card1){
                 if round == 1{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundONE(card1)
+                        roundONE(card1: card1)
                     }
                     if user.hands.count == 4 && opponent.hands.count == 4{
                         round += 1
@@ -137,7 +58,7 @@ class GameScene: SKScene {
                 else if round == 2{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundTWO(card1)
+                        roundTWO(card1: card1)
                     }
                     if dealer.hands.count == 2{
                         canPlay = false
@@ -154,7 +75,7 @@ class GameScene: SKScene {
                 else if round == 3{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundTHREE(card1)
+                        roundTHREE(card1: card1)
                     }
                     if user.hands.count == 3 && opponent.hands.count == 3{
                         round += 1
@@ -164,7 +85,7 @@ class GameScene: SKScene {
                 else if round == 4{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundFOUR(card1)
+                        roundFOUR(card1: card1)
                     }
                     if dealer.hands.count == 3{
                         canPlay = false
@@ -180,7 +101,7 @@ class GameScene: SKScene {
                 else if round == 5{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundFIVE(card1)
+                        roundFIVE(card1: card1)
                     }
                     if user.hands.count == 2 && opponent.hands.count == 2{
                         round += 1
@@ -190,7 +111,7 @@ class GameScene: SKScene {
                 else if round == 6{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundSIX(card1)
+                        roundSIX(card1: card1)
                     }
                     if dealer.hands.count == 4{
                         canPlay = false
@@ -206,7 +127,7 @@ class GameScene: SKScene {
                 else if round == 7{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundSEVEN(card1)
+                        roundSEVEN(card1: card1)
                     }
                     if user.hands.count == 1 && opponent.hands.count == 1{
                         round += 1
@@ -216,7 +137,7 @@ class GameScene: SKScene {
                 else if round == 8{
                     if canPlay && hand.0.canThrow{
                         decreaseHandSize(hand)
-                        roundEIGHT(card1)
+                        roundEIGHT(card1: card1)
                     }
                     if dealer.hands.count == 1{
                         canPlay = false
@@ -227,30 +148,34 @@ class GameScene: SKScene {
                         })
                     }
                 }
+                
+                if let touching = touched{
+                    if let hand = findHand(touching){
+                        decreaseHandSize(hand)
+                    }
+                }
+                touched = nil
             }
         }
-        
-        if let touching = touched{
-            if let hand = findHand(touching){
-                decreaseHandSize(hand)
-            }
-        }
-        touched = nil
     }
-
+    
     var touched:Card?
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //Called when a touch begins
         let touch = touches.first!
-        let location = touch.locationInNode(self)
-        let touchedNode = nodeAtPoint(location)
+        let location = touch.location(in: self)
+        let touchedNode = atPoint(location)
         if touchedNode.name == "newGameBtn"{
             clearTable()
+        }
+        else if touchedNode.name == "menuBtn"{
+            canPlay = false
+            moveToMenuScene()
         }
         else{
             if let card1 = touchedNode as? Card{
                 if canPlay{
-                    if let hand = findHand(card1){
+                    if let hand = self.findHand(card1){
                         if touched == nil{
                             touched = card1
                             increaseHandSize(hand)
@@ -261,53 +186,18 @@ class GameScene: SKScene {
         }
     }
     
-    override func touchesMoved(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
-        let location = touch.locationInNode(self)
+        let location = touch.location(in: self)
         //let touchedNode = nodeAtPoint(location)
         
         if let touching = touched{
             if !touching.frame.contains(location){
-                if let hand = findHand(touching){
+                if let hand = self.findHand(touching){
                     decreaseHandSize(hand)
                 }
                 touched = nil
             }
         }
-    }
-    
-   
-    override func update(currentTime: CFTimeInterval) {
-        /* Called before each frame is rendered */
-    }
-    
-    func findHand(card1:Card) -> (Hand, Player)?{
-        for hand in user.hands{
-            if card1 == hand.card1{
-                return (hand, user)
-            }
-            else if card1 == hand.card2{
-                return (hand, user)
-            }
-        }
-        
-        for hand in opponent.hands{
-            if card1 == hand.card1{
-                return (hand, opponent)
-            }
-            else if card1 == hand.card2{
-                return (hand, opponent)
-            }
-        }
-        
-        for hand in dealer.hands{
-            if card1 == hand.card1{
-                return (hand, dealer)
-            }
-            else if card1 == hand.card2{
-                return (hand, dealer)
-            }
-        }
-        return nil
     }
 }

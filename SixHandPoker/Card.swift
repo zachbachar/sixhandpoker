@@ -36,45 +36,45 @@ class Card: SKSpriteNode{
     }
     
     var image:UIImage{
-        return UIImage(named: "cardstyle1\(suit.shortName)\(rank.value)")!
+        return UIImage(named: "cardstyle2\(suit.shortName)\(rank.value)")!
     }
     
     var imageName:String{
-        return "cardstyle1\(suit.shortName)\(rank.value)"
+        return "cardstyle2\(suit.shortName)\(rank.value)"
     }
     
     override var description: String{
         return "\(self.rank.description) of \(self.suit.description)"
     }
     
-    private func flipSound() -> SKAction{
+    fileprivate func flipSound() -> SKAction{
         return SKAction.playSoundFileNamed("cardPlace3", waitForCompletion: false)
     }
     
-    func flip(wait:NSTimeInterval, complition:(() -> ())? ) {
-        let firstHalfFlip = SKAction.group([SKAction.scaleBy(1.2, duration: 0.2), SKAction.scaleXTo(0.0, duration: 0.2)])
-        let secondHalfFlip = SKAction.group([SKAction.scaleXTo(1.0, duration: 0.2), SKAction.scaleBy(0.8, duration: 0.2)])
-        let wait = SKAction.waitForDuration(wait)
+    func flip(_ wait:TimeInterval, complition:(() -> ())? ) {
+        let firstHalfFlip = SKAction.group([SKAction.scale(by: 1.2, duration: 0.2), SKAction.scaleX(to: 0.0, duration: 0.2)])
+        let secondHalfFlip = SKAction.group([SKAction.scaleX(to: 1.0, duration: 0.2), SKAction.scale(by: 0.8, duration: 0.2)])
+        let wait = SKAction.wait(forDuration: wait)
         
-        runAction(wait){
+        run(wait, completion: {
             if self.faceUp {
-                self.runAction(SKAction.sequence([firstHalfFlip, self.flipSound()])) {
+                self.run(SKAction.sequence([firstHalfFlip, self.flipSound()]), completion: {
                     self.texture = self.backTexture
                     self.faceUp = false
-                    self.runAction(secondHalfFlip)
-                }
+                    self.run(secondHalfFlip)
+                }) 
             } else {
-                self.runAction(SKAction.sequence([firstHalfFlip, self.flipSound()])) {
+                self.run(SKAction.sequence([firstHalfFlip, self.flipSound()]), completion: {
                     self.texture = self.frontTexture
                     self.faceUp = true
-                    self.runAction(secondHalfFlip){
+                    self.run(secondHalfFlip, completion: {
                         if let comp = complition{
                             comp()
                         }
-                    }
-                }
+                    })
+                }) 
             }
-        }
+        })
     }
 }
 

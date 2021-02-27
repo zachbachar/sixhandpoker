@@ -10,30 +10,30 @@ import Foundation
 
 enum Suit:Int, CustomStringConvertible{
     
-    case Spades = 1, Hearts, Diamonds, Clubs
+    case spades = 1, hearts, diamonds, clubs
     
     var description:String{
         switch self{
-        case .Spades:
+        case .spades:
             return "Spades"
-        case .Hearts:
+        case .hearts:
             return "Hearts"
-        case .Diamonds:
+        case .diamonds:
             return "Diamonds"
-        case .Clubs:
+        case .clubs:
             return "Clubs"
         }
     }
     
     var shortName:String{
         switch self {
-        case .Spades:
+        case .spades:
             return "s"
-        case .Hearts:
+        case .hearts:
             return "h"
-        case .Diamonds:
+        case .diamonds:
             return "d"
-        case.Clubs:
+        case.clubs:
             return "c"
         }
     }
